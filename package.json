@@ -1,0 +1,30 @@
+{
+  "name": "typescript-project",
+  "version": "0.0.1",
+  "description": "Something new.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinisimattia/tapi.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "TypeScript"
+  ],
+  "author": "Mattia Sinisi",
+  "license": "TODO",
+  "bugs": {
+    "url": "https://github.com/sinisimattia/tapi/issues"
+  },
+  "homepage": "https://github.com/sinisimattia/tapi#readme",
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8",
+    "tslint": "^6.1.3",
+    "typescript": "^4.3.5"
+  }
+}

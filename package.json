@@ -1,7 +1,7 @@
 {
-  "name": "typescript-project",
+  "name": "tapi",
   "version": "0.0.1",
-  "description": "Something new.",
+  "description": "Consume RESTful APIs as TypeScript objects.",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

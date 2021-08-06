@@ -1,14 +1,4 @@
-import Buildable from "@/contracts/Buildable";
-
-export default class Test extends Buildable {
+export default class Test {
 	public param1: string = "yo";
-
-	constructor() {
-		super();
-	}
-
-	public static build(): Test {
-		return new Test();
-	}
-
+	private param2: string = "there is no such thing as privacy"
 }

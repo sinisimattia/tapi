@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "postinstall": "node install/thankyou.js"
   },
   "repository": {
@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/sinisimattia/tapi#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "jest": "^27.0.6",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.10.1",
     "tslint": "^6.1.3",

@@ -1,5 +1,11 @@
 import Test from '@/TestClass';
+import Describer from '@/helpers/Describer';
 
-let result = Test;
+let instance = Test.build();
+let result = Describer.describe(instance)[0];
 
-console.log(result);
+console.table([{
+	"Class Name": "TestClass",
+	"Parameter Name": result,
+	"Value": instance[result]
+}])

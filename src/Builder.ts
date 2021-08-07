@@ -1,10 +1,18 @@
 import Describer from "@/helpers/Describer";
 
+type Action = (value: any) => any;
 export default class Builder<ResultType> {
 	private ignores: string[] = [];
+	private transformers: {[property: string]: Action} = {};
 
 	public ignore(paths: string[]): this {
 		this.ignores = paths;
+		return this;
+	}
+
+	public transform(property: string, transformer: Action): this {
+		this.transformers[property] = transformer;
+
 		return this;
 	}
 
@@ -12,7 +20,7 @@ export default class Builder<ResultType> {
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
-			if (this.ignores.includes(param)) {
+			if (this.ignores.includes(param) || target[param] == undefined) {
 				return;
 			}
 
@@ -23,7 +31,12 @@ export default class Builder<ResultType> {
 				else return;
 			}
 			
-			target[param] = json[param];
+			if (this.transformers[param]){
+				target[param] = this.transformers[param](json[param]);
+			}
+			else {
+				target[param] = json[param];
+			}
 		});
 		return target;
 	}

@@ -3,6 +3,7 @@ import Builder from '@/Builder';
 class TestClass {
 	public param1: string = "unassigned";
 	public param2: string = "still private"
+	public toBeTransformed = "not transformed";
 	public list: Array<any> = []
 
 	public getParam2(): string {
@@ -11,7 +12,10 @@ class TestClass {
 }
 
 const builder = new Builder<TestClass>()
-	.ignore(["param2"]);
+	.ignore(["param2"])
+	.transform('toBeTransformed', (value) => {
+		return "transformed";
+	});
 
 describe('Typed object builder', () => {
 	test('ignores extra parameters', () => {
@@ -37,5 +41,17 @@ describe('Typed object builder', () => {
 		expect(() => {
 			builder.fromJSON(new TestClass(), json, true);
 		}).toThrowError();
+	})
+
+	test('supports custom mappings', () => {
+		let json = {
+			param1: "ok",
+			param2: "this should not be reassigned",
+			toBeTransformed: "something"
+		}
+	
+		let instance = builder.fromJSON(new TestClass(), json);
+
+		expect(instance.toBeTransformed).toBe("transformed");
 	})
 })

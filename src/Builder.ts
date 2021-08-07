@@ -5,8 +5,11 @@ export default class Builder {
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
-			if (strict && !json.hasOwnProperty(param)) {
-				throw new Error("Invalid input object, missing parameter: " + param);
+			if (!json.hasOwnProperty(param)) {
+				if (strict) {
+					throw new Error("Invalid input object, missing parameter: " + param);
+				}
+				else return;
 			}
 			
 			target[param] = json[param];

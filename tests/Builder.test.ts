@@ -24,6 +24,7 @@ describe('Typed object builder', () => {
 		let instance = builder.fromJSON(new TestClass(), json);
 	
 		expect(instance.param1).toBe("ok");
+		expect(instance.hasOwnProperty("extraParam")).toBe(false);
 		expect(instance.getParam2()).toBe("still private");
 	})
 

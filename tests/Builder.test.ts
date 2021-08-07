@@ -1,18 +1,27 @@
 import Builder from '@/Builder';
 
 class TestClass {
-	public param1: string = "yo";
-	private param2: string = "there is no such thing as privacy"
+	public param1: string = "unassigned";
+	public param2: string = "still private"
+	public list: Array<any> = []
+
+	public getParam2(): string {
+		return this.param2;
+	}
 }
+
+const builder = new Builder<TestClass>()
+	.ignore(["param2"]);
 
 describe('Typed object builder', () => {
 	test('ignores extra parameters', () => {
 		let json = {
 			param1: "ok",
+			param2: "this should not be reassigned",
 			extraParam: "not ok! abort. ABORT!"
 		}
 	
-		let instance = Builder.fromJSON(new TestClass(), json);
+		let instance = builder.fromJSON(new TestClass(), json);
 	
 		expect(instance.param1).toBe("ok");
 		expect(instance.getParam2()).toBe("still private");
@@ -25,7 +34,7 @@ describe('Typed object builder', () => {
 		}
 
 		expect(() => {
-			Builder.fromJSON(new TestClass(), json, true);
+			builder.fromJSON(new TestClass(), json, true);
 		}).toThrowError();
 	})
 })

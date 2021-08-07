@@ -15,6 +15,7 @@ describe('Typed object builder', () => {
 		let instance = Builder.fromJSON(new TestClass(), json);
 	
 		expect(instance.param1).toBe("ok");
+		expect(instance.getParam2()).toBe("still private");
 	})
 
 	test('enforces strict assignment', () => {

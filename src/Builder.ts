@@ -4,6 +4,7 @@ type Action = (value: any) => any;
 export default class Builder<ResultType> {
 	private ignores: string[] = [];
 	private transformers: {[property: string]: Action} = {};
+	//TODO implement aliases (ex. Class has "name", but json has "title")
 
 	public ignore(paths: string[]): this {
 		this.ignores = paths;

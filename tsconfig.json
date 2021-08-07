@@ -1,14 +1,5 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs",
-		"declaration": true,
-		"declarationMap": true,
-		"sourceMap": true,
-		"outDir": "dist",
-		"rootDir": "src",
-		"composite": true,
-		"removeComments": true,
 		"strict": true,
 		"noImplicitAny": false,
 		"moduleResolution": "node",
@@ -18,8 +9,6 @@
 				"./*"
 			]
 		},
-		"esModuleInterop": true,
-		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true
 	},
 	"include": [

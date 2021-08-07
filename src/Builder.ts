@@ -16,6 +16,15 @@ export default class Builder<ResultType> {
 		return this;
 	}
 
+	private assign(target: ResultType, json: any, param: string): void {
+		if (this.transformers[param]){
+			target[param] = this.transformers[param](json[param]);
+		}
+		else {
+			target[param] = json[param];
+		}
+	}
+
 	public fromJSON(target: ResultType, json: any, strict: boolean = false): ResultType {
 		const params = Describer.getParameters(target);
 
@@ -31,12 +40,8 @@ export default class Builder<ResultType> {
 				else return;
 			}
 			
-			if (this.transformers[param]){
-				target[param] = this.transformers[param](json[param]);
-			}
-			else {
-				target[param] = json[param];
-			}
+			this.assign(target, json, param);
+			
 		});
 		return target;
 	}

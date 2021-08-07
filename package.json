@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
+    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/demo.ts",
     "test": "jest",
     "postinstall": "node install/thankyou.js"
   },

@@ -1,6 +1,5 @@
-const TestClass = require('@/TestClass');
-const Describer = require('@/helpers/Describer');
-const Builder = require('@/Builder');
+import TestClass from '@/TestClass';
+import Builder from '@/Builder';
 
 test('Extra params are ignored', () => {
 	let json = {

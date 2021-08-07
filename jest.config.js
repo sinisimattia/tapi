@@ -34,7 +34,7 @@ const TESTS_PATH = '<rootDir>/tests';
 
 module.exports = {
 	roots: [
-		SRC_PATH
+		TESTS_PATH,
 	],
 	moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
 	// All imported modules in your tests should be mocked automatically
@@ -51,6 +51,4 @@ module.exports = {
 
 	// Indicates which provider should be used to instrument code for coverage
 	coverageProvider: "v8",
-
-	testMatch: [TESTS_PATH + '/**/*.test.{ts,js}'],
 };

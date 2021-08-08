@@ -25,13 +25,13 @@ const builder = TestClass.getBuilder();
 
 describe('Typed object builder', () => {
 	test('ignores extra parameters', () => {
-		let json = {
+		const json = {
 			param1: "ok",
 			param2: "this should not be reassigned",
 			extraParam: "not ok! abort. ABORT!"
 		}
 	
-		let instance = builder.fromJSON(new TestClass(), json);
+		const instance = builder.fromJSON(new TestClass(), json);
 	
 		expect(instance.param1).toBe("ok");
 		expect(instance.hasOwnProperty("extraParam")).toBe(false);
@@ -39,7 +39,7 @@ describe('Typed object builder', () => {
 	})
 
 	test('enforces strict assignment', () => {
-		let json = {
+		const json = {
 			param1: "ok",
 			extraParam: "not ok! abort. ABORT!"
 		}
@@ -50,23 +50,23 @@ describe('Typed object builder', () => {
 	})
 
 	test('supports custom mappings', () => {
-		let json = {
+		const json = {
 			param1: "ok",
 			param2: "this should not be reassigned",
 			toBeTransformed: "something"
 		}
 	
-		let instance = builder.fromJSON(new TestClass(), json);
+		const instance = builder.fromJSON(new TestClass(), json);
 
 		expect(instance.toBeTransformed).toBe("transformed");
 	})
 
 	test('supports aliases', () => {
-		let json = {
+		const json = {
 			_param_1: "ok"
 		}
 	
-		let instance = builder.fromJSON(new TestClass(), json);
+		const instance = builder.fromJSON(new TestClass(), json);
 
 		expect(instance.param1).toBe("ok");
 	})

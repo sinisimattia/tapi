@@ -1,6 +1,7 @@
 import Builder from '@/Builder';
+import Buildable from '@/contracts/Buildable';
 
-class TestClass {
+class TestClass extends Buildable {
 	public param1: string = "unassigned";
 	public param2: string = "still private"
 	public toBeTransformed = "not transformed";
@@ -9,14 +10,18 @@ class TestClass {
 	public getParam2(): string {
 		return this.param2;
 	}
+
+	public static override getBuilder() : Builder {
+		return new Builder<TestClass>()
+		.ignore(["param2"])
+		.transform('toBeTransformed', (value) => {
+			return "transformed";
+		})
+		.alias("_param_1", "param1");
+	}
 }
 
-const builder = new Builder<TestClass>()
-	.ignore(["param2"])
-	.transform('toBeTransformed', (value) => {
-		return "transformed";
-	})
-	.alias("_param_1", "param1");
+const builder = TestClass.getBuilder();
 
 describe('Typed object builder', () => {
 	test('ignores extra parameters', () => {

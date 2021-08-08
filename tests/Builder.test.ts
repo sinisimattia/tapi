@@ -15,7 +15,8 @@ const builder = new Builder<TestClass>()
 	.ignore(["param2"])
 	.transform('toBeTransformed', (value) => {
 		return "transformed";
-	});
+	})
+	.alias("_param_1", "param1");
 
 describe('Typed object builder', () => {
 	test('ignores extra parameters', () => {
@@ -53,5 +54,15 @@ describe('Typed object builder', () => {
 		let instance = builder.fromJSON(new TestClass(), json);
 
 		expect(instance.toBeTransformed).toBe("transformed");
+	})
+
+	test('supports aliases', () => {
+		let json = {
+			_param_1: "ok"
+		}
+	
+		let instance = builder.fromJSON(new TestClass(), json);
+
+		expect(instance.param1).toBe("ok");
 	})
 })

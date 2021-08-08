@@ -2,7 +2,7 @@ import Describer from "@/helpers/Describer";
 
 type Action = (value: any) => any;
 
-export default class Builder<ResultType> {
+export default class Builder<ResultType = any> {
 	private ignores: string[] = [];
 	private transformers: {[localPath: string]: Action} = {};
 	private aliases: {[localPath: string]: string} = {};

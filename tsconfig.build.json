@@ -11,7 +11,7 @@
 		"composite": true,
 		"removeComments": true,
 		"esModuleInterop": true,
-		"skipLibCheck": true,
+		"skipLibCheck": false,
 	},
 	"include": [
 		"src/**/*"

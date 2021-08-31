@@ -9,7 +9,12 @@
 				"./*"
 			]
 		},
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": true,
+		"plugins": [
+			{
+				"transform": "typescript-transform-paths"
+			}
+		]
 	},
 	"include": [
 		"src/**/*",

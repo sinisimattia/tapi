@@ -1,5 +1,5 @@
 import Builder from '@/Builder'
 
-module.exports = {
+export default {
 	Builder
 };

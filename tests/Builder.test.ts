@@ -1,7 +1,8 @@
 import Builder from '@/Builder';
 import Buildable from '@/contracts/Buildable';
+import Resource from '@/contracts/Resource';
 
-class TestClass extends Buildable {
+class TestClass implements Resource {
 	public param1: string = "unassigned";
 	public param2: string = "still private"
 	public toBeTransformed = "not transformed";
@@ -11,17 +12,17 @@ class TestClass extends Buildable {
 		return this.param2;
 	}
 
-	public static override getBuilder() : Builder {
-		return new Builder<TestClass>()
-		.ignore(["param2"])
-		.transform('toBeTransformed', (value) => {
-			return "transformed";
-		})
-		.alias("_param_1", "param1");
+	static build(): TestClass {
+		return new TestClass();
 	}
 }
 
-const builder = TestClass.getBuilder();
+const builder = new Builder(TestClass)
+	.ignore(["param2"])
+	.transform('toBeTransformed', (value) => {
+		return "transformed";
+	})
+	.alias("_param_1", "param1");
 
 describe('Typed object builder', () => {
 	test('ignores extra parameters', () => {
@@ -31,7 +32,7 @@ describe('Typed object builder', () => {
 			extraParam: "not ok! abort. ABORT!"
 		}
 	
-		const instance = builder.fromJSON(new TestClass(), json);
+		const instance = builder.fromJSON(json);
 	
 		expect(instance.param1).toBe("ok");
 		expect(instance.hasOwnProperty("extraParam")).toBe(false);
@@ -45,7 +46,7 @@ describe('Typed object builder', () => {
 		}
 
 		expect(() => {
-			builder.fromJSON(new TestClass(), json, true);
+			builder.fromJSON(json, true);
 		}).toThrowError();
 	})
 
@@ -56,7 +57,7 @@ describe('Typed object builder', () => {
 			toBeTransformed: "something"
 		}
 	
-		const instance = builder.fromJSON(new TestClass(), json);
+		const instance = builder.fromJSON(json);
 
 		expect(instance.toBeTransformed).toBe("transformed");
 	})
@@ -66,7 +67,7 @@ describe('Typed object builder', () => {
 			_param_1: "ok"
 		}
 	
-		const instance = builder.fromJSON(new TestClass(), json);
+		const instance = builder.fromJSON(json);
 
 		expect(instance.param1).toBe("ok");
 	})

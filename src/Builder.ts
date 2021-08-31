@@ -1,11 +1,19 @@
 import Describer from "@/helpers/Describer";
+import Buildable from "@/contracts/Buildable";
+import Resource from "@/contracts/Resource";
 
 type Action = (value: any) => any;
 
-export default class Builder<ResultType = any> {
+export default class Builder<ResultType extends Resource = any> { // MyService
+	private classToBuild: Buildable<ResultType>;
+
 	private ignores: string[] = [];
 	private transformers: {[localPath: string]: Action} = {};
 	private aliases: {[localPath: string]: string} = {};
+
+	constructor(classToBuild: Buildable<ResultType>) {
+		this.classToBuild = classToBuild;
+	}
 
 	public ignore(paths: string[]): this {
 		this.ignores = paths;
@@ -47,7 +55,8 @@ export default class Builder<ResultType = any> {
 		}
 	}
 
-	public fromJSON(target: ResultType, json: any, strict: boolean = false): ResultType {
+	public fromJSON(json: any, strict: boolean = false): ResultType {
+		const target = this.classToBuild.build(json);
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {

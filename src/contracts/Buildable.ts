@@ -1,7 +1,6 @@
-import Builder from "@/Builder";
+import Resource from "@/contracts/Resource";
 
-export default abstract class Buildable {
-	public static getBuilder<Type>(): Builder<Type> {
-		return new Builder<Type>();
-	}
+export default interface Buildable<Type extends Resource> { // IMyClassBuilder
+	new (): Type;
+	build(source: any): Type;
 }

@@ -13,9 +13,10 @@ npm i -S tapi
 
 ### In a class
 
-First off you need to extend the `Buildable` abstract class and define the builder the class will use.
+First off you need to implement the `BuildableResource` interface and define the builder the class will use.
 
 ```TypeScript
+// TestClass.ts
 import { Builder, Buildable } from "tapi";
 
 class TestClass extends Buildable {
@@ -23,21 +24,20 @@ class TestClass extends Buildable {
 	public toBeIgnored: string = "still private"
 	public toBeTransformed = "not transformed";
 	public list: Array<any> = []
-
-	public static override getBuilder() : Builder {
-		return new Builder<TestClass>()
-		.ignore(["toBeIgnored"])
-		.transform('toBeTransformed', (value) => {
-			return "transformed";
-		})
-		.alias("_param_1", "param");
-	}
 }
+
+// example.ts
+const testClassBuilder = new Builder(TestClass)
+	.ignore(["param2"])
+	.transform('toBeTransformed', (value) => {
+		return "transformed";
+	})
+	.alias("_param_1", "param1");
 ```
 
 Then it's as simple as writing:
 ```TypeScript
-const result = TestClass.getBuilder().fromJSON(new TestClass(), json);
+const instance: TestClass = testClassBuilder.fromJSON(json);
 ```
 
 

@@ -1,17 +1,17 @@
 import Describer from "@/helpers/Describer";
-import Buildable from "@/contracts/Buildable";
-import Resource from "@/contracts/Resource";
+import ResourceFactory from "@/contracts/ResourceFactory";
+import BuildableResource from "@/contracts/BuildableResource";
 
 type Action = (value: any) => any;
 
-export default class Builder<ResultType extends Resource = any> { // MyService
-	private classToBuild: Buildable<ResultType>;
+export default class Builder<ResultType extends BuildableResource = any> {
+	private classToBuild: ResourceFactory<ResultType>;
 
 	private ignores: string[] = [];
 	private transformers: {[localPath: string]: Action} = {};
 	private aliases: {[localPath: string]: string} = {};
 
-	constructor(classToBuild: Buildable<ResultType>) {
+	constructor(classToBuild: ResourceFactory<ResultType>) {
 		this.classToBuild = classToBuild;
 	}
 

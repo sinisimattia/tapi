@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Consume RESTful APIs as TypeScript objects.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "ttsc -p tsconfig.build.json",
     "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/demo.ts",

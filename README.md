@@ -1,5 +1,5 @@
-# <strong class="colored">t</strong>api
-### <strong class="colored">Typed</strong> API
+# tapi
+### Typed API
 
 
 <strong>tapi</strong> is a tiny TypeScript package used to define how to interpret any given API response as a typed object.
@@ -39,9 +39,3 @@ Then it's as simple as writing:
 ```TypeScript
 const instance: TestClass = testClassBuilder.fromJSON(json);
 ```
-
-
-<style>
-	.colored {color: #0A68FF}
-	h1 {border: none}
-</style>

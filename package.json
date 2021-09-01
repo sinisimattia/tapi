@@ -32,7 +32,7 @@
 	"bugs": {
 		"url": "https://github.com/sinisimattia/tapi/issues"
 	},
-	"homepage": "https://github.com/sinisimattia/tapi#readme",
+	"homepage": "https://tapi.mattia.codes/",
 	"devDependencies": {
 		"@babel/core": "^7.15.0",
 		"@babel/preset-env": "^7.15.0",

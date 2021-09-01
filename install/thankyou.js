@@ -14,4 +14,4 @@ console.log(initialPadding + colored(emptySection));
 console.log(initialPadding + colored('║ ') + message + colored(' ║'));
 console.log(initialPadding + colored(emptySection));
 console.log(initialPadding + colored(bottomBorder));
-console.log(initialPadding + ' '.repeat(message.length + 4 - version.length) + version)
+console.log(initialPadding + ' '.repeat(message.length + 4 - (package.version.length + 1)) + version)

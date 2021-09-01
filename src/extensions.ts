@@ -9,15 +9,16 @@ declare global {
 }
 
 Promise.prototype.as = function<T> (classToBuild: ResourceFactory<T>): Promise<T> {
-	return new Promise((resolve, reject) => {
-		let result;
-		try {
-			result = new Builder(classToBuild).fromJSON({})
-
-			resolve(result);
-		}
-		catch (err) {
-			reject(err);
-		}
+	return this.then(input => {
+		return new Promise((resolve, reject) => {
+			let result;
+			try {
+				result = new Builder(classToBuild).fromJSON(input)
+				resolve(result);
+			}
+			catch (err) {
+				reject(err);
+			}
+		})
 	})
 }

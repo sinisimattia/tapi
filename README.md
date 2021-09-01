@@ -1,8 +1,8 @@
-# tapi
-### Typed API
+# **t**api
+### **Typed** API consumer
 
 
-<strong>tapi</strong> is a tiny TypeScript package used to define how to interpret any given API response as a typed object.
+**tapi** is a tiny TypeScript package used to define how to interpret any given API response as a typed object.
 
 ## Install 📦
 ```bash
@@ -10,8 +10,6 @@ npm i -S tapi
 ```
 
 ## Usage 🚀
-
-### In a class
 
 First off you need to implement the `BuildableResource` interface and define the builder the class will use.
 
@@ -39,3 +37,35 @@ Then it's as simple as writing:
 ```TypeScript
 const instance: TestClass = testClassBuilder.fromJSON(json);
 ```
+
+### With Promises 🤞
+
+The conversion tool can also be used with promises, to demonstrate this we'll be using a simple Axios request.
+
+```TypeScript
+import axios from 'axios' // 👈 Of course, you'll need to installl this
+
+import { BuildableResource } from 'tapi'
+
+import 'tapi/extensions' // 👈 Use this line to import all the extended functionalities of core types
+
+// Let's create a simple class...
+class TestClass implements BuildableResource {
+	static build(): TestClass {
+		return new TestClass()
+	}
+}
+
+// Then make a request and get a promise...
+axios.get('/some-url-that-returns-an-object')
+	// Now let's build the object with its defined builder! 🎉
+	.as(TestClass)
+	// Aaaaand we can use the typed object to do whatever we want.
+	.then((builtObject) => {
+		console.log(builtObject)
+	})
+```
+
+___
+
+Thanks for using **tapi**! 😊 I hope it's been useful to you in some way.

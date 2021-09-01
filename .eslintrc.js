@@ -13,6 +13,7 @@ module.exports = {
 		'@typescript-eslint/no-inferrable-types': 'off',
 		'no-prototype-builtins': 'off',
 		'@typescript-eslint/no-empty-interface': 'off',
+		'prefer-const': 'warn'
 	},
 	ignorePatterns: [
 		"tests/**/*"

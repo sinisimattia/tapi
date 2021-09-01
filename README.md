@@ -51,6 +51,8 @@ import 'tapi/extensions' // 👈 Use this line to import all the extended functi
 
 // Let's create a simple class...
 class TestClass implements BuildableResource {
+	public data: any = {};
+
 	static build(): TestClass {
 		return new TestClass()
 	}

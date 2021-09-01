@@ -68,6 +68,18 @@ axios.get('/some-url-that-returns-an-object')
 	})
 ```
 
+If you want to select only a specific field of the response object (for example: *data*) you can define it as a string.
+
+```TypeScript
+axios.get('/some-url-that-returns-an-object')
+	// Now let's build the object with its defined builder! 🎉
+	.as(TestClass, 'data')
+	// Aaaaand we can use the typed object to do whatever we want.
+	.then((builtObject) => {
+		console.log(builtObject)
+	})
+```
+
 ___
 
 Thanks for using **tapi**! 😊 I hope it's been useful to you in some way.

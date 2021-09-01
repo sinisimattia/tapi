@@ -1,45 +1,52 @@
 {
-  "name": "tapi",
-  "version": "0.0.1",
-  "description": "Consume RESTful APIs as TypeScript objects.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "ttsc -p tsconfig.build.json",
-    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/demo.ts",
-    "test": "jest",
-    "lint": "eslint .",
-    "clean": "eslint . --fix",
-    "postinstall": "node install/thankyou.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sinisimattia/tapi.git"
-  },
-  "keywords": [
-    "boilerplate",
-    "TypeScript"
-  ],
-  "author": "Mattia Sinisi",
-  "license": "TODO",
-  "bugs": {
-    "url": "https://github.com/sinisimattia/tapi/issues"
-  },
-  "homepage": "https://github.com/sinisimattia/tapi#readme",
-  "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-typescript": "^7.15.0",
-    "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^4.29.0",
-    "@typescript-eslint/parser": "^4.29.0",
-    "babel-jest": "^27.0.6",
-    "eslint": "^7.32.0",
-    "jest": "^27.0.6",
-    "ts-node-dev": "^1.1.8",
-    "tsconfig-paths": "^3.10.1",
-    "ttypescript": "^1.5.12",
-    "typescript": "^4.3.5",
-    "typescript-transform-paths": "^3.3.1"
-  }
+	"name": "tapi",
+	"version": "0.0.1",
+	"description": "Consume RESTful APIs as TypeScript objects.",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "ttsc -p tsconfig.build.json",
+		"dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/demo.ts",
+		"test": "jest",
+		"lint": "eslint .",
+		"clean": "eslint . --fix",
+		"postinstall": "node install/thankyou.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sinisimattia/tapi.git"
+	},
+	"keywords": [
+		"api",
+		"converter",
+		"tool",
+		"rest",
+		"restful"
+	],
+	"author": {
+		"name": "Mattia Sinisi",
+		"url": "https://mattia.codes",
+		"email": "mattia@snisni.it"
+	},
+	"license": "TODO",
+	"bugs": {
+		"url": "https://github.com/sinisimattia/tapi/issues"
+	},
+	"homepage": "https://github.com/sinisimattia/tapi#readme",
+	"devDependencies": {
+		"@babel/core": "^7.15.0",
+		"@babel/preset-env": "^7.15.0",
+		"@babel/preset-typescript": "^7.15.0",
+		"@types/jest": "^26.0.24",
+		"@typescript-eslint/eslint-plugin": "^4.29.0",
+		"@typescript-eslint/parser": "^4.29.0",
+		"babel-jest": "^27.0.6",
+		"eslint": "^7.32.0",
+		"jest": "^27.0.6",
+		"ts-node-dev": "^1.1.8",
+		"tsconfig-paths": "^3.10.1",
+		"ttypescript": "^1.5.12",
+		"typescript": "^4.3.5",
+		"typescript-transform-paths": "^3.3.1"
+	}
 }

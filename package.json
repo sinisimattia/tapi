@@ -26,6 +26,9 @@
     "url": "https://github.com/sinisimattia/tapi/issues"
   },
   "homepage": "https://github.com/sinisimattia/tapi#readme",
+  "publishConfig": {
+	"@sinisimattia:registry": "https://npm.pkg.github.com"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",

@@ -1,7 +1,7 @@
 import Builder from '@/Builder';
 import BuildableResource from '@/contracts/BuildableResource';
 
-class TestClass implements BuildableResource {
+class TestClass extends BuildableResource {
 	public param1: string = "unassigned";
 	public param2: string = "still private"
 	public toBeTransformed = "not transformed";

@@ -1,1 +1,1 @@
-export default interface BuildableResource {}
+export default class BuildableResource {}

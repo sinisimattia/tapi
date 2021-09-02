@@ -6,7 +6,7 @@
 
 ## Install 📦
 ```bash
-npm i -S tapi
+npm i -S @sinisimattia/tapi
 ```
 
 ## Usage 🚀

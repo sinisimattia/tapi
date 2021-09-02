@@ -1,3 +1,6 @@
 name: tapi - Transform API data into typed object
 title: null
-remote_theme: xdanger/jekyll-theme-notion
+remote_theme: xindong/jekyll-theme-primer
+
+plugins:
+  - jekyll-remote-theme

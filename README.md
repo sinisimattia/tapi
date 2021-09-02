@@ -15,22 +15,30 @@ First off you need to implement the `BuildableResource` interface and define the
 
 ```TypeScript
 // TestClass.ts
-import { Builder, Buildable } from "tapi";
+import tapi from '@sinisimattia/tapi';
 
-class TestClass extends Buildable {
-	public param: string = "unassigned";
-	public toBeIgnored: string = "still private"
-	public toBeTransformed = "not transformed";
+class TestClass extends tapi.BuildableResource {
+	public param: string = 'unassigned';
+	public toBeIgnored: string = 'still private'
+	public toBeTransformed = 'not transformed';
 	public list: Array<any> = []
+
+	// Define a build method
+	static build() {
+		// Do whatever you want here.
+		// The important thing is that you return an instance of your class.
+		// Don't worry, the compiler will tell you to if you don't.
+		return new TestClass();
+	}
 }
 
 // example.ts
-const testClassBuilder = new Builder(TestClass)
-	.ignore(["param2"])
+const testClassBuilder = new tapi.Builder(TestClass)
+	.ignore(['param2'])
 	.transform('toBeTransformed', (value) => {
-		return "transformed";
+		return 'transformed';
 	})
-	.alias("_param_1", "param1");
+	.alias('_param_1', 'param1');
 ```
 
 Then it's as simple as writing:
@@ -45,12 +53,12 @@ The conversion tool can also be used with promises, to demonstrate this we'll be
 ```TypeScript
 import axios from 'axios' // 👈 Of course, you'll need to installl this
 
-import { BuildableResource } from 'tapi'
+import tapi from '@sinisimattia/tapi'
 
-import 'tapi/extensions' // 👈 Use this line to import all the extended functionalities of core types
+import '@sinisimattia/tapi/extensions' // 👈 Use this line to import all the extended functionalities of core types
 
 // Let's create a simple class...
-class TestClass implements BuildableResource {
+class TestClass extends tapi.BuildableResource {
 	public data: any = {};
 
 	static build(): TestClass {

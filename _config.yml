@@ -1,3 +1,8 @@
 name: tapi - Transform API data into typed object
 title: null
 icon: https://i.ibb.co/tx3zSWV/tapi-icon.png
+
+remote_theme: amitmerchant1990/reverie
+
+plugins:
+  - jekyll-remote-theme

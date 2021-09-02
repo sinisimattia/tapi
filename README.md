@@ -1,6 +1,9 @@
-![tapi](https://i.ibb.co/Wx0wt2X/tapi-logo.png)
-### **Typed** API consumer
+<a href="https://tapi.mattia.codes" style="display: flex; align-items: center; justify-content: space-between">
+	<img src="https://i.ibb.co/Wx0wt2X/tapi-logo.png" alt="tapi" />
+	<img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" width="300" />
+</a>
 
+### **Typed** API consumer
 
 **tapi** is a tiny TypeScript package used to define how to interpret any given API response as a typed object.
 

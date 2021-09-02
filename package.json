@@ -21,7 +21,7 @@
     "TypeScript"
   ],
   "author": "Mattia Sinisi",
-  "license": "TODO",
+  "license": "GPL-3.0-only",
   "bugs": {
     "url": "https://github.com/sinisimattia/tapi/issues"
   },

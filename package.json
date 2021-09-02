@@ -1,5 +1,5 @@
 {
-  "name": "tapi",
+  "name": "@sinisimattia/tapi",
   "version": "0.0.1",
   "description": "Consume RESTful APIs as TypeScript objects.",
   "main": "dist/index.js",

@@ -1,7 +1,9 @@
-<a href="https://tapi.mattia.codes" style="display: flex; align-items: center; justify-content: space-between">
+
+<a href="https://tapi.mattia.codes" style="display: block">
 	<img src="https://i.ibb.co/Wx0wt2X/tapi-logo.png" alt="tapi" />
-	<img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" width="300" />
 </a>
+
+<img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" width="300" style="display: block; margin-left: auto" />
 
 ### **Typed** API consumer
 

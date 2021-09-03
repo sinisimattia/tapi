@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"strict": true,
 		"noImplicitAny": false,
+		"experimentalDecorators": true,
 		"moduleResolution": "node",
 		"baseUrl": "src",
 		"paths": {

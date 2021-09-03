@@ -1,5 +1,5 @@
 
-<a href="https://tapi.mattia.codes" style="display: block">
+<a href="https://tapi.js.org" style="display: block">
 	<img src="https://i.ibb.co/Wx0wt2X/tapi-logo.png" alt="tapi" />
 </a>
 

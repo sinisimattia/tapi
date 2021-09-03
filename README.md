@@ -3,7 +3,7 @@
 	<img src="https://i.ibb.co/Wx0wt2X/tapi-logo.png" alt="tapi" />
 </a>
 
-<img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" width="300" style="display: block; margin-left: auto" />
+<img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" style="display: block; margin-left: auto" />
 
 ### **Typed** API consumer
 

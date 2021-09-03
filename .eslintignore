@@ -10,3 +10,6 @@ coverage
 
 # Ignore extra directories
 install
+
+# Ignore demo files
+*demo*

@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-//FIXME Remove these ☝ and put them in eslintrc
-
 export function Resource(targetConstructor: Function): any {
 	console.log("Resource: ", targetConstructor)
 }

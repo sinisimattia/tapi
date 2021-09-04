@@ -1,7 +1,8 @@
 import { Resource, Prop, Transform } from '@/decorators';
+import BuildableResource from '@/contracts/BuildableResource';
 
 @Resource
-class TestClass {
+class TestClass extends BuildableResource {
 	@Prop()
 	public thing: string = "ciao";
 

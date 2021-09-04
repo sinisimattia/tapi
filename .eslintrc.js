@@ -15,7 +15,8 @@ module.exports = {
 		'@typescript-eslint/no-empty-interface': 'off',
 		'prefer-const': 'warn',
 		'@typescript-eslint/ban-types': 'off',
-		'@typescript-eslint/explicit-module-boundary-types': 'off'
+		'@typescript-eslint/explicit-module-boundary-types': 'off',
+		'@typescript-eslint/no-empty-function': 'off'
 	},
 	ignorePatterns: [
 		"tests/**/*"

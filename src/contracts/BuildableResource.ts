@@ -1,1 +1,3 @@
-export default class BuildableResource {}
+export default class BuildableResource {
+	build(source: any): any {}
+}

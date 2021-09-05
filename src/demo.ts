@@ -9,10 +9,13 @@ class TestClass extends BuildableResource {
 	@Ignore
 	public thingToIgnore: string = "if you see this text everything works"
 
-	@Transform()
-	public trasformThing(): any {
-		//
-	}
+	@Transform((value) => {
+		console.log(value);
+
+		return value;
+	})
+	public thingToTransform: string = "if you see me you didn't transform me"
+
 }
 
 console.log(new TestClass().currentBuilder);

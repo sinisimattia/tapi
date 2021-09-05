@@ -4,6 +4,8 @@ export default class BuildableResource {
 	private builder?: Builder<this>;
 
 	public get currentBuilder(): Builder<this> | undefined {
+		this.builder = this.builder ?? new Builder<this>(this);
+
 		return this.builder;
 	}
 

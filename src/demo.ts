@@ -9,13 +9,23 @@ class TestClass extends BuildableResource {
 	@Ignore
 	public thingToIgnore: string = "if you see this text everything works"
 
-	@Transform((value) => {
-		console.log(value);
-
-		return value;
+	@Transform((value: string) => {
+		return value.toLocaleUpperCase();
 	})
 	public thingToTransform: string = "if you see me you didn't transform me"
 
+	build() {
+		return new TestClass();
+	}
+
 }
 
-console.log(new TestClass().currentBuilder);
+const builder = new TestClass().currentBuilder
+
+const result = builder.fromJSON({
+	aliasForThing: 'this was properly assigned. good job, builder!',
+	thingToIgnore: 'wait, what?!',
+	thingToTransform: 'if this is uppercase then the transformer works.',
+});
+
+console.log(result);

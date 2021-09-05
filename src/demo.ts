@@ -28,4 +28,6 @@ const result = builder.fromJSON({
 	thingToTransform: 'if this is uppercase then the transformer works.',
 });
 
+console.log(builder);
+
 console.log(result);

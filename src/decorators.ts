@@ -15,15 +15,11 @@ class ResourceDecorator {
 	}
 
 	public Prop(): any {
-		return (target: any, name?: PropertyKey): any => {
-			console.log(target, name);
-		};
+		return (target: any, name?: PropertyKey): any => {};
 	}
 
 	public Transform(): any {
-		return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-			console.log(target, propertyKey, descriptor);
-		};
+		return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {};
 	}
 }
 

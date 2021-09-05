@@ -3,6 +3,8 @@
 	<img src="https://i.ibb.co/Wx0wt2X/tapi-logo.png" alt="tapi" />
 </a>
 
+![Warning: Still under development](https://img.shields.io/badge/Warning-Still%20under%20development-orange)
+
 <img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" style="display: block; margin-left: auto" />
 
 ### **Typed** API consumer

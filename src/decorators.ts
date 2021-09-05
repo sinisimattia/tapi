@@ -2,6 +2,7 @@ import Builder from "@/Builder";
 import BuildableResource from "@/contracts/BuildableResource";
 
 class ResourceDecorator {
+	// FIXME This gets executed last. Find a way to have the builder ready in "Prop" and "Transform"
 	public Resource(constructor: Function): any {
 		const target = constructor.prototype;
 

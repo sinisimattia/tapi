@@ -15,18 +15,9 @@ class ResourceDecorator {
 		};
 	}
 
-	public Transform(localPath: string = ""): any {
-		return function (target: BuildableResource, propertyKey: string, descriptor: PropertyDescriptor) {
-			if(!localPath) {
-				const p = propertyKey.replace("transform", "").toLowerCase();
-
-				if (!p) {
-					throw new Error("Method name does not begin with 'transform', please update the name or specify the property name yourself.");
-				}
-
-				localPath = p;
-			}
-			target.currentBuilder?.transform(localPath, target[propertyKey]);
+	public Transform(transformer: (value: any) => any): any {
+		return function (target: BuildableResource, name: string) {
+			target.currentBuilder?.transform(name, transformer);
 		};
 	}
 

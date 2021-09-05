@@ -10,11 +10,11 @@ class ResourceDecorator {
 	}
 
 	public Prop(): any {
-		return (target: any, name?: PropertyKey): any => {};
+		return (target: BuildableResource, name?: PropertyKey): any => {};
 	}
 
 	public Transform(): any {
-		return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {};
+		return function (target: BuildableResource, propertyKey: string, descriptor: PropertyDescriptor) {};
 	}
 }
 

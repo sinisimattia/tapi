@@ -19,7 +19,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      INPUT_TOKEN: ${{ secrets.NPM_TOKEN }}
+      INPUT_TOKEN: ${{ secrets.PERSONAL_PROFILE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

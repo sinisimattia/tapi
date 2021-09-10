@@ -36,6 +36,7 @@ module.exports = {
 	roots: [
 		TESTS_PATH,
 	],
+	preset: 'ts-jest',
 	moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,

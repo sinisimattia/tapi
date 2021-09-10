@@ -25,6 +25,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+          registry-url: 'https://registry.npmjs.org'
       - run: npm i
       - run: npm test
       - uses: JS-DevTools/npm-publish@v1

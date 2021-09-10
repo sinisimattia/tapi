@@ -27,8 +27,6 @@ class TestClass extends BuildableResource {
 
 const builder = new TestClass().currentBuilder;
 
-console.log(builder)
-
 describe('Decorated class builder', () => {
 	test('properly sets ignore directives', () => {
 		const json = {

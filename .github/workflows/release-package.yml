@@ -19,7 +19,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      OWNER: sinisimattia
       INPUT_TOKEN: ${{ secrets.PERSONAL_PROFILE_TOKEN }}
     steps:
       - uses: actions/checkout@v2

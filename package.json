@@ -39,6 +39,11 @@
 	"lib": "dist",
 	"example": "src/examples"
   },
+  "files": [
+	"dist",
+	"install",
+	"tests"
+  ],
   "publishConfig": {
     "@sinisimattia:registry": "https://npm.pkg.github.com"
   },

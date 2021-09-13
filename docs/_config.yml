@@ -1,5 +1,5 @@
-name: tapi - Transform API data into typed object
-title: null
+title: tapi
+description: Transform API data into typed object
 
 remote_theme: pmarsceill/just-the-docs
 

@@ -1,6 +1,6 @@
 
 <a href="https://tapi.js.org" style="display: block">
-	<img src="https://i.ibb.co/Wx0wt2X/tapi-logo.png" alt="tapi" />
+	<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" alt="tapi" />
 </a>
 
 ![Warning: Still under development](https://img.shields.io/badge/Warning-Still%20under%20development-orange)

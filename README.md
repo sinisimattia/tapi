@@ -3,7 +3,7 @@
 	<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" alt="tapi" />
 </a>
 
-![Warning: Still under development](https://img.shields.io/badge/Warning-Still%20under%20development-orange)
+![Warning: Testing before release](https://img.shields.io/badge/🧪-Testing%20before%20release-blue)
 
 <img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" style="display: block; margin-left: auto" />
 
@@ -13,12 +13,52 @@
 
 ## Install 📦
 ```bash
-npm i -S @sinisimattia/tapi
+npm i -S sinisimattia/tapi
 ```
+<small>Remember, since it's on the GitHub registry, don't put @ before the scope.</small>
 
 ## Usage 🚀
 
 First off you need to implement the `BuildableResource` interface and define the builder the class will use.
+
+### With decorators ✨
+
+```TypeScript
+// TestClass.ts
+import tapi from '@sinisimattia/tapi';
+import { Alias, Transformer, Ignore, Resource } from '@sinisimattia/tapi/decorators';
+
+@Resource
+class TestClass extends tapi.BuildableResource {
+	@Alias('_param_1')
+	public param: string = 'unassigned';
+
+	@Ignore
+	public toBeIgnored: string = 'still private'
+
+	@Transformer((value: string) => {
+		return value.toUppercase();
+	})
+	public toBeTransformed = 'not transformed';
+
+	public list: Array<any> = []
+
+	// Define a build method
+	static build() {
+		// Do whatever you want here.
+		// The important thing is that you return an instance of your class.
+		// Don't worry, the compiler will tell you to if you don't.
+		return new TestClass();
+	}
+}
+```
+
+Then it's as simple as writing:
+```TypeScript
+const instance: TestClass = new TestClass().currentBuilder.fromJSON(json);
+```
+
+### ... or with explicit builder 👷‍♂️
 
 ```TypeScript
 // TestClass.ts
@@ -41,11 +81,11 @@ class TestClass extends tapi.BuildableResource {
 
 // example.ts
 const testClassBuilder = new tapi.Builder(TestClass)
-	.ignore(['param2'])
+	.ignore(['toBeIgnored'])
 	.transform('toBeTransformed', (value) => {
 		return 'transformed';
 	})
-	.alias('_param_1', 'param1');
+	.alias('_param_1', 'param');
 ```
 
 Then it's as simple as writing:
@@ -53,12 +93,12 @@ Then it's as simple as writing:
 const instance: TestClass = testClassBuilder.fromJSON(json);
 ```
 
-### With Promises 🤞
+### ... and also with Promises 🤞
 
 The conversion tool can also be used with promises, to demonstrate this we'll be using a simple Axios request.
 
 ```TypeScript
-import axios from 'axios' // 👈 Of course, you'll need to installl this
+import axios from 'axios' // 👈 Of course, you can use whatever library you want
 
 import tapi from '@sinisimattia/tapi'
 
@@ -66,11 +106,7 @@ import '@sinisimattia/tapi/extensions' // 👈 Use this line to import all the e
 
 // Let's create a simple class...
 class TestClass extends tapi.BuildableResource {
-	public data: any = {};
-
-	static build(): TestClass {
-		return new TestClass()
-	}
+	// You know the drill by now...
 }
 
 // Then make a request and get a promise...
@@ -79,7 +115,7 @@ axios.get('/some-url-that-returns-an-object')
 	.as(TestClass)
 	// Aaaaand we can use the typed object to do whatever we want.
 	.then((builtObject) => {
-		console.log(builtObject)
+		builtObject.doSomething();
 	})
 ```
 
@@ -91,7 +127,7 @@ axios.get('/some-url-that-returns-an-object')
 	.as(TestClass, 'data')
 	// Aaaaand we can use the typed object to do whatever we want.
 	.then((builtObject) => {
-		console.log(builtObject)
+		builtObject.doSomething();
 	})
 ```
 

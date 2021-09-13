@@ -34,6 +34,7 @@
     "url": "git+https://github.com/sinisimattia/tapi.git"
   },
   "files": [
+	"install",
 	"dist"
   ],
   "publishConfig": {

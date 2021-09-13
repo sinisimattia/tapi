@@ -1,7 +1,7 @@
 name: tapi - Transform API data into typed object
 title: null
 
-remote_theme: pages-themes/primer
+remote_theme: pmarsceill/just-the-docs
 
 plugins:
   - jekyll-remote-theme

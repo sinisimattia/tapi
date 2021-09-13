@@ -34,8 +34,8 @@
     "url": "git+https://github.com/sinisimattia/tapi.git"
   },
   "files": [
-	"install",
-	"dist"
+	"install/**/*",
+	"dist/**/*"
   ],
   "publishConfig": {
     "@sinisimattia:registry": "https://npm.pkg.github.com"

@@ -1,11 +1,12 @@
-name: Release on NPM
+name: Package release
 
 on:
   release:
     types: [created]
 
 jobs:
-  build:
+  test:
+    name: Testing 🧪
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +17,8 @@ jobs:
       - run: npm test
 
   publish-gpr:
-    needs: build
+    name: Building and publishing to GitHub registry
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -28,6 +30,7 @@ jobs:
           node-version: 14
           registry-url: https://npm.pkg.github.com/
       - run: npm i
+      - run: npm build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

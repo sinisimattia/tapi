@@ -1,8 +1,50 @@
-title: tapi
-description: Transform API data into typed object
-search_enabled: false
+title: tapi.js
+url: https://tapi.js.org
+baseurl: ""
+logo: https://i.ibb.co/FxXMVD1/tapi-logo.png
+lang: en
 
-remote_theme: pmarsceill/just-the-docs
+remote_theme: opentoolbox/theme
 
+repository: sinisimattia/tapi
+
+show_downloads: false
+
+show_sidebar: true
+
+permalink: /posts/:title
+
+links:
+  feedback: https://github.com/sinisimattia/tapi/issues
+  pull_requests: https://github.com/sinisimattia/tapi/pulls
+  discussions:
+  rules:
+  source: https://github.com/sinisimattia/tapi
+  contributors: https://github.com/sinisimattia/tapi/graphs/contributors
+
+markdown: kramdown
+fenced_code_blocks: true
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    default_lang: html
+    css_class   : 'highlight'
+
+footer_menu: footer_menu
+fixed_navbar: top
+
+paginate: 5
+paginate_path: "/blog/page:num"
+
+# Set plugins here to make it compatible with GitHub pages.
 plugins:
-  - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-environment-variables
+  - jekyll-mentions
+  - jekyll-target-blank
+
+jekyll-mentions:
+  base_url: https://github.com

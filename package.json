@@ -23,7 +23,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "ttsc -p tsconfig.build.json",
-    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/demo.ts",
+    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/examples/demo.ts",
     "test": "jest",
     "lint": "eslint .",
     "clean": "eslint . --fix",
@@ -33,10 +33,12 @@
     "type": "git",
     "url": "git+https://github.com/sinisimattia/tapi.git"
   },
-  "files": [
-	"install/**/*",
-	"dist/**/*"
-  ],
+  "directories": {
+	"bin": "dist",
+	"test": "tests",
+	"lib": "dist",
+	"example": "src/examples"
+  },
   "publishConfig": {
     "@sinisimattia:registry": "https://npm.pkg.github.com"
   },

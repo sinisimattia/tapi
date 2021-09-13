@@ -2,15 +2,13 @@
 layout: page
 title: Convert JSON data into TypeScript objects with tapi!
 banner_with_image: true
-image: https://i.ibb.co/FxXMVD1/tapi-logo.png
+image: https://i.ibb.co/7ChsKf4/carbon.png
 banner_darken: false
 banner_style: is-primary
 banner_height: is-large
 ---
 
 ![Warning: Testing before release](https://img.shields.io/badge/🧪-Testing%20before%20release-blue)
-
-<img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" style="display: block; margin-left: auto" />
 
 ### **Typed** API consumer
 

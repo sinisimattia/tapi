@@ -1,5 +1,6 @@
 title: tapi
 description: Transform API data into typed object
+search_enabled: false
 
 remote_theme: pmarsceill/just-the-docs
 

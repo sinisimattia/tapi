@@ -1,6 +1,6 @@
 {
   "name": "@sinisimattia/tapi",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Consume RESTful APIs as TypeScript objects.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -2,6 +2,23 @@
   "name": "@sinisimattia/tapi",
   "version": "0.1.0",
   "description": "Consume RESTful APIs as TypeScript objects.",
+  "keywords": [
+    "API",
+	"converter",
+	"resolver",
+	"tool",
+    "TypeScript"
+  ],
+  "author": {
+	"name": "Mattia Sinisi",
+	"email": "mattia@snisni.it",
+	"url": "https://mattia.codes"
+  },
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/sinisimattia/tapi/issues"
+  },
+  "homepage": "https://tapi.js.org",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -16,16 +33,9 @@
     "type": "git",
     "url": "git+https://github.com/sinisimattia/tapi.git"
   },
-  "keywords": [
-    "boilerplate",
-    "TypeScript"
+  "files": [
+	"dist"
   ],
-  "author": "Mattia Sinisi",
-  "license": "GPL-3.0-only",
-  "bugs": {
-    "url": "https://github.com/sinisimattia/tapi/issues"
-  },
-  "homepage": "https://github.com/sinisimattia/tapi#readme",
   "publishConfig": {
     "@sinisimattia:registry": "https://npm.pkg.github.com"
   },

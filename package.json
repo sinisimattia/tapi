@@ -27,6 +27,7 @@
     "test": "jest",
     "lint": "eslint .",
     "clean": "eslint . --fix",
+	"prepublish": "npm run build",
     "postinstall": "node install/thankyou.js"
   },
   "repository": {
@@ -40,7 +41,7 @@
 	"example": "src/examples"
   },
   "files": [
-	"dist",
+	"dist/**/*",
 	"install",
 	"tests"
   ],

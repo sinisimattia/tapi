@@ -1,11 +1,11 @@
-<div class="display: flex; justify-content: center;">
-	<img src="https://img.shields.io/badge/🧪-Testing%20before%20release-blue" alt="Warning: Testing before release" />
-</div>
+<img src="https://img.shields.io/badge/🧪-Testing%20before%20release-blue" alt="Warning: Testing before release" />
 
-<a href="https://tapi.js.org" style="display: block; text-align: center">
-	<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" style="display: block; margin: auto" alt="tapi" />
-	<h3><strong>Typed</strong> API Consumer</h3>
-</a>
+<div align="center">
+	<a href="https://tapi.js.org">
+		<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" style="display: block; margin: auto" alt="tapi" />
+		<h3><strong>Typed</strong> API Consumer</h3>
+	</a>
+</div>
 
 ___
 
@@ -19,7 +19,14 @@ ___
 
 It **automatically** converts JSON objects into TypeScript class instances, however you can still configure it however you want with *Aliases*, *Transformers*, *Mappers* and more.
 
-## [Go to the docs 🚀](https://tapi.js.org)
+___
+
+<div align="center">
+
+**[Go to the docs 🚀](https://tapi.js.org)**
+
+</div>
+
 ___
 
 ### Big thanks to anyone who contributes!

@@ -42,8 +42,6 @@ describe('Decorated class builder', () => {
 				extraParam: "not ok! abort. ABORT!"
 			}
 		}
-
-		console.log(json);
 	
 		const instance = builder.fromJSON(json);
 		const innerObject = instance.innerObject;

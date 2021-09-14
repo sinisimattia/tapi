@@ -26,7 +26,7 @@ First off you need to implement the `BuildableResource` interface and define the
 
 ### With decorators ✨
 
-```TypeScript
+```typescript
 // TestClass.ts
 import tapi from '@sinisimattia/tapi';
 import { Alias, Transformer, Ignore, Resource } from '@sinisimattia/tapi/decorators';
@@ -57,13 +57,13 @@ class TestClass extends tapi.BuildableResource {
 ```
 
 Then it's as simple as writing:
-```TypeScript
+```typescript
 const instance: TestClass = new TestClass().currentBuilder.fromJSON(json);
 ```
 
 ### ... or with explicit builder 👷‍♂️
 
-```TypeScript
+```typescript
 // TestClass.ts
 import tapi from '@sinisimattia/tapi';
 
@@ -92,7 +92,7 @@ const testClassBuilder = new tapi.Builder(TestClass)
 ```
 
 Then it's as simple as writing:
-```TypeScript
+```typescript
 const instance: TestClass = testClassBuilder.fromJSON(json);
 ```
 
@@ -100,7 +100,7 @@ const instance: TestClass = testClassBuilder.fromJSON(json);
 
 The conversion tool can also be used with promises, to demonstrate this we'll be using a simple Axios request.
 
-```TypeScript
+```typescript
 import axios from 'axios' // 👈 Of course, you can use whatever library you want
 
 import tapi from '@sinisimattia/tapi'
@@ -124,7 +124,7 @@ axios.get('/some-url-that-returns-an-object')
 
 If you want to select only a specific field of the response object (for example: *data*) you can define it as a string.
 
-```TypeScript
+```typescript
 axios.get('/some-url-that-returns-an-object')
 	// Now let's build the object with its defined builder! 🎉
 	.as(TestClass, 'data')

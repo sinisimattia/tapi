@@ -1,6 +1,6 @@
 {
   "name": "@sinisimattia/tapi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Consume RESTful APIs as TypeScript objects.",
   "keywords": [
     "API",

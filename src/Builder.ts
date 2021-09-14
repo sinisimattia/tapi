@@ -66,7 +66,7 @@ export default class Builder<ResultType extends BuildableResource = any> {
 
 			const actualPath = this.getForeignAlias(param, json);
 
-			if (!json.hasOwnProperty(actualPath)) {
+			if (!json || !json.hasOwnProperty(actualPath)) {
 				if (strict) {
 					throw new Error("Invalid input object, missing parameter: " + param);
 				}
@@ -74,7 +74,7 @@ export default class Builder<ResultType extends BuildableResource = any> {
 			}
 
 			if (target[param] instanceof BuildableResource) {
-				target[param] = target[param].currentBuilder.fromJSON(json[param], strict);
+				target[param] = target[param].currentBuilder.fromJSON(json[actualPath], strict);
 			}
 			else {
 				this.assign(target, json, param);

@@ -1,6 +1,20 @@
 import { Resource, Alias, Transform, Ignore } from '@/decorators';
 import BuildableResource from '@/contracts/BuildableResource';
 
+
+@Resource
+class AnotherClass extends BuildableResource {
+	public innerThing = "yo";
+	public anotherInnerThing = "hey";
+
+	@Ignore
+	public innerThingToIgnore;
+
+	build() {
+		return new AnotherClass();
+	}
+}
+
 @Resource
 class TestClass extends BuildableResource {
 	@Alias("aliasForThing")
@@ -14,6 +28,8 @@ class TestClass extends BuildableResource {
 	})
 	public thingToTransform: string = "if you see me you didn't transform me"
 
+	public innerObject: AnotherClass = new AnotherClass();
+
 	build() {
 		return new TestClass();
 	}
@@ -26,8 +42,10 @@ const result = builder.fromJSON({
 	aliasForThing: 'this was properly assigned. good job, builder!',
 	thingToIgnore: 'wait, what?!',
 	thingToTransform: 'if this is uppercase then the transformer works.',
+	innerObject: {
+		innerThing: "wow",
+		anotherInnerThing: "woooow"
+	}
 });
-
-console.log(builder);
 
 console.log(result);

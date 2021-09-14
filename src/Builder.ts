@@ -60,7 +60,7 @@ export default class Builder<ResultType extends BuildableResource = any> {
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
-			if (this.ignores.includes(param) || target[param] == undefined) {
+			if (this.ignores.includes(param) || !params.includes(param)) {
 				return;
 			}
 
@@ -72,9 +72,13 @@ export default class Builder<ResultType extends BuildableResource = any> {
 				}
 				else return;
 			}
-			
-			this.assign(target, json, param);
-			
+
+			if (target[param] instanceof BuildableResource) {
+				target[param] = target[param].currentBuilder.fromJSON(json[param], strict);
+			}
+			else {
+				this.assign(target, json, param);
+			}			
 		});
 
 		return target;

@@ -32,6 +32,8 @@ describe('Typed object builder', () => {
 		}
 	
 		const instance = builder.fromJSON(json);
+
+		expect(instance instanceof TestClass).toBe(true);
 	
 		expect(instance.param1).toBe("ok");
 		expect(instance.hasOwnProperty("extraParam")).toBe(false);

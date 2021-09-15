@@ -8,7 +8,7 @@ class AnotherClass extends BuildableResource {
 	public anotherInnerThing = "hey";
 
 	@Ignore
-	public innerThingToIgnore;
+	public innerThingToIgnore = "if you see me then you did good";
 
 	build() {
 		return new AnotherClass();
@@ -30,6 +30,8 @@ class TestClass extends BuildableResource {
 
 	public innerObject: AnotherClass = new AnotherClass();
 
+	public list: AnotherClass[] = [];
+
 	build() {
 		return new TestClass();
 	}
@@ -45,7 +47,13 @@ const result = builder.fromJSON({
 	innerObject: {
 		innerThing: "wow",
 		anotherInnerThing: "woooow"
-	}
+	},
+	list: [
+		{
+		innerThing: "wow, we're in a list!",
+		anotherInnerThing: "i know, right?"
+		}
+	]
 });
 
 console.log(result);

@@ -72,9 +72,22 @@ export default class Builder<ResultType extends BuildableResource = any> {
 				}
 				else return;
 			}
-
 			if (target[param] instanceof BuildableResource) {
 				target[param] = target[param].currentBuilder.fromJSON(json[actualPath], strict);
+			}
+			else if (Array.isArray(target[param])) {
+				const list: any[] = json[actualPath];
+
+				target[param] = list.map((item: any) => {
+					if (item instanceof BuildableResource) {
+						return item.currentBuilder.fromJSON(json[actualPath], strict);
+					}
+
+					if (!strict) {
+						return item;
+					}
+
+				})
 			}
 			else {
 				this.assign(target, json, param);

@@ -16,6 +16,10 @@ class TestClass extends BuildableResource {
 
 	public list: Array<any> = []
 
+	constructor() {
+		super();
+	}
+
 	public getParam2(): string {
 		return this.param2;
 	}

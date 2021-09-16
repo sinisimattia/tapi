@@ -1,6 +1,6 @@
 import Builder from "@/Builder";
 
-export default abstract class BuildableResource<Type extends BuildableResource<Type>>{
+export default abstract class BuildableResource<Type extends BuildableResource<Type> = any>{
 	private builder?: Builder<this>;
 
 	constructor() {}

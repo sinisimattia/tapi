@@ -8,6 +8,10 @@ class ResourceDecorator {
 		if (!(target instanceof BuildableResource)) {
 			throw new Error("Target class has to extend BuildableResource in order to use this decorator.");
 		}
+
+		if(!target.constructor) {
+			throw new Error("Target class must have a constructor with now arguments.");
+		}
 	}
 
 	public Alias(alias: string): any {

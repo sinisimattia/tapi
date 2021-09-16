@@ -85,9 +85,11 @@ export default class Builder<ResultType extends BuildableResource> {
 				const list: any[] = json[actualPath];
 
 				target[param] = list.map((item: any) => {
-					const listClassElementConstructor = this.listElementConstructors[param]
-					const listElementClassBuilder = listClassElementConstructor.currentBuilder;
-					return listElementClassBuilder.fromJSON(item, strict);
+					const listClassElement = this.listElementConstructors[param];
+					if(listClassElement) {
+						const listElementClassBuilder = listClassElement.currentBuilder;
+						return listElementClassBuilder.fromJSON(item, strict);
+					}
 				})
 			}
 			else {

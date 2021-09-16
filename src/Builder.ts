@@ -3,7 +3,7 @@ import BuildableResource from "@/contracts/BuildableResource";
 
 type Action = (value: any) => any;
 
-export default class Builder<ResultType extends BuildableResource> {
+export default class Builder<ResultType extends BuildableResource<ResultType>> {
 	private baseObject: ResultType;
 
 	private ignores: string[] = [];
@@ -96,6 +96,6 @@ export default class Builder<ResultType extends BuildableResource> {
 			}			
 		});
 
-		return target;
+		return target as ResultType;
 	}
 }

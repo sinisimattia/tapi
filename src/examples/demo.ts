@@ -2,7 +2,7 @@ import { Resource, Alias, Transform, Ignore, ListOf } from '@/decorators';
 import BuildableResource from '@/contracts/BuildableResource';
 
 @Resource
-class AnotherClass extends BuildableResource {
+class AnotherClass extends BuildableResource<TestClass> {
 	@Alias("_param_1")
 	public param1: string = "unassigned";
 
@@ -16,7 +16,7 @@ class AnotherClass extends BuildableResource {
 }
 
 @Resource
-class TestClass extends BuildableResource {
+class TestClass extends BuildableResource<TestClass> {
 	@Alias("inner")
 	public innerObject = new AnotherClass();
 

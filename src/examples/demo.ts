@@ -9,10 +9,6 @@ class AnotherClass extends BuildableResource {
 
 	@Ignore
 	public innerThingToIgnore = "if you see me then you did good";
-
-	build() {
-		return new AnotherClass();
-	}
 }
 
 @Resource
@@ -32,11 +28,6 @@ class TestClass extends BuildableResource {
 
 	@ListOf(AnotherClass)
 	public list: AnotherClass[] = [];
-
-	build() {
-		return new TestClass();
-	}
-
 }
 
 const builder = new TestClass().currentBuilder

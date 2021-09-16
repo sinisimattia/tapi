@@ -29,7 +29,7 @@ class ResourceDecorator {
 	//TODO we can use the Resource decorator for the same purpose
 	public ListOf<Type extends BuildableResource>(resource: ResourceFactory<Type>) {
 		return function (target: BuildableResource, name: string) {
-			target.currentBuilder?.listType(name, (resource.prototype as Type).build());
+			target.currentBuilder?.listType(name, new resource());
 		};
 	}
 }

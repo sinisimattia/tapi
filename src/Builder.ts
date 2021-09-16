@@ -4,16 +4,16 @@ import BuildableResource from "@/contracts/BuildableResource";
 
 type Action = (value: any) => any;
 
-export default class Builder<ResultType extends BuildableResource = any> {
-	private classToBuild: ResourceFactory<ResultType>;
+export default class Builder<ResultType extends BuildableResource> {
+	private baseObject: ResultType;
 
 	private ignores: string[] = [];
 	private transformers: {[localPath: string]: Action} = {};
 	private aliases: {[localPath: string]: string} = {};
 	private listElementConstructors: {[localPath: string]: ResultType} = {};
 
-	constructor(classToBuild: ResourceFactory<ResultType>) {
-		this.classToBuild = classToBuild;
+	constructor(baseObject: ResultType) {
+		this.baseObject = baseObject;
 	}
 
 	public ignore(paths: string[]): this {
@@ -62,7 +62,7 @@ export default class Builder<ResultType extends BuildableResource = any> {
 	}
 
 	public fromJSON(json: any, strict: boolean = false): ResultType {
-		const target = this.classToBuild.build();
+		const target = this.baseObject;
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
@@ -86,7 +86,7 @@ export default class Builder<ResultType extends BuildableResource = any> {
 
 				target[param] = list.map((item: any) => {
 					const listClassElementConstructor = this.listElementConstructors[param]
-					const listElementClassBuilder = listClassElementConstructor.currentBuilder; // FIXME This is just a placeholder
+					const listElementClassBuilder = listClassElementConstructor.currentBuilder;
 					return listElementClassBuilder.fromJSON(item, strict);
 				})
 			}

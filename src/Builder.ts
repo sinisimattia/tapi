@@ -1,5 +1,4 @@
 import Describer from "@/helpers/Describer";
-import ResourceFactory from "@/contracts/ResourceFactory";
 import BuildableResource from "@/contracts/BuildableResource";
 
 type Action = (value: any) => any;

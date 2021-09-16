@@ -39,13 +39,15 @@ const json = {
 	inner: {
 		_param_1: "ok",
 		param2: "this should not be reassigned",
-		extraParam: "not ok! abort. ABORT!"
+		extraParam: "not ok! abort. ABORT!",
+		toBeTransformed: "something, not important. you shouldn't even see me"
 	},
 	listOfThings: [
 		{
 			_param_1: "ok",
 			param2: "this should not be reassigned",
-			extraParam: "not ok! abort. ABORT!"
+			extraParam: "not ok! abort. ABORT!",
+			toBeTransformed: "something, not important. you shouldn't even see me"
 		}
 	]
 }

@@ -10,13 +10,9 @@ class TestClass extends BuildableResource {
 	public getParam2(): string {
 		return this.param2;
 	}
-
-	static build(): TestClass {
-		return new TestClass();
-	}
 }
 
-const builder = new Builder(TestClass)
+const builder = new Builder(new TestClass())
 	.ignore(["param2"])
 	.transform('toBeTransformed', (value) => {
 		return "transformed";

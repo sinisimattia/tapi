@@ -8,10 +8,6 @@ class TestClass extends BuildableResource {
 
 	@Alias("listOfThings")
 	public list: AnotherClass[] = [];
-
-	build() {
-		return new TestClass();
-	}
 }
 
 @Resource
@@ -26,10 +22,6 @@ class AnotherClass extends BuildableResource {
 		return "transformed";
 	})
 	public toBeTransformed = "not transformed";
-
-	build() {
-		return new AnotherClass();
-	}
 }
 
 const builder = new TestClass().currentBuilder;

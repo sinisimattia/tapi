@@ -19,10 +19,6 @@ class TestClass extends BuildableResource {
 	public getParam2(): string {
 		return this.param2;
 	}
-
-	build() {
-		return new TestClass();
-	}
 }
 
 const builder = new TestClass().currentBuilder;

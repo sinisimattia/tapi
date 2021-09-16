@@ -1,5 +1,4 @@
 import Builder from "@/Builder";
-import ResourceFactory from "@/contracts/ResourceFactory";
 
 export default abstract class BuildableResource<Type extends BuildableResource<Type>>{
 	private builder?: Builder<this>;

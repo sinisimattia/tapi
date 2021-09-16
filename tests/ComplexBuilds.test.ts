@@ -2,15 +2,6 @@ import { Resource, Alias, Transform, Ignore } from '@/decorators';
 import BuildableResource from '@/contracts/BuildableResource';
 
 @Resource
-class TestClass extends BuildableResource {
-	@Alias("inner")
-	public innerObject = new AnotherClass();
-
-	@Alias("listOfThings")
-	public list: AnotherClass[] = [];
-}
-
-@Resource
 class AnotherClass extends BuildableResource {
 	@Alias("_param_1")
 	public param1: string = "unassigned";
@@ -22,6 +13,15 @@ class AnotherClass extends BuildableResource {
 		return "transformed";
 	})
 	public toBeTransformed = "not transformed";
+}
+
+@Resource
+class TestClass extends BuildableResource {
+	@Alias("inner")
+	public innerObject = new AnotherClass();
+
+	@Alias("listOfThings")
+	public list: AnotherClass[] = [];
 }
 
 const builder = new TestClass().currentBuilder;

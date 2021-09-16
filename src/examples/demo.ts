@@ -1,51 +1,47 @@
 import { Resource, Alias, Transform, Ignore, ListOf } from '@/decorators';
 import BuildableResource from '@/contracts/BuildableResource';
 
-
 @Resource
 class AnotherClass extends BuildableResource {
-	public innerThing = "yo";
-	public anotherInnerThing = "hey";
+	@Alias("_param_1")
+	public param1: string = "unassigned";
 
 	@Ignore
-	public innerThingToIgnore = "if you see me then you did good";
+	public param2: string = "still private"
+
+	@Transform((value) => {
+		return "transformed";
+	})
+	public toBeTransformed = "not transformed";
 }
 
 @Resource
 class TestClass extends BuildableResource {
-	@Alias("aliasForThing")
-	public thing: string = "ciao";
+	@Alias("inner")
+	public innerObject = new AnotherClass();
 
-	@Ignore
-	public thingToIgnore: string = "if you see this text everything works"
-
-	@Transform((value: string) => {
-		return value.toLocaleUpperCase();
-	})
-	public thingToTransform: string = "if you see me you didn't transform me"
-
-	public innerObject: AnotherClass = new AnotherClass();
-
+	@Alias("listOfThings")
 	@ListOf(AnotherClass)
 	public list: AnotherClass[] = [];
 }
 
-const builder = new TestClass().currentBuilder
+const builder = new TestClass().currentBuilder;
 
-const result = builder.fromJSON({
-	aliasForThing: 'this was properly assigned. good job, builder!',
-	thingToIgnore: 'wait, what?!',
-	thingToTransform: 'if this is uppercase then the transformer works.',
-	innerObject: {
-		innerThing: "wow",
-		anotherInnerThing: "woooow"
+const json = {
+	inner: {
+		_param_1: "ok",
+		param2: "this should not be reassigned",
+		extraParam: "not ok! abort. ABORT!"
 	},
-	list: [
+	listOfThings: [
 		{
-		innerThing: "wow, we're in a list!",
-		anotherInnerThing: "i know, right?"
+			_param_1: "ok",
+			param2: "this should not be reassigned",
+			extraParam: "not ok! abort. ABORT!"
 		}
 	]
-});
+}
 
-console.log(result);
+const instance = builder.fromJSON(json);
+
+console.log(instance);

@@ -1,4 +1,4 @@
-import { Resource, Alias, Transform, Ignore } from '@/decorators';
+import { Resource, Alias, Transform, Ignore, ListOf } from '@/decorators';
 import BuildableResource from '@/contracts/BuildableResource';
 
 
@@ -30,6 +30,7 @@ class TestClass extends BuildableResource {
 
 	public innerObject: AnotherClass = new AnotherClass();
 
+	@ListOf(AnotherClass)
 	public list: AnotherClass[] = [];
 
 	build() {

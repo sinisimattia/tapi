@@ -10,6 +10,7 @@ export default class Builder<ResultType extends BuildableResource = any> {
 	private ignores: string[] = [];
 	private transformers: {[localPath: string]: Action} = {};
 	private aliases: {[localPath: string]: string} = {};
+	private listElementConstructors: {[localPath: string]: ResultType} = {};
 
 	constructor(classToBuild: ResourceFactory<ResultType>) {
 		this.classToBuild = classToBuild;
@@ -29,6 +30,11 @@ export default class Builder<ResultType extends BuildableResource = any> {
 	public alias(foreignPath: string, localPath: string): this {
 		this.aliases[localPath] = foreignPath;
 		
+		return this;
+	}
+
+	public listType(localPath: string, builtObject: ResultType): this {
+		this.listElementConstructors[localPath] = builtObject;
 		return this;
 	}
 
@@ -56,7 +62,7 @@ export default class Builder<ResultType extends BuildableResource = any> {
 	}
 
 	public fromJSON(json: any, strict: boolean = false): ResultType {
-		const target = this.classToBuild.build(json);
+		const target = this.classToBuild.build();
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
@@ -79,14 +85,9 @@ export default class Builder<ResultType extends BuildableResource = any> {
 				const list: any[] = json[actualPath];
 
 				target[param] = list.map((item: any) => {
-					if (item instanceof BuildableResource) {
-						return item.currentBuilder.fromJSON(json[actualPath], strict);
-					}
-
-					if (!strict) {
-						return item;
-					}
-
+					const listClassElementConstructor = this.listElementConstructors[param]
+					const listElementClassBuilder = listClassElementConstructor.currentBuilder; // FIXME This is just a placeholder
+					return listElementClassBuilder.fromJSON(item, strict);
 				})
 			}
 			else {

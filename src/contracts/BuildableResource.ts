@@ -15,8 +15,7 @@ export default class BuildableResource {
 		this.builder = builder;
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	build(source: any): any {
+	build(): any {
 		throw new Error("Your class does not define a build() method. Implement it and make it return a custom base instance of your class.");
 	}
 }

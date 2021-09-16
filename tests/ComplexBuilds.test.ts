@@ -3,10 +3,11 @@ import BuildableResource from '@/contracts/BuildableResource';
 
 @Resource
 class TestClass extends BuildableResource {
-	public list: Array<any> = []
-
 	@Alias("inner")
 	public innerObject = new AnotherClass();
+
+	@Alias("listOfThings")
+	public list: AnotherClass[] = [];
 
 	build() {
 		return new TestClass();
@@ -33,22 +34,40 @@ class AnotherClass extends BuildableResource {
 
 const builder = new TestClass().currentBuilder;
 
-describe('Decorated class builder', () => {
-	test('properly builds recursive resources', () => {
-		const json = {
-			inner: {
-				param1: "ok",
-				param2: "this should not be reassigned",
-				extraParam: "not ok! abort. ABORT!"
-			}
+const json = {
+	inner: {
+		_param_1: "ok",
+		param2: "this should not be reassigned",
+		extraParam: "not ok! abort. ABORT!"
+	},
+	listOfThings: [
+		{
+			_param_1: "ok",
+			param2: "this should not be reassigned",
+			extraParam: "not ok! abort. ABORT!"
 		}
-	
-		const instance = builder.fromJSON(json);
+	]
+}
+
+const instance = builder.fromJSON(json);
+
+describe('Decorated class builder', () => {
+	test('properly builds recursive resources', () => {		
 		const innerObject = instance.innerObject;
 
-		expect(innerObject instanceof AnotherClass).toBe(true);
+		expect(innerObject).toBeInstanceOf(AnotherClass);
 		expect(innerObject.param1).toBe("ok");
 		expect(innerObject.hasOwnProperty("extraParam")).toBe(false);
 		expect(innerObject.param2).toBe("still private");
+	})
+
+	test('properly builds listed resources', () => {
+		const list = instance.list;
+
+		expect(list.length).toBeGreaterThan(0);
+		expect(list[0]).toBeInstanceOf(AnotherClass);
+		expect(list[0].param1).toBe("ok");
+		expect(list[0].param2).toBe("still private");
+		expect(list[0].toBeTransformed).toBe("transformed");
 	})
 })

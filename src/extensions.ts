@@ -19,11 +19,11 @@ Promise.prototype.as = function<T extends BuildableResource> (classToBuild: Reso
 						input = input[from];
 					}
 					else {
-						throw new Error(`Incoming object does not contain a field called "${input}".`);
+						throw new Error(`Incoming object does not  contain a field called "${input}".`);
 					}
 				}
 
-				result = new Builder(classToBuild).fromJSON(input)
+				result = new Builder(new classToBuild()).fromJSON(input)
 				resolve(result);
 			}
 			catch (err) {

@@ -77,7 +77,7 @@ class TestClass extends tapi.BuildableResource {
 }
 
 // example.ts
-const testClassBuilder = new tapi.Builder(new TestClass())
+const testClassBuilder = new tapi.Builder(TestClass)
 	.ignore(['toBeIgnored'])
 	.transform('toBeTransformed', (value) => {
 		return 'transformed';

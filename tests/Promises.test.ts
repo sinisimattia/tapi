@@ -29,7 +29,7 @@ const buildPromise = new Promise((resolve, reject) => {
 	};
 
 	resolve(json);
-}).as(TestClass, '');
+}).as(TestClass);
 
 describe("Promise building", () => {	
 	test("properly builds", async () => {

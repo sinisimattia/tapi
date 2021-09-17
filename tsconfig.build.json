@@ -2,7 +2,7 @@
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
 		"diagnostics": true,
-		"tsBuildInfoFile": ".tsbuildinfo",
+		"tsBuildInfoFile": "dist/.tsbuildinfo",
 		"declaration": true,
 		"declarationMap": true,
 		"sourceMap": true,

@@ -5,6 +5,7 @@ import BuildableResource from '@/contracts/BuildableResource';
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	export interface Promise<T> {
+		as<T extends BuildableResource>(classToBuild: ResourceFactory<T>): Promise<T>;
 		as<T extends BuildableResource>(classToBuild: ResourceFactory<T>, from: string): Promise<T>;
 	}
 }

@@ -1,5 +1,6 @@
 import Describer from "@/helpers/Describer";
 import BuildableResource from "@/contracts/BuildableResource";
+import ResourceFactory from "./contracts/ResourceFactory";
 
 type Action = (value: any) => any;
 
@@ -11,8 +12,8 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 	private aliases: {[localPath: string]: string} = {};
 	private listElementConstructors: {[localPath: string]: ResultType} = {};
 
-	constructor(baseObject: ResultType) {
-		this.baseObject = baseObject;
+	constructor(baseObject: ResourceFactory<ResultType>) {
+		this.baseObject = new baseObject();
 	}
 
 	public ignore(paths: string[]): this {

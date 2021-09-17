@@ -12,7 +12,7 @@ class TestClass extends BuildableResource {
 	}
 }
 
-const builder = new Builder(new TestClass())
+const builder = new Builder(TestClass)
 	.ignore(["param2"])
 	.transform('toBeTransformed', (value) => {
 		return "transformed";

@@ -24,7 +24,7 @@ Promise.prototype.as = function<T extends BuildableResource> (classToBuild: Reso
 					}
 				}
 
-				result = new Builder(new classToBuild()).fromJSON(input)
+				result = new Builder(classToBuild).fromJSON(input)
 				resolve(result);
 			}
 			catch (err) {

@@ -8,7 +8,7 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	public get currentBuilder(): Builder<this> {
 		const c = (this as unknown as Type).constructor.prototype.constructor;
 
-		this.builder = this.builder ?? new Builder<this>(new c());
+		this.builder = this.builder ?? new Builder<this>(c);
 
 		return this.builder;
 	}

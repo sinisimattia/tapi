@@ -28,6 +28,8 @@ class TestClass extends BuildableResource {
 	@ListOf(AnotherClass)
 	public list: AnotherClass[] = [];
 
+	public listOfPrimitives: Array<any> = [];
+
 	constructor() {
 		super();
 	}
@@ -49,7 +51,8 @@ const json = {
 			extraParam: "not ok! abort. ABORT!",
 			toBeTransformed: "something, not important. you shouldn't even see me"
 		}
-	]
+	],
+	listOfPrimitives: [true, 2, "three"]
 }
 
 const instance = builder.fromJSON(json);
@@ -72,5 +75,16 @@ describe('Decorated class builder', () => {
 		expect(list[0].param1).toBe("ok");
 		expect(list[0].param2).toBe("still private");
 		expect(list[0].toBeTransformed).toBe("transformed");
+	})
+
+	test('properly builds listed primitives', () => {
+		const list = instance.listOfPrimitives;
+
+		console.log(list)
+
+		expect(list.length).toBeGreaterThan(0);
+		expect(list[0]).toBe(true);
+		expect(list[1]).toBe(2);
+		expect(list[2]).toBe("three");
 	})
 })

@@ -44,14 +44,12 @@ class TestClass extends tapi.BuildableResource {
 	})
 	public toBeTransformed = 'not transformed';
 
-	public list: Array<any> = []
+	@ListOf<SomeOtherClass>
+	public list: Array<SomeOtherClass> = []
 
-	// Define a build method
-	static build() {
-		// Do whatever you want here.
-		// The important thing is that you return an instance of your class.
-		// Don't worry, the compiler will tell you to if you don't.
-		return new TestClass();
+	// Define a constructor with no arguments.
+	constructor() {
+		super();
 	}
 }
 ```
@@ -73,17 +71,13 @@ class TestClass extends tapi.BuildableResource {
 	public toBeTransformed = 'not transformed';
 	public list: Array<any> = []
 
-	// Define a build method
-	static build() {
-		// Do whatever you want here.
-		// The important thing is that you return an instance of your class.
-		// Don't worry, the compiler will tell you to if you don't.
-		return new TestClass();
+	constructor() {
+		super();
 	}
 }
 
 // example.ts
-const testClassBuilder = new tapi.Builder(TestClass)
+const testClassBuilder = new tapi.Builder(new TestClass())
 	.ignore(['toBeIgnored'])
 	.transform('toBeTransformed', (value) => {
 		return 'transformed';

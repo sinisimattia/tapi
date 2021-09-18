@@ -1,7 +1,12 @@
+// Core
 import Builder from '@/Builder'
 import BuildableResource from "@/contracts/BuildableResource";
 
-export default {
+// Decorators
+import * as Decorators from '@/decorators';
+
+export {
 	Builder,
-	BuildableResource
-};
+	BuildableResource,
+	Decorators
+}

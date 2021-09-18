@@ -80,8 +80,6 @@ describe('Decorated class builder', () => {
 	test('properly builds listed primitives', () => {
 		const list = instance.listOfPrimitives;
 
-		console.log(list)
-
 		expect(list.length).toBeGreaterThan(0);
 		expect(list[0]).toBe(true);
 		expect(list[1]).toBe(2);

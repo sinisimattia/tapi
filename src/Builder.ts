@@ -1,18 +1,19 @@
 import Describer from "@/helpers/Describer";
-import ResourceFactory from "@/contracts/ResourceFactory";
 import BuildableResource from "@/contracts/BuildableResource";
+import ResourceFactory from "./contracts/ResourceFactory";
 
 type Action = (value: any) => any;
 
-export default class Builder<ResultType extends BuildableResource = any> {
-	private classToBuild: ResourceFactory<ResultType>;
+export default class Builder<ResultType extends BuildableResource<ResultType>> {
+	private baseObject: ResultType;
 
 	private ignores: string[] = [];
 	private transformers: {[localPath: string]: Action} = {};
 	private aliases: {[localPath: string]: string} = {};
+	private listElementConstructors: {[localPath: string]: ResultType} = {};
 
-	constructor(classToBuild: ResourceFactory<ResultType>) {
-		this.classToBuild = classToBuild;
+	constructor(baseObject: ResourceFactory<ResultType>) {
+		this.baseObject = new baseObject();
 	}
 
 	public ignore(paths: string[]): this {
@@ -29,6 +30,11 @@ export default class Builder<ResultType extends BuildableResource = any> {
 	public alias(foreignPath: string, localPath: string): this {
 		this.aliases[localPath] = foreignPath;
 		
+		return this;
+	}
+
+	public listType(localPath: string, builtObject: ResultType): this {
+		this.listElementConstructors[localPath] = builtObject;
 		return this;
 	}
 
@@ -56,27 +62,44 @@ export default class Builder<ResultType extends BuildableResource = any> {
 	}
 
 	public fromJSON(json: any, strict: boolean = false): ResultType {
-		const target = this.classToBuild.build(json);
+		const target = this.baseObject;
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
-			if (this.ignores.includes(param) || target[param] == undefined) {
+			if (this.ignores.includes(param) || !params.includes(param)) {
 				return;
 			}
 
 			const actualPath = this.getForeignAlias(param, json);
 
-			if (!json.hasOwnProperty(actualPath)) {
+			if (!json || !json.hasOwnProperty(actualPath)) {
 				if (strict) {
 					throw new Error("Invalid input object, missing parameter: " + param);
 				}
 				else return;
 			}
-			
-			this.assign(target, json, param);
-			
+			if (target[param] instanceof BuildableResource) {
+				target[param] = target[param].currentBuilder.fromJSON(json[actualPath], strict);
+			}
+			else if (Array.isArray(target[param])) {
+				const list: any[] = json[actualPath];
+
+				target[param] = list.map((item: any, index: number) => {
+					const listClassElement = this.listElementConstructors[param];
+					if(listClassElement) {
+						const listElementClassBuilder = listClassElement.currentBuilder;
+						return listElementClassBuilder.fromJSON(item, strict);
+					}
+					else if (!strict && json.hasOwnProperty(actualPath)) {
+						return json[actualPath][index];
+					}
+				})
+			}
+			else {
+				this.assign(target, json, param);
+			}			
 		});
 
-		return target;
+		return target as ResultType;
 	}
 }

@@ -1,31 +1,50 @@
 {
   "name": "@sinisimattia/tapi",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Consume RESTful APIs as TypeScript objects.",
+  "keywords": [
+    "API",
+	"converter",
+	"resolver",
+	"tool",
+    "TypeScript"
+  ],
+  "author": {
+	"name": "Mattia Sinisi",
+	"email": "mattia@snisni.it",
+	"url": "https://mattia.codes"
+  },
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/sinisimattia/tapi/issues"
+  },
+  "homepage": "https://tapi.js.org",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "ttsc -p tsconfig.build.json",
-    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/demo.ts",
+    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/examples/demo.ts",
     "test": "jest",
     "lint": "eslint .",
     "clean": "eslint . --fix",
+	"prepublish": "npm run build",
     "postinstall": "node install/thankyou.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sinisimattia/tapi.git"
   },
-  "keywords": [
-    "boilerplate",
-    "TypeScript"
-  ],
-  "author": "Mattia Sinisi",
-  "license": "GPL-3.0-only",
-  "bugs": {
-    "url": "https://github.com/sinisimattia/tapi/issues"
+  "directories": {
+	"bin": "dist",
+	"test": "tests",
+	"lib": "dist",
+	"example": "src/examples"
   },
-  "homepage": "https://github.com/sinisimattia/tapi#readme",
+  "files": [
+	"dist/**/*",
+	"install",
+	"tests"
+  ],
   "publishConfig": {
     "@sinisimattia:registry": "https://npm.pkg.github.com"
   },

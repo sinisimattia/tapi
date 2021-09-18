@@ -10,10 +10,6 @@ class TestClass extends BuildableResource {
 	public getParam2(): string {
 		return this.param2;
 	}
-
-	static build(): TestClass {
-		return new TestClass();
-	}
 }
 
 const builder = new Builder(TestClass)
@@ -32,6 +28,8 @@ describe('Typed object builder', () => {
 		}
 	
 		const instance = builder.fromJSON(json);
+
+		expect(instance instanceof TestClass).toBe(true);
 	
 		expect(instance.param1).toBe("ok");
 		expect(instance.hasOwnProperty("extraParam")).toBe(false);

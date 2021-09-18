@@ -1,100 +1,41 @@
+<img src="https://img.shields.io/badge/🧪-Testing%20before%20release-66ffcc" alt="Warning: Testing before release" />
 
-<a href="https://tapi.js.org" style="display: block">
-	<img src="https://i.ibb.co/Wx0wt2X/tapi-logo.png" alt="tapi" />
-</a>
+<div align="center">
+	<a href="https://tapi.js.org">
+		<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" style="display: block; margin: auto" alt="tapi" />
+		<h3><strong>Typed</strong> API Consumer</h3>
+	</a>
+</div>
 
-![Warning: Still under development](https://img.shields.io/badge/Warning-Still%20under%20development-orange)
+___
 
-<img src="https://i.ibb.co/7ChsKf4/carbon.png" alt="Demo Example" style="display: block; margin-left: auto" />
+## Imagine doing this...
 
-### **Typed** API consumer
+![Demo Example with Axios](https://i.ibb.co/stfLH8B/tepi-demo.png)
+
+## What is it?
 
 **tapi** is a tiny TypeScript package used to define how to interpret any given API response as a typed object.
 
-## Install 📦
-```bash
-npm i -S @sinisimattia/tapi
-```
+It **automatically** converts JSON objects into TypeScript class instances, however you can still configure it however you want with *Aliases*, *Transformers*, *Mappers* and more.
 
-## Usage 🚀
+___
 
-First off you need to implement the `BuildableResource` interface and define the builder the class will use.
+<div align="center">
 
-```TypeScript
-// TestClass.ts
-import tapi from '@sinisimattia/tapi';
+**[Go to the docs 🚀](https://tapi.js.org)**
 
-class TestClass extends tapi.BuildableResource {
-	public param: string = 'unassigned';
-	public toBeIgnored: string = 'still private'
-	public toBeTransformed = 'not transformed';
-	public list: Array<any> = []
+</div>
 
-	// Define a build method
-	static build() {
-		// Do whatever you want here.
-		// The important thing is that you return an instance of your class.
-		// Don't worry, the compiler will tell you to if you don't.
-		return new TestClass();
-	}
-}
+___
 
-// example.ts
-const testClassBuilder = new tapi.Builder(TestClass)
-	.ignore(['param2'])
-	.transform('toBeTransformed', (value) => {
-		return 'transformed';
-	})
-	.alias('_param_1', 'param1');
-```
+### Big thanks to anyone who contributes!
 
-Then it's as simple as writing:
-```TypeScript
-const instance: TestClass = testClassBuilder.fromJSON(json);
-```
+**You** could be here!
 
-### With Promises 🤞
+👇
 
-The conversion tool can also be used with promises, to demonstrate this we'll be using a simple Axios request.
-
-```TypeScript
-import axios from 'axios' // 👈 Of course, you'll need to installl this
-
-import tapi from '@sinisimattia/tapi'
-
-import '@sinisimattia/tapi/extensions' // 👈 Use this line to import all the extended functionalities of core types
-
-// Let's create a simple class...
-class TestClass extends tapi.BuildableResource {
-	public data: any = {};
-
-	static build(): TestClass {
-		return new TestClass()
-	}
-}
-
-// Then make a request and get a promise...
-axios.get('/some-url-that-returns-an-object')
-	// Now let's build the object with its defined builder! 🎉
-	.as(TestClass)
-	// Aaaaand we can use the typed object to do whatever we want.
-	.then((builtObject) => {
-		console.log(builtObject)
-	})
-```
-
-If you want to select only a specific field of the response object (for example: *data*) you can define it as a string.
-
-```TypeScript
-axios.get('/some-url-that-returns-an-object')
-	// Now let's build the object with its defined builder! 🎉
-	.as(TestClass, 'data')
-	// Aaaaand we can use the typed object to do whatever we want.
-	.then((builtObject) => {
-		console.log(builtObject)
-	})
-```
-
+![Contributors](https://contrib.rocks/image?repo=opentoolbox/theme)
 ___
 
 Thanks for using **tapi**! 😊 I hope it's been useful to you in some way.

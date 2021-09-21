@@ -25,7 +25,7 @@ class TestClass extends BuildableResource<TestClass> {
 	public list: AnotherClass[] = [];
 }
 
-const builder = new TestClass().currentBuilder;
+const builder = new TestClass().build;
 
 const json = {
 	inner: {

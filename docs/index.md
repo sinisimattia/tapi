@@ -56,7 +56,7 @@ class TestClass extends tapi.BuildableResource {
 
 Then it's as simple as writing:
 ```typescript
-const instance: TestClass = new TestClass().currentBuilder.fromJSON(json);
+const instance: TestClass = new TestClass().build.fromJSON(json);
 ```
 
 ### ... or with explicit builder 👷‍♂️

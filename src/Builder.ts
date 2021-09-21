@@ -79,7 +79,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 				else return;
 			}
 			if (target[param] instanceof BuildableResource) {
-				target[param] = target[param].currentBuilder.fromJSON(json[actualPath], strict);
+				target[param] = target[param].build.fromJSON(json[actualPath], strict);
 			}
 			else if (Array.isArray(target[param])) {
 				const list: any[] = json[actualPath];
@@ -87,7 +87,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 				target[param] = list.map((item: any, index: number) => {
 					const listClassElement = this.listElementConstructors[param];
 					if(listClassElement) {
-						const listElementClassBuilder = listClassElement.currentBuilder;
+						const listElementClassBuilder = listClassElement.build;
 						return listElementClassBuilder.fromJSON(item, strict);
 					}
 					else if (!strict && json.hasOwnProperty(actualPath)) {

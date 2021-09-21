@@ -16,24 +16,24 @@ class ResourceDecorator {
 
 	public Alias(alias: string): any {
 		return (target: BuildableResource, name: PropertyKey): any => {
-			target.currentBuilder?.alias(alias, name.toString());
+			target.build?.alias(alias, name.toString());
 		};
 	}
 
 	public Transform(transformer: (value: any) => any): any {
 		return function (target: BuildableResource, name: string) {
-			target.currentBuilder?.transform(name, transformer);
+			target.build?.transform(name, transformer);
 		};
 	}
 
 	public Ignore(target: BuildableResource, name: PropertyKey) {
-		target.currentBuilder?.ignore([name.toString()]);
+		target.build?.ignore([name.toString()]);
 	}
 
 	//TODO we can use the Resource decorator for the same purpose
 	public ListOf<Type extends BuildableResource>(resource: ResourceFactory<Type>) {
 		return function (target: BuildableResource, name: string) {
-			target.currentBuilder?.listType(name, new resource());
+			target.build?.listType(name, new resource());
 		};
 	}
 }

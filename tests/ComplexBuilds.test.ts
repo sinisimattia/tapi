@@ -35,7 +35,7 @@ class TestClass extends BuildableResource {
 	}
 }
 
-const builder = new TestClass().currentBuilder;
+const builder = new TestClass().build;
 
 const json = {
 	inner: {

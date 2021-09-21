@@ -19,7 +19,7 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	/**
 	 * Public getter for this class' current builder.
 	 */
-	public get currentBuilder(): Builder<this> {
+	public get build(): Builder<this> {
 		const c = (this as unknown as Type).constructor.prototype.constructor;
 
 		this.builder = this.builder ?? new Builder<this>(c);

@@ -1,0 +1,33 @@
+name: Build site and Deploy to Github Pages
+
+on:
+  # Remove this
+  push:
+    branches:
+      - main
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛎 Check out master
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          token: ${{ secrets.ACCESS_TOKEN }}
+          ref: main
+
+      # Use GitHub Actions' cache to shorten build times and decrease load on servers
+      - name: 📦 Build site
+        uses: actions/cache@v2
+
+      # Standard usage
+      - uses:  helaili/jekyll-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_branch: gh-pages
+          jekyll_src: "docs"
+          target_path: "."
+          

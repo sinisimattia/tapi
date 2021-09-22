@@ -31,7 +31,7 @@ class ResourceDecorator {
 	 * Adds a transformer.
 	 * @param transformer The transformer to add.
 	 */
-	public Transform(transformer: (value: any) => any): any {
+	public Transform(transformer: Action): any {
 		return function (target: BuildableResource, name: string) {
 			target.build?.transform(name, transformer);
 		};

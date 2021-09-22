@@ -1,8 +1,6 @@
 import Describer from "@/helpers/Describer";
 import BuildableResource from "@/contracts/BuildableResource";
-import ResourceFactory from "./contracts/ResourceFactory";
-
-type Action = (value: any) => any;
+import ResourceFactory from "@/contracts/ResourceFactory";
 
 /**
  * This is used to define how a class needs to be constructed from an object.

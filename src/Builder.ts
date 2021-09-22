@@ -4,35 +4,90 @@ import ResourceFactory from "./contracts/ResourceFactory";
 
 type Action = (value: any) => any;
 
+/**
+ * This is used to define how a class needs to be constructed from an object.
+ */
 export default class Builder<ResultType extends BuildableResource<ResultType>> {
+	/**
+	 * The built object to populate.
+	 */
 	private baseObject: ResultType;
 
-	private ignores: string[] = [];
+	/**
+	 * List of parameters that need to be ignored.
+	 */
+	private ignores: Set<string> = new Set;
+
+	/**
+	 * Collection of transformers. Each transformer is a callback function associated to a property,
+	 * this gets called just before the property is assigned to the {@link baseObject}
+	 */
 	private transformers: {[localPath: string]: Action} = {};
+
+	/**
+	 * Collection of aliases. Each alias represents an alternative name for the property
+	 * in the incoming object.
+	 */
 	private aliases: {[localPath: string]: string} = {};
+
+	/**
+	 * Collection of list element constructors. This is used to define how to construct
+	 * the individual items of an incoming list.
+	 */
 	private listElementConstructors: {[localPath: string]: ResultType} = {};
 
-	constructor(baseObject: ResourceFactory<ResultType>) {
-		this.baseObject = new baseObject();
+	/**
+	 * Instantiates the given class thanks to a {@link ResourceFactory}.
+	 * 
+	 * @param ctor The class that needs to be instantiated.
+	 */
+	constructor(ctor: ResourceFactory<ResultType>) {
+		this.baseObject = new ctor();
 	}
 
-	public ignore(paths: string[]): this {
-		this.ignores = paths;
+	/**
+	 * Add an ignore directive for one or more paths.
+	 * 
+	 * @param paths The object paths to ignore when instantiating.
+	 * @returns The builder.
+	 */
+	public ignore(...paths: string[]): this {
+		paths.forEach(path => this.ignores.add(path));
 		return this;
 	}
 
+	/**
+	 * Add a transform directive for a given path.
+	 * 
+	 * @param localPath The property of the typed object that needs to be transformed.
+	 * @param transformer The callback function used to transform.
+	 * @returns This builder.
+	 */
 	public transform(localPath: string, transformer: Action): this {
 		this.transformers[localPath] = transformer;
-
 		return this;
 	}
 
+	/**
+	 * Add an alias for a given property.
+	 * 
+	 * @param foreignPath The path of the incoming object.
+	 * @param localPath The path of the typed object's property.
+	 * @returns This builder.
+	 */
 	public alias(foreignPath: string, localPath: string): this {
 		this.aliases[localPath] = foreignPath;
-		
 		return this;
 	}
 
+	/**
+	 * Add a list item type to let the builder know how to construct
+	 * the elements of a list.
+	 * 
+	 * @param localPath The path of the typed object's property.
+	 * @param builtObject The list element as a typed object.
+	 * @returns This builder.
+	 */
 	public listType(localPath: string, builtObject: ResultType): this {
 		this.listElementConstructors[localPath] = builtObject;
 		return this;
@@ -61,12 +116,19 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 		}
 	}
 
+	/**
+	 * Convert from a generic JSON object to a typed one.
+	 * 
+	 * @param json The object to transform.
+	 * @param strict Indicate whether or not to throw an exception when the incoming object does not have all the needed properties.
+	 * @returns A typed object populated according to the rules you defined while configuring.
+	 */
 	public fromJSON(json: any, strict: boolean = false): ResultType {
 		const target = this.baseObject;
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
-			if (this.ignores.includes(param) || !params.includes(param)) {
+			if (this.ignores.has(param) || !params.includes(param)) {
 				return;
 			}
 

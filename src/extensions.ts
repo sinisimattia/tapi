@@ -5,7 +5,20 @@ import BuildableResource from '@/contracts/BuildableResource';
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	export interface Promise<T> {
+		/**
+		 * Converts the incoming data into a typed object and returns a promise with the built object.
+		 * 
+		 * @param classToBuild The class the object needs to be converted to.
+		 * @return The typed object.
+		 */
 		as<T extends BuildableResource>(classToBuild: ResourceFactory<T>): Promise<T>;
+		/**
+		 * Converts an inner section of the incoming data into a typed object and returns a promise with the built object.
+		 * 
+		 * @param classToBuild The class the object needs to be converted to.
+		 * @param from The inner property to convert.
+		 * @return The typed object.
+		 */
 		as<T extends BuildableResource>(classToBuild: ResourceFactory<T>, from: string): Promise<T>;
 	}
 }

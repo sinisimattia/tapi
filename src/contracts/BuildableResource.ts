@@ -7,7 +7,7 @@ import Builder from "@/Builder";
  */
 export default abstract class BuildableResource<Type extends BuildableResource<Type> = any>{
 	/**
-	 * The specified builder for this class.
+	 * The specified {@link Builder} for this class.
 	 */
 	private builder?: Builder<this>;
 

@@ -1,0 +1,18 @@
+- label: Core
+  items:
+    - name: Buildable Resource
+      link: #
+    - name: Builder
+      link: #
+- label: Decorators
+  items:
+    - name: Resource
+      link: #
+    - name: Alias
+      link: #
+    - name: Transformer
+      link: #
+    - name: Ignore
+      link: #
+    - name: ListOf
+      link: #

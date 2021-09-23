@@ -48,5 +48,8 @@ plugins:
   - jekyll-target-blank
   - jekyll-redirect-from
 
+whitelist:
+  - jekyll-redirect-from
+
 jekyll-mentions:
   base_url: https://github.com

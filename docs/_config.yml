@@ -46,6 +46,7 @@ plugins:
   - jekyll-environment-variables
   - jekyll-mentions
   - jekyll-target-blank
+  - jekyll-redirect-from
 
 jekyll-mentions:
   base_url: https://github.com

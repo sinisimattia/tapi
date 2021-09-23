@@ -1,7 +1,7 @@
 - label: Core
   items:
     - name: Buildable Resource
-      link: #
+      link: /versions/current/buildable-resource
     - name: Builder
       link: #
 - label: Decorators

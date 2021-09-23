@@ -1,9 +1,5 @@
 - name: Docs
-  dropdown:
-    - name: Latest
-      link: /versions/current
-    - name: v0.x
-      link: /versions/0.x  
+  link: /docs
   
 - name: About
   dropdown:

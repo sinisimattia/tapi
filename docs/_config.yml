@@ -61,7 +61,7 @@ defaults:
       layout: page
       show_sidebar: false
   - scope:
-      path: "versions/*"
+      path: "docs/*"
     values:
       layout: resource
       menubar: main_menu

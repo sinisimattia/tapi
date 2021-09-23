@@ -1,5 +1,4 @@
 ---
-layout: page
 title: Convert JSON data into TypeScript objects with tapi!
 banner_with_image: true
 image: https://i.ibb.co/stfLH8B/tepi-demo.png

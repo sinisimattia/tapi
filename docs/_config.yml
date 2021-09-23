@@ -53,3 +53,15 @@ whitelist:
 
 jekyll-mentions:
   base_url: https://github.com
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+      show_sidebar: false
+  - scope:
+      path: "versions/*"
+    values:
+      layout: resource
+      menubar: main_menu

@@ -1,4 +1,3 @@
 ---
-redirect_to:
-	- /versions/0.x
+redirect_to: /versions/0.x
 ---

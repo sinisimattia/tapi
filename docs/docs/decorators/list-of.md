@@ -2,3 +2,18 @@
 title: "@ListOf"
 ---
 
+If the incoming object has a list that needs to be converted to a typed one we need to indicate the class of the individual items.
+
+> **Remember**: The class of the list items must be a [`BuildableResource`](/docs/core/buildable-resource).
+
+```typescript
+import { BuildableResource, Decorators } from "@sinisimattia/tapi";
+import Post from "path/to/classes/Post";
+
+@Decorators.Resource
+class TestClass extends BuildableResource {
+	@Decorators.ListOf(Post)
+	public listOfPosts: Post[];
+}
+```
+

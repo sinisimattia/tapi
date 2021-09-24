@@ -91,7 +91,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 		return this;
 	}
 
-	private assign(target: ResultType, json: any, param: string): void {
+	private assign(target: any, json: any, param: string): void {
 		const localPath = param;
 		const foreignPath = this.getForeignAlias(param, json);
 
@@ -161,5 +161,43 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 		});
 
 		return target as ResultType;
+	}
+
+	public toJSON(source: ResultType): any {
+		const params = Describer.getParameters(source);
+		const result = {};
+
+		params.forEach(param => {
+			const foreignPath = this.getForeignAlias(param);
+
+			if (this.ignores.has(param)) {
+				return;
+			}
+
+			if (source[param] instanceof BuildableResource) {
+				result[foreignPath] = source[param].build.toJSON(source[param]);
+			}
+			else if (Array.isArray(source[param])) {
+				const list: any[] = source[param];
+
+				result[foreignPath] = list.map((item: any, index: number) => {
+					const listClassElement = this.listElementConstructors[param];
+					if(listClassElement) {
+						const listElementClassBuilder = listClassElement.build;
+						return listElementClassBuilder.toJSON(item);
+					}
+					else if (source.hasOwnProperty(param)) {
+						return result[foreignPath][index];
+					}
+				})
+			}
+			else {
+				result[foreignPath] = source[param];
+			}			
+		});
+
+		delete result["builder"]; // FIXME Magic muber
+
+		return result;
 	}
 }

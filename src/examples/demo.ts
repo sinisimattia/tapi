@@ -25,13 +25,38 @@ class TestClass extends BuildableResource<TestClass> {
 	public list: AnotherClass[] = [];
 }
 
+@Resource
+class AwesomeClass extends BuildableResource {
+	@Alias("_param_1")
+	public param1: string = "unassigned";
+
+	@Ignore
+	public param2: string = "still private"
+
+	@Transform((value) => {
+		return "transformed";
+	})
+	public toBeTransformed = "not transformed";
+
+	public list: Array<any> = []
+
+	constructor() {
+		super();
+	}
+
+	public getParam2(): string {
+		return this.param2;
+	}
+}
+
 const builder = new TestClass().build;
+const anotherBuilder = new AnotherClass().build;
 
 const json = {
 	inner: {
 		_param_1: "ok",
 		param2: "this should not be reassigned",
-		extraParam: "not ok! abort. ABORT!"
+		toBeTransformed: "not ok! abort. ABORT!"
 	},
 	listOfThings: [
 		{
@@ -43,5 +68,8 @@ const json = {
 }
 
 const instance = builder.fromJSON(json);
+const builtJson = builder.toJSON(instance);
 
-console.log(instance);
+// console.log(instance);
+
+console.log(builtJson);

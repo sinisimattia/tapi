@@ -1,10 +1,6 @@
 name: Build site and Deploy to Github Pages
 
 on:
-  # Remove this
-  push:
-    branches:
-      - main
   release:
     types: [created]
 

@@ -193,7 +193,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 						return listElementClassBuilder.toJSON(item);
 					}
 					else if (source.hasOwnProperty(param)) {
-						return result[foreignPath][index];
+						return this.transformers[param] ? this.transformers[param].out(result[foreignPath][index]) : result[foreignPath][index];
 					}
 				})
 			}

@@ -48,8 +48,8 @@ const json = {
 	]
 }
 
-const instance = builder.fromJSON(json);
-const builtJson = builder.toJSON(instance);
+const instance = new TestClass().fromJSON(json);
+const builtJson = instance.toJSON();
 
 // console.log(instance);
 

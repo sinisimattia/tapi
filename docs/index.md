@@ -54,7 +54,7 @@ class TestClass extends BuildableResource {
 
 Then it's as simple as writing:
 ```typescript
-const instance: TestClass = new TestClass().build.fromJSON(json);
+const instance: TestClass = new TestClass().fromJSON(json);
 ```
 
 ### ... or with explicit builder 👷‍♂️

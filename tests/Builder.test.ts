@@ -14,9 +14,7 @@ class TestClass extends BuildableResource {
 
 const builder = new Builder(TestClass)
 	.ignore("param2")
-	.transform('toBeTransformed', (value) => {
-		return "transformed";
-	})
+	.transform('toBeTransformed', value => "transformed", value => "transformed again")
 	.alias("_param_1", "param1");
 
 describe('Typed object builder', () => {
@@ -67,5 +65,19 @@ describe('Typed object builder', () => {
 		const instance = builder.fromJSON(json);
 
 		expect(instance.param1).toBe("ok");
+	})
+
+	test('can transform in reverse', () => {
+		const json = {
+			param1: "ok",
+			param2: "this should not be reassigned",
+			toBeTransformed: "something"
+		}
+	
+		const builtObject = builder.fromJSON(json);
+		const instance = builder.toJSON(builtObject);
+
+		expect(instance.toBeTransformed).toBe("transformed again");
+		expect(instance["_param_1"]).toBe("ok");
 	})
 })

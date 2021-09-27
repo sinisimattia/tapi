@@ -35,8 +35,6 @@ class TestClass extends BuildableResource {
 	}
 }
 
-const builder = new TestClass().build;
-
 const json = {
 	inner: {
 		_param_1: "ok",
@@ -55,7 +53,7 @@ const json = {
 	listOfPrimitives: [true, 2, "three"]
 }
 
-const instance = builder.fromJSON(json);
+const instance = new TestClass().fromJSON(json);
 
 describe('Decorated class builder', () => {
 	test('properly builds recursive resources', () => {		

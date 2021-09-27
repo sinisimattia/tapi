@@ -25,9 +25,7 @@ class TestClass extends BuildableResource {
 	}
 }
 
-const builder = new TestClass().build;
-
-describe('Decorated class builder', () => {
+describe('Decorated class new TestClass()', () => {
 	test('properly sets ignore directives', () => {
 		const json = {
 			param1: "ok",
@@ -35,7 +33,7 @@ describe('Decorated class builder', () => {
 			extraParam: "not ok! abort. ABORT!"
 		}
 	
-		const instance = builder.fromJSON(json);
+		const instance = new TestClass().fromJSON(json);
 	
 		expect(instance.param1).toBe("ok");
 		expect(instance.hasOwnProperty("extraParam")).toBe(false);
@@ -49,7 +47,7 @@ describe('Decorated class builder', () => {
 			toBeTransformed: "something"
 		}
 	
-		const instance = builder.fromJSON(json);
+		const instance = new TestClass().fromJSON(json);
 
 		expect(instance.toBeTransformed).toBe("transformed");
 	})
@@ -59,7 +57,7 @@ describe('Decorated class builder', () => {
 			_param_1: "ok"
 		}
 	
-		const instance = builder.fromJSON(json);
+		const instance = new TestClass().fromJSON(json);
 
 		expect(instance.param1).toBe("ok");
 	})

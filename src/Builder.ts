@@ -20,7 +20,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 	 * Collection of transformers. Each transformer is a callback function associated to a property,
 	 * this gets called just before the property is assigned to the {@link baseObject}
 	 */
-	private transformers: {[localPath: string]: Action} = {};
+	private transformers: {[localPath: string]: ValueTransformer} = {};
 
 	/**
 	 * Collection of aliases. Each alias represents an alternative name for the property
@@ -58,11 +58,17 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 	 * Add a transform directive for a given path.
 	 * 
 	 * @param localPath The property of the typed object that needs to be transformed.
-	 * @param transformer The callback function used to transform.
+	 * @param transformer The {@link ValueTransformer} used.
 	 * @returns This builder.
 	 */
-	public transform(localPath: string, transformer: Action): this {
-		this.transformers[localPath] = transformer;
+	public transform(localPath: string, transformerIn: Action, transformerOut?: Action): this {
+		const defaultTransformer: Action = (value) => value;
+
+		this.transformers[localPath] = {
+			in: transformerIn,
+			out: transformerOut ?? defaultTransformer
+		};
+
 		return this;
 	}
 
@@ -96,7 +102,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 		const foreignPath = this.getForeignAlias(param, json);
 
 		if (this.transformers[localPath]){
-			target[localPath] = this.transformers[localPath](json[foreignPath]);
+			target[localPath] = this.transformers[localPath].in(json[foreignPath]);
 		}
 		else {
 			target[localPath] = json[foreignPath];
@@ -192,7 +198,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> {
 				})
 			}
 			else {
-				result[foreignPath] = source[param];
+				result[foreignPath] = this.transformers[param] ? this.transformers[param].out(source[param]) : source[param];
 			}			
 		});
 

@@ -10,8 +10,8 @@
       link: /docs/decorators/resource
     - name: Alias
       link: /docs/decorators/alias
-    - name: Transformer
-      link: /docs/decorators/transformer
+    - name: Transform
+      link: /docs/decorators/transform
     - name: Ignore
       link: /docs/decorators/ignore
     - name: ListOf

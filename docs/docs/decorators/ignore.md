@@ -5,11 +5,11 @@ title: "@Ignore"
 Not all of your class properties need to be mappable, some can be ignored. This is where this decorator comes in handy!
 
 ```typescript
-import { BuildableResource, Decorators } from "@sinisimattia/tapi";
+import { BuildableResource, Properties } from "@sinisimattia/tapi";
 
-@Decorators.Resource
+@Properties.Resource
 class TestClass extends BuildableResource {
-	@Decorators.Ignore
+	@Properties.Ignore
 	public thingToBeIgnored: string;
 }
 ```

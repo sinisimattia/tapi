@@ -1,15 +1,15 @@
 ---
-title: "@Transformer"
+title: "@Transform"
 ---
 
 Sometimes, assigning the value as it arrives is not enough. What if we want to apply a transformation before it gets assigned? Simple!
 
 ```typescript
-import { BuildableResource, Decorators } from "@sinisimattia/tapi";
+import { BuildableResource, Properties } from "@sinisimattia/tapi";
 
-@Decorators.Resource
+@Properties.Resource
 class TestClass extends BuildableResource {
-    @Decorators.Transformer(incomingValue => {
+    @Properties.Transform(incomingValue => {
         return incomingValue.toUpperCase();
     })
 	public needsToBeUppercase: string;

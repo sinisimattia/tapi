@@ -27,18 +27,17 @@ First off you need to implement the `BuildableResource` interface and define the
 
 ```typescript
 // TestClass.ts
-import tapi from '@sinisimattia/tapi';
-import { Alias, Transformer, Ignore, Resource } from '@sinisimattia/tapi/decorators';
+import { BuildableResource, Properties } from '@sinisimattia/tapi';
 
 @Resource
-class TestClass extends tapi.BuildableResource {
+class TestClass extends BuildableResource {
 	@Alias('_param_1')
 	public param: string = 'unassigned';
 
 	@Ignore
 	public toBeIgnored: string = 'still private'
 
-	@Transformer((value: string) => {
+	@Transform((value: string) => {
 		return value.toUppercase();
 	})
 	public toBeTransformed = 'not transformed';
@@ -62,9 +61,9 @@ const instance: TestClass = new TestClass().build.fromJSON(json);
 
 ```typescript
 // TestClass.ts
-import tapi from '@sinisimattia/tapi';
+import { BuildableResource, Builder } from '@sinisimattia/tapi';
 
-class TestClass extends tapi.BuildableResource {
+class TestClass extends BuildableResource {
 	public param: string = 'unassigned';
 	public toBeIgnored: string = 'still private'
 	public toBeTransformed = 'not transformed';
@@ -76,7 +75,7 @@ class TestClass extends tapi.BuildableResource {
 }
 
 // example.ts
-const testClassBuilder = new tapi.Builder(TestClass)
+const testClassBuilder = new Builder(TestClass)
 	.ignore(['toBeIgnored'])
 	.transform('toBeTransformed', (value) => {
 		return 'transformed';
@@ -96,12 +95,12 @@ The conversion tool can also be used with promises, to demonstrate this we'll be
 ```typescript
 import axios from 'axios' // 👈 Of course, you can use whatever library you want
 
-import tapi from '@sinisimattia/tapi'
+import { BuildableResource, ... } from '@sinisimattia/tapi'
 
 import '@sinisimattia/tapi/extensions' // 👈 Use this line to import all the extended functionalities of core types
 
 // Let's create a simple class...
-class TestClass extends tapi.BuildableResource {
+class TestClass extends BuildableResource {
 	// You know the drill by now...
 }
 

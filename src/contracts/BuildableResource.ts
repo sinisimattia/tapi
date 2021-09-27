@@ -10,7 +10,6 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	/**
 	 * The specified {@link Builder} for this class.
 	 */
-	@Ignore
 	private builder?: Builder<this>;
 
 	/**
@@ -32,7 +31,6 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	/**
 	 * A public setter for this class' current builder.
 	 */
-	@Ignore
 	public set newBuilder(builder: Builder<this>) {
 		this.builder = builder;
 	}

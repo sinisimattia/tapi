@@ -29,11 +29,12 @@ class ResourceDecorator {
 
 	/**
 	 * Adds a transformer.
-	 * @param transformer The transformer to add.
+	 * @param transformerIn The transformer for incoming properties.
+	 * @param transformerOut The transformer for outgoing properties.
 	 */
-	public Transform(transformer: Action): any {
+	public Transform(transformerIn: Action, transformerOut?: Action): any {
 		return function (target: BuildableResource, name: string) {
-			target.build?.transform(name, transformer);
+			target.build?.transform(name, transformerIn, transformerOut);
 		};
 	}
 

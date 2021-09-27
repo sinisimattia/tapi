@@ -1,18 +1,18 @@
 - label: Core
   items:
     - name: Buildable Resource
-      link: /versions/current/buildable-resource
+      link: /docs/core/buildable-resource
     - name: Builder
-      link: #
+      link: /docs/core/builder
 - label: Decorators
   items:
     - name: Resource
-      link: #
+      link: /docs/decorators/resource
     - name: Alias
-      link: #
+      link: /docs/decorators/alias
     - name: Transformer
-      link: #
+      link: /docs/decorators/transformer
     - name: Ignore
-      link: #
+      link: /docs/decorators/ignore
     - name: ListOf
-      link: #
+      link: /docs/decorators/list-of

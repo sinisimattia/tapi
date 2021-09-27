@@ -4,6 +4,7 @@ class TestClass {
 	public param1 = "value1";
 	public param2 = "value2";
 	public param3 = "value3";
+	private privateParam = "u can't c me";
 }
 
 describe('Object describer', () => {

@@ -8,7 +8,7 @@ export default class Describer {
 	 * @param instance The class to analyze.
 	 * @returns A list of the class's properties.
 	 */
-	public static getParameters(instance: unknown): Array<string> {
-		return Object.getOwnPropertyNames(instance);
+	public static getParameters(instance: any): Array<string> {
+		return Object.getOwnPropertyNames(instance).filter(propertyName => !(instance[propertyName] instanceof Function));
 	}
 }

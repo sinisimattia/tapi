@@ -65,3 +65,4 @@ defaults:
     values:
       layout: resource
       menubar: main_menu
+      banner_height: is-small

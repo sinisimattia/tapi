@@ -9,9 +9,9 @@ class AnotherClass extends BuildableResource<TestClass> {
 	@Ignore
 	public param2: string = "still private"
 
-	@Transform((value) => {
+	@Transform(value => {
 		return "transformed";
-	})
+	}, value => "transformed again")
 	public toBeTransformed = "not transformed";
 }
 
@@ -23,30 +23,11 @@ class TestClass extends BuildableResource<TestClass> {
 	@Alias("listOfThings")
 	@ListOf(AnotherClass)
 	public list: AnotherClass[] = [];
-}
 
-@Resource
-class AwesomeClass extends BuildableResource {
-	@Alias("_param_1")
-	public param1: string = "unassigned";
-
-	@Ignore
-	public param2: string = "still private"
-
-	@Transform((value) => {
+	@Transform(value => {
 		return "transformed";
-	})
+	}, value => "transformed again")
 	public toBeTransformed = "not transformed";
-
-	public list: Array<any> = []
-
-	constructor() {
-		super();
-	}
-
-	public getParam2(): string {
-		return this.param2;
-	}
 }
 
 const builder = new TestClass().build;

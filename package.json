@@ -43,7 +43,8 @@
   "files": [
 	"dist/**/*",
 	"install",
-	"tests"
+	"tests",
+	"types"
   ],
   "publishConfig": {
     "@sinisimattia:registry": "https://npm.pkg.github.com"

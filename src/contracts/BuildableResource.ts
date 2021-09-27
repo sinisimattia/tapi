@@ -1,5 +1,4 @@
 import Builder from "@/Builder";
-import { Ignore } from "@/decorators";
 
 /**
  * Defines an object that can be automatically built from JSON data.
@@ -33,5 +32,13 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	 */
 	public set newBuilder(builder: Builder<this>) {
 		this.builder = builder;
+	}
+
+	public fromJSON(source: any): this {
+		return this.build.fromJSON(source);
+	}
+
+	public toJSON(): any {
+		return this.build.toJSON(this);
 	}
 }

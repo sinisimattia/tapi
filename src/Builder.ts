@@ -121,13 +121,6 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 		}
 	}
 
-	/**
-	 * Convert from a generic JSON object to a typed one.
-	 * 
-	 * @param json The object to transform.
-	 * @param strict Indicate whether or not to throw an exception when the incoming object does not have all the needed properties.
-	 * @returns A typed object populated according to the rules you defined while configuring.
-	 */
 	public fromJSON(json: any, strict: boolean = false): ResultType {
 		const target = this.baseObject;
 		const params = Describer.getParameters(target);

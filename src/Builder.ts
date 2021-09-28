@@ -1,11 +1,12 @@
 import Describer from "@/helpers/Describer";
 import BuildableResource from "@/contracts/BuildableResource";
 import ResourceFactory from "@/contracts/ResourceFactory";
+import JSONConvertible from "@/contracts/JSONConvertible";
 
 /**
  * This is used to define how a class needs to be constructed from an object.
  */
-export default class Builder<ResultType extends BuildableResource<ResultType>> {
+export default class Builder<ResultType extends BuildableResource<ResultType>> implements JSONConvertible {
 	/**
 	 * The built object to populate.
 	 */

@@ -1,11 +1,12 @@
 import Builder from "@/Builder";
+import JSONConvertible from "@/contracts/JSONConvertible";
 
 /**
  * Defines an object that can be automatically built from JSON data.
  * 
  * Use this as the base class for your resources (ie. Users, Articles, Posts, ect.)
  */
-export default abstract class BuildableResource<Type extends BuildableResource<Type> = any>{
+export default abstract class BuildableResource<Type extends BuildableResource<Type> = any> implements JSONConvertible {
 	/**
 	 * The specified {@link Builder} for this class.
 	 */

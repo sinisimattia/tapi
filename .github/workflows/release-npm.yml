@@ -1,0 +1,29 @@
+name: NPM Release
+
+on: test
+
+jobs:
+  test:
+      name: Testing 🧪
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: 14
+        - run: npm i
+        - run: npm test
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm i
+      - run: npm run build
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          dry-run: false
+          token: ${{ secrets.NPM_TOKEN }}
+

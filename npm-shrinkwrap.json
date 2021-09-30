@@ -1,11 +1,11 @@
 {
-  "name": "@sinisimattia/tapi",
+  "name": "tapi.js",
   "version": "0.3.1",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
-      "name": "@sinisimattia/tapi",
+      "name": "tapi.js",
       "version": "0.3.1",
       "hasInstallScript": true,
       "license": "GPL-3.0-only",

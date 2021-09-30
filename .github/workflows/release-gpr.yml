@@ -1,8 +1,6 @@
-name: Package release
+name: GPR Relase
 
-on:
-  release:
-    types: [created]
+on: test
 
 jobs:
   test:

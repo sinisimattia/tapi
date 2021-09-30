@@ -46,9 +46,6 @@
 	"tests",
 	"types"
   ],
-  "publishConfig": {
-    "@sinisimattia:registry": "https://npm.pkg.github.com"
-  },
   "devDependencies": {
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.29.0",

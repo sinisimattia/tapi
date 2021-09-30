@@ -7,7 +7,7 @@ If the incoming object has a list that needs to be converted to a typed one we n
 > **Remember**: The class of the list items must be a [`BuildableResource`](/docs/core/buildable-resource).
 
 ```typescript
-import { BuildableResource, Properties } from "@sinisimattia/tapi";
+import { BuildableResource, Properties } from "tapi.js";
 import Post from "path/to/classes/Post";
 
 @Properties.Resource

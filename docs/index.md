@@ -27,7 +27,7 @@ First off you need to implement the `BuildableResource` interface and define the
 
 ```typescript
 // TestClass.ts
-import { BuildableResource, Properties } from '@sinisimattia/tapi';
+import { BuildableResource, Properties } from 'tapi.js';
 
 @Resource
 class TestClass extends BuildableResource {
@@ -61,7 +61,7 @@ const instance: TestClass = new TestClass().fromJSON(json);
 
 ```typescript
 // TestClass.ts
-import { BuildableResource, Builder } from '@sinisimattia/tapi';
+import { BuildableResource, Builder } from 'tapi.js';
 
 class TestClass extends BuildableResource {
 	public param: string = 'unassigned';
@@ -95,9 +95,9 @@ The conversion tool can also be used with promises, to demonstrate this we'll be
 ```typescript
 import axios from 'axios' // 👈 Of course, you can use whatever library you want
 
-import { BuildableResource, ... } from '@sinisimattia/tapi'
+import { BuildableResource, ... } from 'tapi.js'
 
-import '@sinisimattia/tapi/extensions' // 👈 Use this line to import all the extended functionalities of core types
+import 'tapi.js/extensions' // 👈 Use this line to import all the extended functionalities of core types
 
 // Let's create a simple class...
 class TestClass extends BuildableResource {

@@ -6,7 +6,7 @@ description: Thanks for using tapi.js!
 This is what our new class looks like, everything can now be mapped automatically!
 
 ```typescript
-import { BuildableResource, Properties } from "@sinisimattia/tapi";
+import { BuildableResource, Properties } from "tapi.js";
 
 @Properties.Resource
 class TestClass extends BuildableResource {

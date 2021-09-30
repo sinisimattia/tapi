@@ -5,7 +5,7 @@ title: "@Ignore"
 Not all of your class properties need to be mappable, some can be ignored. This is where this decorator comes in handy!
 
 ```typescript
-import { BuildableResource, Properties } from "@sinisimattia/tapi";
+import { BuildableResource, Properties } from "tapi.js";
 
 @Properties.Resource
 class TestClass extends BuildableResource {

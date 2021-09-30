@@ -9,7 +9,7 @@ In order to make a class buildable from a JSON we have to inherit some common be
 To do this all we need is to extend the `BuildableResource` abstract class and to create **a constructor without arguments**, this will be needed in order to create the instance.
 
 ```typescript
-import { BuildableResource } from '@sinisimattia/tapi';
+import { BuildableResource } from 'tapi.js';
 
 class TestClass extends BuildableResource {
     // All your other stuff here

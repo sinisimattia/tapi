@@ -11,6 +11,8 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: 14
+            registry-url: https://registry.npmjs.org/
+            scope: sinisimattia
         - run: npm i
         - run: npm test
   publish:
@@ -23,9 +25,7 @@ jobs:
           node-version: 14
       - run: npm i
       - run: npm run build
-      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          dry-run: false
-          token: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

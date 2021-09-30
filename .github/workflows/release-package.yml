@@ -29,7 +29,6 @@ jobs:
         with:
           node-version: 14
           registry-url: https://npm.pkg.github.com/
-          scope: sinisimattia
       - run: npm i
       - run: npm run build
       - run: npm publish

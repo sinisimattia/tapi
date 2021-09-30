@@ -22,7 +22,6 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-          scope: sinisimattia
       - run: npm i
       - run: npm run build
       - run: npm publish

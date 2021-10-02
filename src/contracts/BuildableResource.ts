@@ -35,8 +35,8 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 		this.builder = builder;
 	}
 
-	public fromJSON(source: any): this {
-		return this.build.fromJSON(source);
+	public fromJSON(source: any, strict: boolean = false): this {
+		return this.build.fromJSON(source, strict);
 	}
 
 	public toJSON(): any {

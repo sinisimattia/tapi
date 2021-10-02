@@ -98,18 +98,6 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 		return this;
 	}
 
-	private assign(target: any, json: any, param: string): void {
-		const localPath = param;
-		const foreignPath = this.getForeignAlias(param, json);
-
-		if (this.transformers[localPath]){
-			target[localPath] = this.transformers[localPath].in(json[foreignPath]);
-		}
-		else {
-			target[localPath] = json[foreignPath];
-		}
-	}
-
 	private getForeignAlias(localPath: string, foreignObject: any = undefined): string {
 		const foreignPath = this.aliases[localPath] ?? localPath;
 
@@ -156,7 +144,12 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 				})
 			}
 			else {
-				this.assign(target, json, param);
+				if (this.transformers[param]){
+					target[param] = this.transformers[param].in(json[actualPath]);
+				}
+				else {
+					target[param] = json[actualPath];
+				}
 			}			
 		});
 

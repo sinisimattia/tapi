@@ -161,7 +161,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 
 	public toJSON(source: ResultType): any {
 		const params = Describer.getParameters(source);
-		const result = {};
+		let result = {};
 
 		params.forEach(param => {
 			const foreignPath = this.getForeignAlias(param);
@@ -191,6 +191,8 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 				result[foreignPath] = this.transformers[param] ? this.transformers[param].out(source[param]) : source[param];
 			}			
 		});
+
+		result = dot.object(result)
 
 		delete result["builder"]; // FIXME Magic muber
 

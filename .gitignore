@@ -107,3 +107,8 @@ dist
 Gemfile.lock
 _site
 .sass-cache
+
+# Editors
+.idea
+.vscode
+.vs

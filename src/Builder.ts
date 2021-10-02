@@ -2,6 +2,7 @@ import Describer from "@/helpers/Describer";
 import BuildableResource from "@/contracts/BuildableResource";
 import ResourceFactory from "@/contracts/ResourceFactory";
 import JSONConvertible from "@/contracts/JSONConvertible";
+import dot from "dot-object";
 
 /**
  * This is used to define how a class needs to be constructed from an object.
@@ -42,6 +43,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	 */
 	constructor(ctor: ResourceFactory<ResultType>) {
 		this.baseObject = new ctor();
+		dot.keepArray = true;
 	}
 
 	/**
@@ -119,6 +121,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 			}
 
 			const actualPath = this.getForeignAlias(param, json);
+			const foreignValue = dot.pick(actualPath, json);
 
 			if (!json || !json.hasOwnProperty(actualPath)) {
 				if (strict) {
@@ -127,10 +130,10 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 				else return;
 			}
 			if (target[param] instanceof BuildableResource) {
-				target[param] = target[param].build.fromJSON(json[actualPath], strict);
+				target[param] = target[param].build.fromJSON(foreignValue, strict);
 			}
 			else if (Array.isArray(target[param])) {
-				const list: any[] = json[actualPath];
+				const list: any[] = foreignValue;
 
 				target[param] = list.map((item: any, index: number) => {
 					const listClassElement = this.listElementConstructors[param];
@@ -139,16 +142,16 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 						return listElementClassBuilder.fromJSON(item, strict);
 					}
 					else if (!strict && json.hasOwnProperty(actualPath)) {
-						return json[actualPath][index];
+						return foreignValue[index];
 					}
 				})
 			}
 			else {
 				if (this.transformers[param]){
-					target[param] = this.transformers[param].in(json[actualPath]);
+					target[param] = this.transformers[param].in(foreignValue);
 				}
 				else {
-					target[param] = json[actualPath];
+					target[param] = foreignValue;
 				}
 			}			
 		});

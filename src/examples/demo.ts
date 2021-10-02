@@ -4,6 +4,7 @@ import BuildableResource from '@/contracts/BuildableResource';
 @Resource
 class AnotherClass extends BuildableResource<TestClass> {
 	@Alias("_param_1")
+	@Transform(value => "ok but transformed")
 	public param1: string = "unassigned";
 
 	@Ignore
@@ -45,12 +46,13 @@ const json = {
 			param2: "this should not be reassigned",
 			extraParam: "not ok! abort. ABORT!"
 		}
-	]
+	],
+	toBeTransformed: "not transformed"
 }
 
 const instance = new TestClass().fromJSON(json);
 const builtJson = instance.toJSON();
 
-// console.log(instance);
+console.log(instance);
 
-console.log(builtJson);
+// console.log(builtJson);

@@ -194,7 +194,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 
 		result = dot.object(result)
 
-		delete result["builder"]; // FIXME Magic muber
+		delete result["builder"]; // FIXME Magic number
 
 		return result;
 	}

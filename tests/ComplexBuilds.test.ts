@@ -30,6 +30,9 @@ class TestClass extends BuildableResource {
 
 	public listOfPrimitives: Array<any> = [];
 
+	@Alias("buried.deep.within.objects")
+	public buriedProperty = "not assigned";
+
 	constructor() {
 		super();
 	}
@@ -50,7 +53,8 @@ const json = {
 			toBeTransformed: "something, not important. you shouldn't even see me"
 		}
 	],
-	listOfPrimitives: [true, 2, "three"]
+	listOfPrimitives: [true, 2, "three"],
+	buried: {deep: {within: {objects: "assigned"}}}
 }
 
 const instance = new TestClass().fromJSON(json);
@@ -82,5 +86,9 @@ describe('Decorated class builder', () => {
 		expect(list[0]).toBe(true);
 		expect(list[1]).toBe(2);
 		expect(list[2]).toBe("three");
+	})
+
+	test('handles dot-notation paths', () => {
+		expect(instance.buriedProperty).toBe("assigned");
 	})
 })

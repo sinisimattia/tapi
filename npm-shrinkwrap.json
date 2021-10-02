@@ -9,10 +9,46 @@
       "version": "0.3.1",
       "hasInstallScript": true,
       "license": "GPL-3.0-only",
+      "bin": {
+        "BuildableResource.d.ts": "dist/contracts/BuildableResource.d.ts",
+        "BuildableResource.d.ts.map": "dist/contracts/BuildableResource.d.ts.map",
+        "BuildableResource.js": "dist/contracts/BuildableResource.js",
+        "BuildableResource.js.map": "dist/contracts/BuildableResource.js.map",
+        "Builder.d.ts": "dist/Builder.d.ts",
+        "Builder.d.ts.map": "dist/Builder.d.ts.map",
+        "Builder.js": "dist/Builder.js",
+        "Builder.js.map": "dist/Builder.js.map",
+        "decorators.d.ts": "dist/decorators.d.ts",
+        "decorators.d.ts.map": "dist/decorators.d.ts.map",
+        "decorators.js": "dist/decorators.js",
+        "decorators.js.map": "dist/decorators.js.map",
+        "Describer.d.ts": "dist/helpers/Describer.d.ts",
+        "Describer.d.ts.map": "dist/helpers/Describer.d.ts.map",
+        "Describer.js": "dist/helpers/Describer.js",
+        "Describer.js.map": "dist/helpers/Describer.js.map",
+        "extensions.d.ts": "dist/extensions.d.ts",
+        "extensions.d.ts.map": "dist/extensions.d.ts.map",
+        "extensions.js": "dist/extensions.js",
+        "extensions.js.map": "dist/extensions.js.map",
+        "index.d.ts": "dist/index.d.ts",
+        "index.d.ts.map": "dist/index.d.ts.map",
+        "index.js": "dist/index.js",
+        "index.js.map": "dist/index.js.map",
+        "JSONConvertible.d.ts": "dist/contracts/JSONConvertible.d.ts",
+        "JSONConvertible.d.ts.map": "dist/contracts/JSONConvertible.d.ts.map",
+        "JSONConvertible.js": "dist/contracts/JSONConvertible.js",
+        "JSONConvertible.js.map": "dist/contracts/JSONConvertible.js.map",
+        "ResourceFactory.d.ts": "dist/contracts/ResourceFactory.d.ts",
+        "ResourceFactory.d.ts.map": "dist/contracts/ResourceFactory.d.ts.map",
+        "ResourceFactory.js": "dist/contracts/ResourceFactory.js",
+        "ResourceFactory.js.map": "dist/contracts/ResourceFactory.js.map"
+      },
       "devDependencies": {
+        "@types/dot-object": "^2.1.2",
         "@types/jest": "^27.0.1",
         "@typescript-eslint/eslint-plugin": "^4.29.0",
         "@typescript-eslint/parser": "^4.29.0",
+        "dot-object": "^2.1.4",
         "eslint": "^7.32.0",
         "jest": "^27.0.6",
         "ts-jest": "^27.0.5",
@@ -1377,6 +1413,12 @@
         "@babel/types": "^7.3.0"
       }
     },
+    "node_modules/@types/dot-object": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/@types/dot-object/-/dot-object-2.1.2.tgz",
+      "integrity": "sha512-mARrpJofLNe6yhlukeBcznBe8ssZo5ZJ/CJWc3JKmG9L9151s0OHK+mealnkqSgO6cSn1219vND2wgL67Cuqiw==",
+      "dev": true
+    },
     "node_modules/@types/graceful-fs": {
       "version": "4.1.5",
       "resolved": "https://registry.npmjs.org/@types/graceful-fs/-/graceful-fs-4.1.5.tgz",
@@ -2209,6 +2251,15 @@
         "node": ">= 0.8"
       }
     },
+    "node_modules/commander": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz",
+      "integrity": "sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==",
+      "dev": true,
+      "engines": {
+        "node": ">= 6"
+      }
+    },
     "node_modules/concat-map": {
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",
@@ -2405,6 +2456,19 @@
       "dev": true,
       "engines": {
         "node": ">=8"
+      }
+    },
+    "node_modules/dot-object": {
+      "version": "2.1.4",
+      "resolved": "https://registry.npmjs.org/dot-object/-/dot-object-2.1.4.tgz",
+      "integrity": "sha512-7FXnyyCLFawNYJ+NhkqyP9Wd2yzuo+7n9pGiYpkmXCTYa8Ci2U0eUNDVg5OuO5Pm6aFXI2SWN8/N/w7SJWu1WA==",
+      "dev": true,
+      "dependencies": {
+        "commander": "^4.0.0",
+        "glob": "^7.1.5"
+      },
+      "bin": {
+        "dot-object": "bin/dot-object"
       }
     },
     "node_modules/dynamic-dedupe": {
@@ -8080,6 +8144,12 @@
         "@babel/types": "^7.3.0"
       }
     },
+    "@types/dot-object": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/@types/dot-object/-/dot-object-2.1.2.tgz",
+      "integrity": "sha512-mARrpJofLNe6yhlukeBcznBe8ssZo5ZJ/CJWc3JKmG9L9151s0OHK+mealnkqSgO6cSn1219vND2wgL67Cuqiw==",
+      "dev": true
+    },
     "@types/graceful-fs": {
       "version": "4.1.5",
       "resolved": "https://registry.npmjs.org/@types/graceful-fs/-/graceful-fs-4.1.5.tgz",
@@ -8705,6 +8775,12 @@
         "delayed-stream": "~1.0.0"
       }
     },
+    "commander": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz",
+      "integrity": "sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==",
+      "dev": true
+    },
     "concat-map": {
       "version": "0.0.1",
       "resolved": "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz",
@@ -8861,6 +8937,16 @@
           "integrity": "sha512-VlZwKPCkYKxQgeSbH5EyngOmRp7Ww7I9rQLERETtf5ofd9pGeswWiOtogpEO850jziPRarreGxn5QIiTqpb2wA==",
           "dev": true
         }
+      }
+    },
+    "dot-object": {
+      "version": "2.1.4",
+      "resolved": "https://registry.npmjs.org/dot-object/-/dot-object-2.1.4.tgz",
+      "integrity": "sha512-7FXnyyCLFawNYJ+NhkqyP9Wd2yzuo+7n9pGiYpkmXCTYa8Ci2U0eUNDVg5OuO5Pm6aFXI2SWN8/N/w7SJWu1WA==",
+      "dev": true,
+      "requires": {
+        "commander": "^4.0.0",
+        "glob": "^7.1.5"
       }
     },
     "dynamic-dedupe": {

@@ -10,7 +10,6 @@
 		"rootDir": "src",
 		"composite": true,
 		"removeComments": false,
-		"esModuleInterop": true,
 		"skipLibCheck": false,
 	},
 	"include": [

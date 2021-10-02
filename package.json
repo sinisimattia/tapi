@@ -4,15 +4,15 @@
   "description": "Consume RESTful APIs as TypeScript objects.",
   "keywords": [
     "API",
-	"converter",
-	"resolver",
-	"tool",
+    "converter",
+    "resolver",
+    "tool",
     "TypeScript"
   ],
   "author": {
-	"name": "Mattia Sinisi",
-	"email": "mattia@snisni.it",
-	"url": "https://mattia.codes"
+    "name": "Mattia Sinisi",
+    "email": "mattia@snisni.it",
+    "url": "https://mattia.codes"
   },
   "license": "GPL-3.0-only",
   "bugs": {
@@ -27,7 +27,7 @@
     "test": "jest",
     "lint": "eslint .",
     "clean": "eslint . --fix",
-	"prepare": "npm run build",
+    "prepare": "npm run build",
     "postinstall": "node install/thankyou.js"
   },
   "repository": {
@@ -35,21 +35,23 @@
     "url": "git+https://github.com/sinisimattia/tapi.git"
   },
   "directories": {
-	"bin": "dist",
-	"test": "tests",
-	"lib": "dist",
-	"example": "src/examples"
+    "bin": "dist",
+    "test": "tests",
+    "lib": "dist",
+    "example": "src/examples"
   },
   "files": [
-	"dist/**/*",
-	"install",
-	"tests",
-	"types"
+    "dist/**/*",
+    "install",
+    "tests",
+    "types"
   ],
   "devDependencies": {
+    "@types/dot-object": "^2.1.2",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
+    "dot-object": "^2.1.4",
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
     "ts-jest": "^27.0.5",

@@ -2,12 +2,21 @@
 
 <div align="center">
 	<a href="https://tapi.js.org">
-		<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" style="display: block; margin: auto" alt="tapi" />
+		<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" style="display: block; margin: auto; max-width: 700px" alt="tapi" />
 		<h3><strong>Typed</strong> API Consumer</h3>
 	</a>
 </div>
 
-___
+<div align="center" style="margin-top: 40px">
+
+![License](https://badgen.net/github/license/sinisimattia/tapi)
+![TS](https://badgen.net/npm/types/tapi.js)
+![Dependencies](https://badgen.net/bundlephobia/dependency-count/tapi.js)
+![Latest Tag](https://badgen.net/github/tag/sinisimattia/tapi)
+![Stars](https://badgen.net/github/stars/sinisimattia/tapi)
+
+</div>
+
 
 ## Imagine doing this...
 
@@ -29,7 +38,17 @@ ___
 
 ___
 
-### Big thanks to anyone who contributes!
+## More info
+
+📦 [Check it out on **npm**](https://npmjs.com/package/tapi.js)
+
+😱 [Check it out on **Bundlephobia**](https://bundlephobia.com/package/tapi.js)
+
+☁ [Use directly from the browser](https://cdn.jsdelivr.net/npm/tapi.js/)
+
+📚 [Additional info on the file on **libraries.io**](https://libraries.io/npm/tapi.js)
+
+## Big thanks to anyone who contributes!
 
 **You** could be here!
 

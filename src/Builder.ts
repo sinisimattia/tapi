@@ -102,12 +102,13 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 
 	private getForeignAlias(localPath: string, foreignObject: any = undefined): string {
 		const foreignPath = this.aliases[localPath] ?? localPath;
+		const foreignValue = dot.pick(foreignPath, foreignObject);
 
 		if (foreignObject == undefined) {
 			return foreignPath;
 		}
 		else {
-			return foreignObject.hasOwnProperty(foreignPath) ? foreignPath : localPath
+			return foreignValue ? foreignPath : localPath
 		}
 	}
 
@@ -120,10 +121,10 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 				return;
 			}
 
-			const actualPath = this.getForeignAlias(param, json);
-			const foreignValue = dot.pick(actualPath, json);
+			const foreignPath = this.getForeignAlias(param, json);
+			const foreignValue = dot.pick(foreignPath, json);
 
-			if (!json || !json.hasOwnProperty(actualPath)) {
+			if (!json || !foreignValue) {
 				if (strict) {
 					throw new Error("Invalid input object, missing parameter: " + param);
 				}
@@ -141,7 +142,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 						const listElementClassBuilder = listClassElement.build;
 						return listElementClassBuilder.fromJSON(item, strict);
 					}
-					else if (!strict && json.hasOwnProperty(actualPath)) {
+					else if (!strict && foreignValue) {
 						return foreignValue[index];
 					}
 				})

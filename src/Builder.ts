@@ -4,6 +4,16 @@ import ResourceFactory from "@/contracts/ResourceFactory";
 import JSONConvertible from "@/contracts/JSONConvertible";
 import dot from "dot-object";
 
+class ObjectReference {
+	public path: string;
+	public value: any;
+
+	constructor(path: string, value: any) {
+		this.path = path;
+		this.value = value;
+	}
+}
+
 /**
  * This is used to define how a class needs to be constructed from an object.
  */
@@ -100,16 +110,22 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 		return this;
 	}
 
-	private getForeignAlias(localPath: string, foreignObject: any = undefined): string {
+	private getForeignObjectReference(localPath: string, foreignObject: any = undefined): ObjectReference {
 		const foreignPath = this.aliases[localPath] ?? localPath;
 		const foreignValue = dot.pick(foreignPath, foreignObject);
 
+		let result: ObjectReference;
+
 		if (foreignObject == undefined) {
-			return foreignPath;
+			result = new ObjectReference(foreignPath, null);
 		}
 		else {
-			return foreignValue ? foreignPath : localPath
+			result = new ObjectReference(foreignValue != null ? foreignPath : localPath, foreignValue)
 		}
+
+		result.value = dot.pick(result.path, foreignObject)
+
+		return result;
 	}
 
 	public fromJSON(json: any, strict: boolean = false): ResultType {
@@ -121,20 +137,20 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 				return;
 			}
 
-			const foreignPath = this.getForeignAlias(param, json);
-			const foreignValue = dot.pick(foreignPath, json);
+			const foreignObject = this.getForeignObjectReference(param, json);
 
-			if (!json || !foreignValue) {
+			if (!json || !foreignObject.value) {
 				if (strict) {
 					throw new Error("Invalid input object, missing parameter: " + param);
 				}
 				else return;
 			}
+
 			if (target[param] instanceof BuildableResource) {
-				target[param] = target[param].build.fromJSON(foreignValue, strict);
+				target[param] = target[param].build.fromJSON(foreignObject.value, strict);
 			}
 			else if (Array.isArray(target[param])) {
-				const list: any[] = foreignValue;
+				const list: any[] = foreignObject.value;
 
 				target[param] = list.map((item: any, index: number) => {
 					const listClassElement = this.listElementConstructors[param];
@@ -142,17 +158,17 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 						const listElementClassBuilder = listClassElement.build;
 						return listElementClassBuilder.fromJSON(item, strict);
 					}
-					else if (!strict && foreignValue) {
-						return foreignValue[index];
+					else if (!strict && foreignObject.value) {
+						return foreignObject.value[index];
 					}
 				})
 			}
 			else {
 				if (this.transformers[param]){
-					target[param] = this.transformers[param].in(foreignValue);
+					target[param] = this.transformers[param].in(foreignObject.value);
 				}
 				else {
-					target[param] = foreignValue;
+					target[param] = foreignObject.value;
 				}
 			}			
 		});
@@ -165,31 +181,31 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 		let result = {};
 
 		params.forEach(param => {
-			const foreignPath = this.getForeignAlias(param);
+			const foreignObject = this.getForeignObjectReference(param);
 
 			if (this.ignores.has(param)) {
 				return;
 			}
 
 			if (source[param] instanceof BuildableResource) {
-				result[foreignPath] = source[param].build.toJSON(source[param]);
+				result[foreignObject.path] = source[param].build.toJSON(source[param]);
 			}
 			else if (Array.isArray(source[param])) {
 				const list: any[] = source[param];
 
-				result[foreignPath] = list.map((item: any, index: number) => {
+				result[foreignObject.path] = list.map((item: any, index: number) => {
 					const listClassElement = this.listElementConstructors[param];
 					if(listClassElement) {
 						const listElementClassBuilder = listClassElement.build;
 						return listElementClassBuilder.toJSON(item);
 					}
 					else if (source.hasOwnProperty(param)) {
-						return this.transformers[param] ? this.transformers[param].out(result[foreignPath][index]) : result[foreignPath][index];
+						return this.transformers[param] ? this.transformers[param].out(result[foreignObject.path][index]) : result[foreignObject.path][index];
 					}
 				})
 			}
 			else {
-				result[foreignPath] = this.transformers[param] ? this.transformers[param].out(source[param]) : source[param];
+				result[foreignObject.path] = this.transformers[param] ? this.transformers[param].out(source[param]) : source[param];
 			}			
 		});
 

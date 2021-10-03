@@ -5,26 +5,23 @@ on:
     types: [created]
 
 jobs:
-  test:
-      name: Testing 🧪
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-          with:
-            node-version: 14
-        - run: npm i
-        - run: npm test
   publish-npm:
+    name: Build, test & publish!
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: npm i
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('npm-shrinkwrap.json') }}
+          restore-keys: npm-
+      - run: npm ci
+      - run: npm test
       - run: npm run build
       - run: npm publish --access public
         env:

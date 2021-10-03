@@ -29,6 +29,9 @@ class TestClass extends BuildableResource<TestClass> {
 		return "transformed";
 	}, value => "transformed again")
 	public toBeTransformed = "not transformed";
+
+	@Alias("buried.deep.within.objects")
+	public buriedProperty = "not assigned";
 }
 
 const builder = new TestClass().build;
@@ -47,12 +50,13 @@ const json = {
 			extraParam: "not ok! abort. ABORT!"
 		}
 	],
-	toBeTransformed: "not transformed"
+	toBeTransformed: "not transformed",
+	buried: {deep: {within: {objects: "assigned"}}}
 }
 
 const instance = new TestClass().fromJSON(json);
 const builtJson = instance.toJSON();
 
-console.log(instance);
+// console.log(instance);
 
 // console.log(builtJson);

@@ -1,5 +1,3 @@
-<img src="https://img.shields.io/badge/🧪-Testing%20before%20release-66ffcc" alt="Warning: Testing before release" />
-
 <div align="center">
 	<a href="https://tapi.js.org">
 		<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" style="display: block; margin: auto; max-width: 700px" alt="tapi" />

@@ -15,9 +15,8 @@ banner_height: is-large
 
 ## Install 📦
 ```bash
-npm i -S sinisimattia/tapi
+npm i -S tapi.js
 ```
-<small>Remember, since it's on the GitHub registry, don't put @ before the scope.</small>
 
 ## Usage 🚀
 

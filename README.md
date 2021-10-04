@@ -42,7 +42,7 @@ ___
 
 🦕 [Check it out on **deno**](https://deno.land/x/tapi)
 
-😱 [Check it out on **Bundlephobia**](https://bundlephobia.com/package/tapi.js)
+😱 [Check it out on **Bundlephobia**](https://bundlephobia.com/package/tapi.js@latest)
 
 ☁ [Use directly from the browser](https://cdn.jsdelivr.net/npm/tapi.js/)
 

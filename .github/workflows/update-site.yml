@@ -3,6 +3,9 @@ name: Build site and Deploy to Github Pages
 on:
   release:
     types: [created]
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:

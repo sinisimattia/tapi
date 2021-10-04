@@ -3,6 +3,9 @@ name: NPM Release
 on:
   release:
     types: [created]
+  push:
+    tags:
+      - '*'
 
 jobs:
   publish-npm:

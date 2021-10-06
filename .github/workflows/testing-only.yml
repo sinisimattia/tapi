@@ -1,0 +1,26 @@
+name: Testing your update
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out
+        uses: actions/checkout@v2
+      - name: Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('npm-shrinkwrap.json') }}
+          restore-keys: npm-
+      - name: Installing directly from source-tree
+        run: npm ci
+      - name: Running unit tests
+        run: npm test

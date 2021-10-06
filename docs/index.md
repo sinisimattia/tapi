@@ -7,8 +7,6 @@ banner_style: is-primary
 banner_height: is-large
 ---
 
-![Warning: Testing before release](https://img.shields.io/badge/🧪-Testing%20before%20release-blue)
-
 ### **Typed** API consumer
 
 **tapi** is a tiny TypeScript package used to define how to interpret any given API response as a typed object.

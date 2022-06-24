@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+
+
+<html
+	lang="en"
+	
+		class="has-navbar-fixed-top"
+	
+>
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content=#ffffff>
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="shortcut icon" type="image/png"
+           href="https://i.ibb.co/m5j9zXQ/tapi-prism.png" 
+    />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-social@1/bin/bulma-social.min.css">
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Convert JSON data into TypeScript objects with tapi! | tapi.js</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Convert JSON data into TypeScript objects with tapi!" />
+<meta property="og:locale" content="en" />
+<link rel="canonical" href="https://tapi.js.org/" />
+<meta property="og:url" content="https://tapi.js.org/" />
+<meta property="og:site_name" content="tapi.js" />
+<meta property="og:image" content="https://i.ibb.co/stfLH8B/tepi-demo.png" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://i.ibb.co/stfLH8B/tepi-demo.png" />
+<meta property="twitter:title" content="Convert JSON data into TypeScript objects with tapi!" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","headline":"Convert JSON data into TypeScript objects with tapi!","image":"https://i.ibb.co/stfLH8B/tepi-demo.png","name":"tapi.js","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://i.ibb.co/FxXMVD1/tapi-logo.png"}},"url":"https://tapi.js.org/"}</script>
+<!-- End Jekyll SEO tag -->
+</head>
+
+	<body>
+		<nav class="navbar has-shadow  is-fixed-top " x-data="{ openNav: false }">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item is-rounded">
+                tapi.js
+            </a>
+            <a role="button" class="navbar-burger is-rounded burger" aria-label="menu" aria-expanded="false" data-target="navMenu" :class="{ 'is-active': openNav }" x-on:click="openNav = !openNav">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu px-small is-rounded" id="navMenu" :class="{ 'is-active': openNav }">
+            <div class="navbar-start">
+                
+                
+                    
+                    <a href="/docs" class="navbar-item is-rounded ">Docs</a>
+                    
+                
+                    
+                    <div class="navbar-item is-rounded py-small has-dropdown is-hoverable ">
+                        <a href="" class="navbar-link is-rounded ">About</a>
+                        <div class="navbar-dropdown is-boxed">
+                            
+                            <a href="https://github.com/sinisimattia/tapi" class="navbar-item is-rounded " target="_blank" rel="noopener noreferrer">GitHub</a>
+                            
+                        </div>
+                    </div>
+                    
+                
+                
+            </div>
+
+            <div class="navbar-end">
+                
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+		
+
+		
+	
+		<section class="hero  is-large   is-primary ">
+    <div class="hero-body  py-small">
+        <div class="container">
+            <div class="columns is-4 is-vcentered">
+				
+                    <div class="column is-one-third">
+                        <img src="https://i.ibb.co/stfLH8B/tepi-demo.png" class="thumbnail mx-auto is-rounded">
+                    </div>
+                
+
+                <div class="column">
+					<div class="mb-medium">
+						<h1 class="title is-1">Convert JSON data into TypeScript objects with tapi!</h1>
+						<p class="subtitle is-3"></p>
+					</div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+	
+
+
+
+
+
+
+<section class="section">
+	<div class="container">
+		<div class="columns">
+			
+			<div class="column ">
+				
+				
+				
+
+				
+<div class="content">
+    <h3 id="typed-api-consumer">
+<strong>Typed</strong> API consumer</h3>
+
+<p><strong>tapi</strong> is a tiny TypeScript package used to define how to interpret any given API response as a typed object.</p>
+
+<h2 id="install-">Install 📦</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i <span class="nt">-S</span> tapi.js
+</code></pre></div></div>
+
+<h2 id="usage-">Usage 🚀</h2>
+
+<p>First off you need to implement the <code class="language-html highlighter-rouge">BuildableResource</code> interface and define the builder the class will use.</p>
+
+<h3 id="with-decorators-">With decorators ✨</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// TestClass.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BuildableResource</span><span class="p">,</span> <span class="nx">Properties</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">tapi.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Resource</span>
+<span class="kd">class</span> <span class="nx">TestClass</span> <span class="kd">extends</span> <span class="nx">BuildableResource</span> <span class="p">{</span>
+	<span class="p">@</span><span class="nd">Alias</span><span class="p">(</span><span class="dl">'</span><span class="s1">_param_1</span><span class="dl">'</span><span class="p">)</span>
+	<span class="k">public</span> <span class="nx">param</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">unassigned</span><span class="dl">'</span><span class="p">;</span>
+
+	<span class="p">@</span><span class="nd">Ignore</span>
+	<span class="k">public</span> <span class="nx">toBeIgnored</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">still private</span><span class="dl">'</span>
+
+	<span class="p">@</span><span class="nd">Transform</span><span class="p">((</span><span class="nx">value</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toUppercase</span><span class="p">();</span>
+	<span class="p">})</span>
+	<span class="k">public</span> <span class="nx">toBeTransformed</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">not transformed</span><span class="dl">'</span><span class="p">;</span>
+
+	<span class="p">@</span><span class="nd">ListOf</span><span class="o">&lt;</span><span class="nx">SomeOtherClass</span><span class="o">&gt;</span>
+	<span class="k">public</span> <span class="nx">list</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="nx">SomeOtherClass</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span>
+
+	<span class="c1">// Define a constructor with no arguments.</span>
+	<span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">super</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then it’s as simple as writing:</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">instance</span><span class="p">:</span> <span class="nx">TestClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TestClass</span><span class="p">().</span><span class="nx">fromJSON</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="-or-with-explicit-builder-️">… or with explicit builder 👷‍♂️</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// TestClass.ts</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BuildableResource</span><span class="p">,</span> <span class="nx">Builder</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">tapi.js</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nx">TestClass</span> <span class="kd">extends</span> <span class="nx">BuildableResource</span> <span class="p">{</span>
+	<span class="k">public</span> <span class="nx">param</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">unassigned</span><span class="dl">'</span><span class="p">;</span>
+	<span class="k">public</span> <span class="nx">toBeIgnored</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">still private</span><span class="dl">'</span>
+	<span class="k">public</span> <span class="nx">toBeTransformed</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">not transformed</span><span class="dl">'</span><span class="p">;</span>
+	<span class="k">public</span> <span class="nx">list</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">any</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span>
+
+	<span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">super</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// example.ts</span>
+<span class="kd">const</span> <span class="nx">testClassBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Builder</span><span class="p">(</span><span class="nx">TestClass</span><span class="p">)</span>
+	<span class="p">.</span><span class="nx">ignore</span><span class="p">([</span><span class="dl">'</span><span class="s1">toBeIgnored</span><span class="dl">'</span><span class="p">])</span>
+	<span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="dl">'</span><span class="s1">toBeTransformed</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="dl">'</span><span class="s1">transformed</span><span class="dl">'</span><span class="p">;</span>
+	<span class="p">})</span>
+	<span class="p">.</span><span class="nx">alias</span><span class="p">(</span><span class="dl">'</span><span class="s1">_param_1</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">param</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Then it’s as simple as writing:</p>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">instance</span><span class="p">:</span> <span class="nx">TestClass</span> <span class="o">=</span> <span class="nx">testClassBuilder</span><span class="p">.</span><span class="nx">fromJSON</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="-and-also-with-promises-">… and also with Promises 🤞</h3>
+
+<p>The conversion tool can also be used with promises, to demonstrate this we’ll be using a simple Axios request.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span> <span class="c1">// 👈 Of course, you can use whatever library you want</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">BuildableResource</span><span class="p">,</span> <span class="p">...</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">tapi.js</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">tapi.js/extensions</span><span class="dl">'</span> <span class="c1">// 👈 Use this line to import all the extended functionalities of core types</span>
+
+<span class="c1">// Let's create a simple class...</span>
+<span class="kd">class</span> <span class="nx">TestClass</span> <span class="kd">extends</span> <span class="nx">BuildableResource</span> <span class="p">{</span>
+	<span class="c1">// You know the drill by now...</span>
+<span class="p">}</span>
+
+<span class="c1">// Then make a request and get a promise...</span>
+<span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/some-url-that-returns-an-object</span><span class="dl">'</span><span class="p">)</span>
+	<span class="c1">// Now let's build the object with its defined builder! 🎉</span>
+	<span class="p">.</span><span class="k">as</span><span class="p">(</span><span class="nx">TestClass</span><span class="p">)</span>
+	<span class="c1">// Aaaaand we can use the typed object to do whatever we want.</span>
+	<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">builtObject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="nx">builtObject</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">();</span>
+	<span class="p">})</span>
+</code></pre></div></div>
+
+<p>If you want to select only a specific field of the response object (for example: <em>data</em>) you can define it as a string.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/some-url-that-returns-an-object</span><span class="dl">'</span><span class="p">)</span>
+	<span class="c1">// Now let's build the object with its defined builder! 🎉</span>
+	<span class="p">.</span><span class="k">as</span><span class="p">(</span><span class="nx">TestClass</span><span class="p">,</span> <span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">)</span>
+	<span class="c1">// Aaaaand we can use the typed object to do whatever we want.</span>
+	<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">builtObject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+		<span class="nx">builtObject</span><span class="p">.</span><span class="nx">doSomething</span><span class="p">();</span>
+	<span class="p">})</span>
+</code></pre></div></div>
+
+<hr>
+
+<p>Thanks for using <strong>tapi</strong>! 😊 I hope it’s been useful to you in some way.</p>
+
+</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+		
+			<footer class="footer mt-small">
+    <div class="container">
+        
+        <div class="columns is-multiline">
+            
+            <div class="column has-text-centered">
+                <div>
+                    <a href="https://mattia.codes" class="link" target="_blank" rel="noopener noreferrer">Author</a>
+                </div>
+            </div>
+            
+            <div class="column has-text-centered">
+                <div>
+                    <a href="https://github.com/sinisimattia/tapi/projects" class="link" target="_blank" rel="noopener noreferrer">Keep up with the plans</a>
+                </div>
+            </div>
+            
+            <div class="column has-text-centered">
+                <div>
+                    <a href="https://ko-fi.com/sinisimattia" class="link" target="_blank" rel="noopener noreferrer">Support by donating</a>
+                </div>
+            </div>
+            
+        </div>
+        
+
+		
+    </div>
+</footer>
+
+<footer class="hero is-dark">
+    <div class="hero-body">
+        <div class="container">
+            <p class="title is-3">Credits</p>
+
+            <a href="https://github.com/sinisimattia/tapi/graphs/contributors" target="_blank" rel="noopener noreferrer">
+                <img src="https://contrib.rocks/image?repo=sinisimattia/tapi">
+            </a>    
+            
+            <p>You could be here! ☝  Contribute to <a class="has-text-link" href="https://github.com/sinisimattia/tapi" target="_blank" rel="noopener noreferrer">this project</a>. </p>
+        </div>
+    </div>
+</footer>
+		
+
+		<script src="/assets/js/app.js" type="text/javascript"></script><!-- footer scripts --></body>
+</html>

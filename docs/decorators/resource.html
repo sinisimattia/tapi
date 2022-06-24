@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+
+
+<html
+	lang="en"
+	
+		class="has-navbar-fixed-top"
+	
+>
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content=#ffffff>
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="shortcut icon" type="image/png"
+           href="https://i.ibb.co/m5j9zXQ/tapi-prism.png" 
+    />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-social@1/bin/bulma-social.min.css">
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>@Resource | tapi.js</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="@Resource" />
+<meta property="og:locale" content="en" />
+<link rel="canonical" href="https://tapi.js.org/docs/decorators/resource" />
+<meta property="og:url" content="https://tapi.js.org/docs/decorators/resource" />
+<meta property="og:site_name" content="tapi.js" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="@Resource" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"@Resource","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://i.ibb.co/FxXMVD1/tapi-logo.png"}},"url":"https://tapi.js.org/docs/decorators/resource"}</script>
+<!-- End Jekyll SEO tag -->
+</head>
+
+	<body>
+		<nav class="navbar has-shadow  is-fixed-top " x-data="{ openNav: false }">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item is-rounded">
+                tapi.js
+            </a>
+            <a role="button" class="navbar-burger is-rounded burger" aria-label="menu" aria-expanded="false" data-target="navMenu" :class="{ 'is-active': openNav }" x-on:click="openNav = !openNav">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu px-small is-rounded" id="navMenu" :class="{ 'is-active': openNav }">
+            <div class="navbar-start">
+                
+                
+                    
+                    <a href="/docs" class="navbar-item is-rounded ">Docs</a>
+                    
+                
+                    
+                    <div class="navbar-item is-rounded py-small has-dropdown is-hoverable ">
+                        <a href="" class="navbar-link is-rounded ">About</a>
+                        <div class="navbar-dropdown is-boxed">
+                            
+                            <a href="https://github.com/sinisimattia/tapi" class="navbar-item is-rounded " target="_blank" rel="noopener noreferrer">GitHub</a>
+                            
+                        </div>
+                    </div>
+                    
+                
+                
+            </div>
+
+            <div class="navbar-end">
+                
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+		
+
+		
+	
+		<section class="hero  is-small  is-bold is-primary">
+    <div class="hero-body ">
+        <div class="container">
+            <h1 class="title is-1"><a href="https://github.com/Resource" class="user-mention" target="_blank" rel="noopener noreferrer">@Resource</a></h1>
+            <p class="subtitle is-3"></p>
+            
+        </div>
+    </div>
+</section>
+	
+
+
+
+
+
+
+<section class="section">
+	<div class="container">
+		<div class="columns">
+			
+			<div class="column is-4-desktop is-4-tablet">
+				
+
+<aside class="menu">
+
+    <p class="menu-label">Core</p>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/docs/core/buildable-resource" class="">Buildable Resource</a>
+            
+        </li>
+        
+        <li>
+            <a href="/docs/core/builder" class="">Builder</a>
+            
+        </li>
+            
+    </ul>
+
+    <p class="menu-label">Decorators</p>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/docs/decorators/resource" class="is-active">Resource</a>
+            
+        </li>
+        
+        <li>
+            <a href="/docs/decorators/alias" class="">Alias</a>
+            
+        </li>
+        
+        <li>
+            <a href="/docs/decorators/transform" class="">Transform</a>
+            
+        </li>
+        
+        <li>
+            <a href="/docs/decorators/ignore" class="">Ignore</a>
+            
+        </li>
+        
+        <li>
+            <a href="/docs/decorators/list-of" class="">ListOf</a>
+            
+        </li>
+            
+    </ul>
+
+</aside>
+			</div>
+			
+			<div class="column ">
+				
+				
+				
+
+				
+<div class="content">
+    <p>This is what checks if your class satisfies the requirements needed to be buildable. It is completely optional but highly recommended.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">BuildableResource</span><span class="p">,</span> <span class="nx">Properties</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">tapi.js</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Properties</span><span class="p">.</span><span class="nx">Resource</span>
+<span class="kd">class</span> <span class="nx">TestClass</span> <span class="kd">extends</span> <span class="nx">BuildableResource</span> <span class="p">{</span>
+	<span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+
+
+<div class="my-small is-flex is-justify-content-space-around">
+	
+		<a href="https://github.com/sinisimattia/tapi/issues" target="_blank" rel="noopener noreferrer">
+			<span class="icon ">
+	<i class=" far  fa-heart  fa-2 "></i>
+</span>
+		</a>
+	
+
+	
+		<a href="https://github.com/sinisimattia/tapi/pulls" target="_blank" rel="noopener noreferrer">
+			<span class="icon ">
+	<i class=" fas  fa-code-branch  fa-1 "></i>
+</span>
+		</a>
+	
+
+	
+</div>
+
+
+
+
+
+    <section class="box is-dark is-family-monospace">
+        <p>
+            <span class="has-text-grey">$:</span>
+            ls
+            <span class="has-text-weight-bold has-text-success">decorators</span>/        
+        </p>
+        <div>
+            
+                
+                    <span class="is-block">
+                        <span class="has-text-grey">&gt;</span>
+                        <a href="/docs/decorators/alias">@Alias</a>
+                    </span>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <span class="is-block">
+                        <span class="has-text-grey">&gt;</span>
+                        <a href="/docs/decorators/ignore">@Ignore</a>
+                    </span>
+                
+            
+                
+                    <span class="is-block">
+                        <span class="has-text-grey">&gt;</span>
+                        <a href="/docs/decorators/">Decorators</a>
+                    </span>
+                
+            
+                
+            
+                
+            
+                
+                    <span class="is-block">
+                        <span class="has-text-grey">&gt;</span>
+                        <a href="/docs/decorators/list-of">@ListOf</a>
+                    </span>
+                
+            
+                
+            
+                
+            
+                
+                    <span class="is-block">
+                        <span class="has-text-grey">&gt;</span>
+                        <a href="/docs/decorators/transform">@Transform</a>
+                    </span>
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        </div>
+    </section>
+
+</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+		
+			<footer class="footer mt-small">
+    <div class="container">
+        
+        <div class="columns is-multiline">
+            
+            <div class="column has-text-centered">
+                <div>
+                    <a href="https://mattia.codes" class="link" target="_blank" rel="noopener noreferrer">Author</a>
+                </div>
+            </div>
+            
+            <div class="column has-text-centered">
+                <div>
+                    <a href="https://github.com/sinisimattia/tapi/projects" class="link" target="_blank" rel="noopener noreferrer">Keep up with the plans</a>
+                </div>
+            </div>
+            
+            <div class="column has-text-centered">
+                <div>
+                    <a href="https://ko-fi.com/sinisimattia" class="link" target="_blank" rel="noopener noreferrer">Support by donating</a>
+                </div>
+            </div>
+            
+        </div>
+        
+
+		
+    </div>
+</footer>
+
+<footer class="hero is-dark">
+    <div class="hero-body">
+        <div class="container">
+            <p class="title is-3">Credits</p>
+
+            <a href="https://github.com/sinisimattia/tapi/graphs/contributors" target="_blank" rel="noopener noreferrer">
+                <img src="https://contrib.rocks/image?repo=sinisimattia/tapi">
+            </a>    
+            
+            <p>You could be here! ☝  Contribute to <a class="has-text-link" href="https://github.com/sinisimattia/tapi" target="_blank" rel="noopener noreferrer">this project</a>. </p>
+        </div>
+    </div>
+</footer>
+		
+
+		<script src="/assets/js/app.js" type="text/javascript"></script><!-- footer scripts --></body>
+</html>

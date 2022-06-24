@@ -129,7 +129,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	}
 
 	public fromJSON(json: any, strict: boolean = false): ResultType {
-		const target = this.baseObject;
+		const target = {...this.baseObject};
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {

@@ -57,6 +57,11 @@ const json = {
 const instance = new TestClass().fromJSON(json);
 const builtJson = instance.toJSON();
 
-// console.log(instance);
+console.log("======= Initial JSON Input ========")
+console.log(json)
 
-// console.log(builtJson);
+console.log("======= Built typed object ========")
+console.log(instance);
+
+console.log("======= Re-converted to JSON =======")
+console.log(builtJson);

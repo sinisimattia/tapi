@@ -38,7 +38,7 @@ ___
 
 ## More info
 
-📦 [Check it out on **npm**](https://npmjs.com/package/tapi.js)
+📦 [Check it out on **npm**](https://npm.im/tapi.js)
 
 🦕 [Check it out on **deno**](https://deno.land/x/tapi)
 

@@ -3,6 +3,7 @@ import BuildableResource from "@/contracts/BuildableResource";
 import ResourceFactory from "@/contracts/ResourceFactory";
 import JSONConvertible from "@/contracts/JSONConvertible";
 import dot from "dot-object";
+import cloneDeep from "lodash.clonedeep";
 
 class ObjectReference {
 	public path: string;
@@ -129,7 +130,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	}
 
 	public fromJSON(json: any, strict: boolean = false): ResultType {
-		const target = {...this.baseObject};
+		const target = this.baseObject;
 		const params = Describer.getParameters(target);
 
 		params.forEach(param => {
@@ -173,7 +174,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 			}			
 		});
 
-		return target as ResultType;
+		return cloneDeep(target) as ResultType;
 	}
 
 	public toJSON(source: ResultType): any {

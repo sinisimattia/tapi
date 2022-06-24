@@ -23,7 +23,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "ttsc -p tsconfig.build.json",
-    "dev": "tsnd --respawn --transpile-only -r tsconfig-paths/register src/examples/demo.ts",
+    "dev": "tsnd --respawn --clear --transpile-only -r tsconfig-paths/register src/examples/demo.ts",
     "test": "jest",
     "lint": "eslint .",
     "clean": "eslint . --fix",

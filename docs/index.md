@@ -26,20 +26,20 @@ First off you need to implement the `BuildableResource` interface and define the
 // TestClass.ts
 import { BuildableResource, Properties } from 'tapi.js';
 
-@Resource
+@Properties.Resource
 class TestClass extends BuildableResource {
-	@Alias('_param_1')
+	@Properties.Alias('_param_1')
 	public param: string = 'unassigned';
 
-	@Ignore
+	@Properties.Ignore
 	public toBeIgnored: string = 'still private'
 
-	@Transform((value: string) => {
+	@Properties.Transform((value: string) => {
 		return value.toUppercase();
 	})
 	public toBeTransformed = 'not transformed';
 
-	@ListOf<SomeOtherClass>
+	@Properties.ListOf<SomeOtherClass>
 	public list: Array<SomeOtherClass> = []
 
 	// Define a constructor with no arguments.

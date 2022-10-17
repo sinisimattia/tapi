@@ -1,5 +1,6 @@
 import Builder from "@/Builder";
 import JSONConvertible from "@/contracts/JSONConvertible";
+import cloneDeep from "lodash.clonedeep";
 
 /**
  * Defines an object that can be automatically built from JSON data.
@@ -23,8 +24,12 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	public get build(): Builder<this> {
 		const c = (this as unknown as Type).constructor.prototype.constructor;
 
-		if (this.builder && !this.builder.isUsingClass(c)) {
+		if (!Object.getOwnPropertyDescriptor(this, 'builder') && this.builder) {
+			this.builder = cloneDeep(this.builder) as Builder<this>;
+
+			if (!this.builder.isUsingClass(c)) {
 			this.builder.updateBaseObject(c);
+			}
 		} else if (!this.builder) {
 			this.builder = new Builder<this>(c);
 		}

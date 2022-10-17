@@ -69,11 +69,16 @@ describe('It uses the child class', () => {
 
 describe('It compose with the parent class', () => {
 	test('when overriding parent class decorator.', () => {
-		const instance = new ChildClassOverrideTransform().fromJSON({
+		const instanceWithOverride = new ChildClassOverrideTransform().fromJSON({
 			name: 'This is my name'
 		});
 
-		expect(instance.name).toStrictEqual('transformed');
+		const instanceWithoutOverride = new ChildClass().fromJSON({
+			name: 'This is my name'
+		});
+
+		expect(instanceWithOverride.name).toStrictEqual('transformed');
+		expect(instanceWithoutOverride.name).toStrictEqual('THIS IS MY NAME');
 	})
 
 	test('when composing parent class decorator and child class decorator.', () => {

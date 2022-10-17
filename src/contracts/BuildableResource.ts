@@ -28,7 +28,7 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 			this.builder = cloneDeep(this.builder) as Builder<this>;
 
 			if (!this.builder.isUsingClass(c)) {
-			this.builder.updateBaseObject(c);
+				this.builder.updateBaseObject(c);
 			}
 		} else if (!this.builder) {
 			this.builder = new Builder<this>(c);

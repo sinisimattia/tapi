@@ -15,6 +15,20 @@ class ChildClass extends ParentClass {
 	public isChildClass = () => true;
 }
 
+class ChildClassOverrideTransform extends ParentClass {
+	@Transform(() => 'transformed')
+	public name: string = '';
+
+	public isChildClass = () => true;
+}
+
+class ChildClassWithOtherTransform extends ParentClass {
+	@Transform((value) => +value)
+	public id: number = 0;
+
+	public isChildClass = () => true;
+}
+
 describe('It uses the child class', () => {
 	test('when using the builder.', () => {
 		const instance = new Builder(ChildClass).fromJSON({
@@ -48,5 +62,27 @@ describe('It uses the child class', () => {
 			sure it instantiated the child.
 		*/
 		expect(instance.isChildClass()).toBeTruthy();
+
+		expect(instance.name).toStrictEqual('THIS IS MY NAME');
 	});
 });
+
+describe('It compose with the parent class', () => {
+	test('when overriding parent class decorator.', () => {
+		const instance = new ChildClassOverrideTransform().fromJSON({
+			name: 'This is my name'
+		});
+
+		expect(instance.name).toStrictEqual('transformed');
+	})
+
+	test('when composing parent class decorator and child class decorator.', () => {
+		const instance = new ChildClassWithOtherTransform().fromJSON({
+			id: '42',
+			name: 'This is my name'
+		});
+
+		expect(instance.name).toStrictEqual('THIS IS MY NAME');
+		expect(instance.id).toStrictEqual(42);
+	})
+})

@@ -29,6 +29,13 @@ class ChildClassWithOtherTransform extends ParentClass {
 	public isChildClass = () => true;
 }
 
+class DeepClassWithWeirdTransform extends ChildClassWithOtherTransform {
+	@Transform((value) => +value + 50)
+	public id: number = 0;
+
+	public isChildClass = () => true;
+}
+
 describe('It uses the child class', () => {
 	test('when using the builder.', () => {
 		const instance = new Builder(ChildClass).fromJSON({
@@ -89,5 +96,15 @@ describe('It compose with the parent class', () => {
 
 		expect(instance.name).toStrictEqual('THIS IS MY NAME');
 		expect(instance.id).toStrictEqual(42);
+	})
+
+	test('when extending another subclass and overriding decorator.', () => {
+		const instance = new DeepClassWithWeirdTransform().fromJSON({
+			id: '42',
+			name: 'This is my name'
+		});
+
+		expect(instance.name).toStrictEqual('THIS IS MY NAME');
+		expect(instance.id).toStrictEqual(92);
 	})
 })

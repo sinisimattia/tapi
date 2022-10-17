@@ -23,7 +23,7 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	public get build(): Builder<this> {
 		const c = (this as unknown as Type).constructor.prototype.constructor;
 
-		this.builder = this.builder ?? new Builder<this>(c);
+		this.builder = this.builder?.isUsingClass(c) ? this.builder : new Builder<this>(c);
 
 		return this.builder;
 	}

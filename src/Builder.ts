@@ -58,6 +58,17 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	}
 
 	/**
+	 * Check if this builder is using a specific
+	 * class to build the object from.
+	 * 
+	 * @param specifiedClass The class in question
+	 * @returns True if it's using it, false otherwise.
+	 */
+	public isUsingClass(specifiedClass): boolean {
+		return this.baseObject instanceof specifiedClass;
+	}
+
+	/**
 	 * Add an ignore directive for one or more paths.
 	 * 
 	 * @param paths The object paths to ignore when instantiating.

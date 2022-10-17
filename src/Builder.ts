@@ -69,6 +69,15 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	}
 
 	/**
+	 * Update base object of current builder and instantiates the given class thanks to a {@link ResourceFactory}.
+	 *
+	 * @param ctor The class that needs to be instantiated.
+	 */
+	public updateBaseObject(ctor: ResourceFactory<ResultType>) {
+		this.baseObject = new ctor();
+	}
+
+	/**
 	 * Add an ignore directive for one or more paths.
 	 * 
 	 * @param paths The object paths to ignore when instantiating.

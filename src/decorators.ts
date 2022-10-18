@@ -13,7 +13,7 @@ class ResourceDecorator {
 		}
 
 		if(!target.constructor) {
-			throw new Error("Target class must have a constructor with now arguments.");
+			throw new Error("Target class must have a constructor with no arguments.");
 		}
 	}
 

@@ -1,6 +1,6 @@
 import Builder from "@/Builder";
 import JSONConvertible from "@/contracts/JSONConvertible";
-import cloneDeep from "lodash.clonedeep";
+import { deepCopy as cloneDeep } from "@/helpers/functions";
 
 /**
  * Defines an object that can be automatically built from JSON data.

@@ -3,7 +3,7 @@
  */
 export default class Describer {
 	/**
-	 * Retreive a list of all params of a class instance.
+	 * Retrieve a list of all params of a class instance.
 	 * 
 	 * @param instance The class to analyze.
 	 * @returns A list of the class's properties.

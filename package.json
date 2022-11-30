@@ -3,66 +3,63 @@
 	"version": "0.4.3",
 	"description": "Consume RESTful APIs as TypeScript objects.",
 	"keywords": [
-	  "API",
-	  "converter",
-	  "resolver",
-	  "tool",
-	  "TypeScript"
+		"API",
+		"converter",
+		"resolver",
+		"tool",
+		"TypeScript"
 	],
 	"author": {
-	  "name": "Mattia Sinisi",
-	  "email": "mattia@snisni.it",
-	  "url": "https://mattia.codes"
+		"name": "Mattia Sinisi",
+		"email": "mattia@snisni.it",
+		"url": "https://mattia.codes"
 	},
 	"license": "GPL-3.0-only",
 	"bugs": {
-	  "url": "https://github.com/sinisimattia/tapi/issues"
+		"url": "https://github.com/sinisimattia/tapi/issues"
 	},
 	"homepage": "https://tapi.js.org",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
-	  "build": "ttsc -p tsconfig.build.json",
-	  "dev": "tsnd --respawn --clear --transpile-only -r tsconfig-paths/register src/examples/demo.ts",
-	  "test": "jest",
-	  "lint": "eslint .",
-	  "clean": "eslint . --fix",
-	  "prepare": "npm run build",
-	  "postinstall": "node install/thankyou.js"
+		"build": "ttsc -p tsconfig.build.json",
+		"dev": "tsnd --respawn --clear --transpile-only -r tsconfig-paths/register src/examples/demo.ts",
+		"test": "jest",
+		"lint": "eslint .",
+		"clean": "eslint . --fix",
+		"prepare": "npm run build",
+		"postinstall": "node install/thankyou.js"
 	},
 	"repository": {
-	  "type": "git",
-	  "url": "git+https://github.com/sinisimattia/tapi.git"
+		"type": "git",
+		"url": "git+https://github.com/sinisimattia/tapi.git"
 	},
 	"directories": {
-	  "bin": "dist",
-	  "test": "tests",
-	  "lib": "dist",
-	  "example": "src/examples"
+		"bin": "dist",
+		"test": "tests",
+		"lib": "dist",
+		"example": "src/examples"
 	},
 	"files": [
-	  "dist/**/*",
-	  "install",
-	  "tests",
-	  "types"
+		"dist/**/*",
+		"install",
+		"tests",
+		"types"
 	],
-	"dependencies": {
-	  "dot-object": "^2.1.4",
-	  "lodash.clonedeep": "^4.5.0"
-	},
 	"devDependencies": {
-	  "@types/dot-object": "^2.1.2",
-	  "@types/jest": "^27.0.1",
-	  "@typescript-eslint/eslint-plugin": "^4.29.0",
-	  "@typescript-eslint/parser": "^4.29.0",
-	  "eslint": "^7.32.0",
-	  "jest": "^27.0.6",
-	  "ts-jest": "^27.0.5",
-	  "ts-node-dev": "^1.1.8",
-	  "tsconfig-paths": "^3.10.1",
-	  "ttypescript": "^1.5.12",
-	  "typescript": "^4.7.4",
-	  "typescript-transform-paths": "^3.3.1"
+		"@types/jest": "^27.0.1",
+		"@typescript-eslint/eslint-plugin": "^4.29.0",
+		"@typescript-eslint/parser": "^4.29.0",
+		"eslint": "^7.32.0",
+		"jest": "^27.0.6",
+		"ts-jest": "^27.0.5",
+		"ts-node-dev": "^1.1.8",
+		"tsconfig-paths": "^3.10.1",
+		"ttypescript": "^1.5.12",
+		"typescript": "^4.7.4",
+		"typescript-transform-paths": "^3.3.1"
+	},
+	"dependencies": {
+		"lodash.clonedeep": "^4.5.0"
 	}
-  }
-  
+}

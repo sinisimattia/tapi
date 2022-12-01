@@ -4,17 +4,14 @@ const colored = (message, color = 32) => {
 	return "\x1b[" + color + "m" + message + "\x1b[0m"
 }
 
-const message = "Thanks for using tapi!"
-const version = colored("v", ) + package.version
 
-const initialPadding = ' '.repeat(6)
-const topBorder = '╔' + '═'.repeat(message.length + 2) + '╗'
-const bottomBorder = '╚' + '═'.repeat(message.length + 2) + '╝'
-const emptySection = '║ ' + ' '.repeat(message.length) + ' ║'
+const message = `
+   __ Thanks for using   _     
+  / /_____ _____  (_)   (_)____
+ / __/ __ \`/ __ \\/ /   / / ___/
+/ /_/ /_/ / /_/ / /   / (__  ) 
+\\__/\\__,_/ .___/_(_)_/ /____/  
+	  /_/    /____/ ${colored("v") + package.version}
+`
 
-console.log(initialPadding + colored(topBorder));
-console.log(initialPadding + colored(emptySection));
-console.log(initialPadding + colored('║ ') + message + colored(' ║'));
-console.log(initialPadding + colored(emptySection));
-console.log(initialPadding + colored(bottomBorder));
-console.log(initialPadding + ' '.repeat(message.length + 4 - (package.version.length + 1)) + version)
+console.log(colored(message, 33))

@@ -28,7 +28,7 @@
 		"lint": "eslint .",
 		"clean": "eslint . --fix",
 		"prepare": "npm run build",
-		"postinstall": "node install/thankyou.js"
+		"postinstall": "node scripts/thankyou.js"
 	},
 	"repository": {
 		"type": "git",
@@ -42,7 +42,7 @@
 	},
 	"files": [
 		"dist/**/*",
-		"install",
+		"scripts",
 		"tests",
 		"types"
 	],

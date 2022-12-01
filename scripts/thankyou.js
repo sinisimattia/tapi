@@ -1,5 +1,8 @@
-const { colored } = require('./consolehelpers')
 const package = require('../package.json')
+
+const colored = (message, color = 32) => {
+	return "\x1b[" + color + "m" + message + "\x1b[0m"
+}
 
 const message = "Thanks for using tapi!"
 const version = colored("v", ) + package.version

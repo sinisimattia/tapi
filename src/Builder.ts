@@ -2,10 +2,7 @@ import Describer from "@/helpers/Describer";
 import BuildableResource from "@/contracts/BuildableResource";
 import ResourceFactory from "@/contracts/ResourceFactory";
 import JSONConvertible from "@/contracts/JSONConvertible";
-import {
-	deepCopy as cloneDeep,
-	dotAccess as dot
-} from "@/helpers/functions";
+import { deepCopy, dotAccess } from "@/helpers/functions";
 
 class ObjectReference {
 	public path: string;
@@ -134,7 +131,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 
 	private getForeignObjectReference(localPath: string, foreignObject: any = undefined): ObjectReference {
 		const foreignPath = this.aliases[localPath] ?? localPath;
-		const foreignValue = dot(foreignPath, foreignObject);
+		const foreignValue = dotAccess(foreignPath, foreignObject);
 
 		let result: ObjectReference;
 
@@ -145,7 +142,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 			result = new ObjectReference(foreignValue != null ? foreignPath : localPath, foreignValue)
 		}
 
-		result.value = dot(result.path, foreignObject)
+		result.value = dotAccess(result.path, foreignObject)
 
 		return result;
 	}
@@ -195,7 +192,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 			}			
 		});
 
-		return cloneDeep(target) as ResultType;
+		return deepCopy(target) as ResultType;
 	}
 
 	public toJSON(source: ResultType): any {

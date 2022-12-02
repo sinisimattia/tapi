@@ -9,9 +9,9 @@ import { BuildableResource, Properties } from "tapi.js";
 
 @Properties.Resource
 class TestClass extends BuildableResource {
-    @Properties.Transform(incomingValue => {
-        return incomingValue.toUpperCase();
-    })
+	@Properties.Transform(incomingValue => {
+		return incomingValue.toUpperCase();
+	})
 	public needsToBeUppercase: string;
 }
 ```

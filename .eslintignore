@@ -9,7 +9,7 @@ coverage
 *config.js*
 
 # Ignore extra directories
-install
+scripts
 
 # Ignore demo files
 *demo*

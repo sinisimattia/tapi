@@ -1,19 +1,19 @@
-import BuildableResource from "@/contracts/BuildableResource";
-import ResourceFactory from "@/contracts/ResourceFactory";
+import BuildableResource from "@/contracts/BuildableResource"
+import ResourceFactory from "@/contracts/ResourceFactory"
 
 class ResourceDecorator {
 	/**
 	 * Define a class as a resource and check for its validity.
 	 */
 	public Resource(constructor: Function): any {
-		const target = constructor.prototype;
+		const target = constructor.prototype
 
 		if (!(target instanceof BuildableResource)) {
-			throw new Error("Target class has to extend BuildableResource in order to use this decorator.");
+			throw new Error("Target class has to extend BuildableResource in order to use this decorator.")
 		}
 
 		if(!target.constructor) {
-			throw new Error("Target class must have a constructor with no arguments.");
+			throw new Error("Target class must have a constructor with no arguments.")
 		}
 	}
 
@@ -23,8 +23,8 @@ class ResourceDecorator {
 	 */
 	public Alias(alias: string): any {
 		return (target: BuildableResource, name: PropertyKey): any => {
-			target.build?.alias(alias, name.toString());
-		};
+			target.build?.alias(alias, name.toString())
+		}
 	}
 
 	/**
@@ -34,15 +34,15 @@ class ResourceDecorator {
 	 */
 	public Transform(transformerIn: Action, transformerOut?: Action): any {
 		return function (target: BuildableResource, name: string) {
-			target.build?.transform(name, transformerIn, transformerOut);
-		};
+			target.build?.transform(name, transformerIn, transformerOut)
+		}
 	}
 
 	/**
 	 * Adds an ignore directive.
 	 */
 	public Ignore(target: BuildableResource, name: PropertyKey) {
-		target.build?.ignore(name.toString());
+		target.build?.ignore(name.toString())
 	}
 
 	//NOTE we can use the Resource decorator for the same purpose
@@ -52,19 +52,19 @@ class ResourceDecorator {
 	 */
 	public ListOf<Type extends BuildableResource>(resource: ResourceFactory<Type>) {
 		return function (target: BuildableResource, name: string) {
-			target.build?.listType(name, new resource());
-		};
+			target.build?.listType(name, new resource())
+		}
 	}
 }
 
-const resourceDecorator = new ResourceDecorator();
+const resourceDecorator = new ResourceDecorator()
 
-export const Resource = resourceDecorator.Resource;
+export const Resource = resourceDecorator.Resource
 
-export const Alias = resourceDecorator.Alias; 
+export const Alias = resourceDecorator.Alias
 
-export const Transform = resourceDecorator.Transform; 
+export const Transform = resourceDecorator.Transform
 
-export const Ignore = resourceDecorator.Ignore;
+export const Ignore = resourceDecorator.Ignore
 
-export const ListOf = resourceDecorator.ListOf;
+export const ListOf = resourceDecorator.ListOf

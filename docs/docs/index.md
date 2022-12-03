@@ -12,8 +12,8 @@ class TestClass {
 	public param1: string;
 	public param2: string;
 	public list: string[];
-    public thing: AnotherClass;
-    public thingToBeIgnored: string = "Leave me here!"
+	public thing: AnotherClass;
+	public thingToBeIgnored: string = "Leave me here!"
 }
 ```
 
@@ -22,13 +22,13 @@ Now we want to instantiate that class from a generic JSON response.
 ```json
 {
 	"_param_1": "something",
-    "param2": "something else",
-    "items": ["item 1", "item 2", "item 3"],
-    "something": {
-        "inner1": "inner thing",
-        "inner2": "another inner thing"
-    },
-    "thingToBeIgnored": "some useless data"
+	"param2": "something else",
+	"items": ["item 1", "item 2", "item 3"],
+	"something": {
+		"inner1": "inner thing",
+		"inner2": "another inner thing"
+	},
+	"thingToBeIgnored": "some useless data"
 }
 ```
 

@@ -12,4 +12,4 @@ coverage
 scripts
 
 # Ignore demo files
-*demo*
+examples/**/*

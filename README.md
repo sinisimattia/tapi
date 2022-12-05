@@ -1,8 +1,13 @@
 <div align="center">
-	<a href="https://tapi.js.org">
-		<img src="https://i.ibb.co/FxXMVD1/tapi-logo.png" style="display: block; margin: auto; max-width: 700px" alt="tapi" />
-		<h3><strong>Typed</strong> API Consumer</h3>
-	</a>
+	<pre>
+   __              _     _     
+  / /_____ _____  (_)   (_)____
+ / __/ __ `/ __ \/ /   / / ___/
+/ /_/ /_/ / /_/ / /   / (__  ) 
+\__/\__,_/ .___/_(_)_/ /____/  
+        /_/       /___/        
+	</pre>
+	<h3>Consume APIs as <strong>typed objects</strong>!</h3>
 </div>
 
 <div align="center" style="margin-top: 40px">
@@ -18,11 +23,25 @@
 
 ## Imagine doing this...
 
-![Demo Example with Axios](https://i.ibb.co/stfLH8B/tepi-demo.png)
+```javascript
+http
+  .get('/some-url-that-returns-an-object') // Get data 📡
+  .as(YourClass) // Map it onto your class ✨
+  .then((builtObject) => {
+    builtObject.doSomething(); // Use it directly 🎉
+  })
+```
 
-## What is it?
+Or even this...
 
-**tapi** is a tiny TypeScript package used to define how to interpret any given API response as a typed object.
+```javascript
+const builtObject = await http.get('/some-url-that-returns-an-object').as(YourClass)
+builtObject.doSomething();
+```
+
+## How?
+
+Introducing **tapi**, a tiny TypeScript package used to define how to interpret any given API response as a typed object.
 
 It **automatically** converts JSON objects into TypeScript class instances, however you can still configure it however you want with *Aliases*, *Transformers*, *Mappers* and more.
 
@@ -30,7 +49,7 @@ ___
 
 <div align="center">
 
-**[Go to the docs 🚀](https://tapi.js.org)**
+### **[🚀 Get started 🚀](https://tapi.js.org)**
 
 </div>
 
@@ -54,7 +73,7 @@ ___
 
 👇
 
-![Contributors](https://contrib.rocks/image?repo=opentoolbox/theme)
+![Contributors](https://contrib.rocks/image?repo=sinisimattia/tapi)
 ___
 
 Thanks for using **tapi**! 😊 I hope it's been useful to you in some way.

@@ -58,8 +58,5 @@
 		"ttypescript": "^1.5.13",
 		"typescript": "^4.9.3",
 		"typescript-transform-paths": "^3.4.4"
-	},
-	"dependencies": {
-		"lodash.clonedeep": "^4.5.0"
 	}
 }

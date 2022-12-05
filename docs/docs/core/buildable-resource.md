@@ -12,11 +12,11 @@ To do this all we need is to extend the `BuildableResource` abstract class and t
 import { BuildableResource } from 'tapi.js';
 
 class TestClass extends BuildableResource {
-    // All your other stuff here
-    
-    constructor() {
-        super();
-    }
+	// All your other stuff here
+
+	constructor() {
+		super();
+	}
 }
 ```
 

@@ -18,6 +18,7 @@ export function dotAccess(path: string, object: any, separator: string = '.'): a
  * @param source Any object
  * @returns An exact copy of the given object
  */
+import cloneDeep from 'lodash.clonedeep'
 export function deepCopy<T>(source: T): T {
-	return JSON.parse(JSON.stringify(source)) as T
+	return cloneDeep(source) as T
 }

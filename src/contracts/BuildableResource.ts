@@ -33,12 +33,6 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 		return new Builder(c, this.buildConfig)
 	}
 
-	/**
-	 * A public setter for this class' current builder.
-	 */
-	public set newBuilder(builder: Builder<this>) {
-	}
-
 	public fromJSON(source: any, strict: boolean = false): this {
 		return this.build.fromJSON(source, strict)
 	}

@@ -11,7 +11,7 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	/**
 	 * The specified {@link BuildConfiguration} for this class.
 	 */
-	private b?: BuildConfiguration<this>
+	private resourceBuildConfiguration?: BuildConfiguration<this>
 
 	/**
 	 * The base constructor with no arguments. Your class NEEDS to have it.
@@ -19,10 +19,10 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	constructor() {}
 
 	public get buildConfig(): BuildConfiguration<this> {
-		if (! this.b) {
-			this.b = new BuildConfiguration<this>
+		if (! this.resourceBuildConfiguration) {
+			this.resourceBuildConfiguration = new BuildConfiguration<this>
 		}
-		return this.b
+		return this.resourceBuildConfiguration
 	}
 
 	/**

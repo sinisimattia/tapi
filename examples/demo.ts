@@ -34,9 +34,6 @@ class TestClass extends BuildableResource<TestClass> {
 	public buriedProperty = "not assigned";
 }
 
-const builder = new TestClass().build;
-const anotherBuilder = new AnotherClass().build;
-
 const json = {
 	inner: {
 		_param_1: "ok",

@@ -23,7 +23,7 @@ class ResourceDecorator {
 	 */
 	public Alias(alias: string): any {
 		return (target: BuildableResource, name: PropertyKey): any => {
-			target.build?.alias(alias, name.toString())
+			target.buildConfig?.alias(alias, name.toString())
 		}
 	}
 
@@ -34,7 +34,7 @@ class ResourceDecorator {
 	 */
 	public Transform(transformerIn: Action, transformerOut?: Action): any {
 		return function (target: BuildableResource, name: string) {
-			target.build?.transform(name, transformerIn, transformerOut)
+			target.buildConfig?.transform(name, transformerIn, transformerOut)
 		}
 	}
 
@@ -42,7 +42,7 @@ class ResourceDecorator {
 	 * Adds an ignore directive.
 	 */
 	public Ignore(target: BuildableResource, name: PropertyKey) {
-		target.build?.ignore(name.toString())
+		target.buildConfig?.ignore(name.toString())
 	}
 
 	//NOTE we can use the Resource decorator for the same purpose
@@ -52,7 +52,7 @@ class ResourceDecorator {
 	 */
 	public ListOf<Type extends BuildableResource>(resource: ResourceFactory<Type>) {
 		return function (target: BuildableResource, name: string) {
-			target.build?.listType(name, new resource())
+			target.buildConfig?.listType(name, new resource())
 		}
 	}
 }

@@ -1,7 +1,7 @@
 import BuildConfiguration from "@/BuildConfiguration"
 import Builder from "@/Builder"
 import JSONConvertible from "@/contracts/JSONConvertible"
-import { deepCopy } from "@/helpers/functions"
+import { deepCopy, } from "@/helpers/functions"
 
 /**
  * Defines an object that can be automatically built from JSON data.

@@ -1,6 +1,7 @@
 import BuildConfiguration from "@/BuildConfiguration"
 import Builder from "@/Builder"
 import JSONConvertible from "@/contracts/JSONConvertible"
+import { deepCopy } from "@/helpers/functions"
 
 /**
  * Defines an object that can be automatically built from JSON data.
@@ -19,13 +20,14 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	constructor() {}
 
 	public get buildConfig(): BuildConfiguration<this> {
-		const c = (this as unknown as Type).constructor.prototype.constructor
+		if (!Object.getOwnPropertyDescriptor(this, 'resourceBuildConfiguration') && this.resourceBuildConfiguration) {
+			this.resourceBuildConfiguration = deepCopy(this.resourceBuildConfiguration)
 
-		if (! c.resourceBuildConfiguration) {
-			c.resourceBuildConfiguration = this.resourceBuildConfiguration ?? new BuildConfiguration<typeof c>
+		} else if (!this.resourceBuildConfiguration) {
+			this.resourceBuildConfiguration = new BuildConfiguration<this>
 		}
 
-		return c.resourceBuildConfiguration
+		return this.resourceBuildConfiguration
 	}
 
 	/**

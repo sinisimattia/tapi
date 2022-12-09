@@ -14,7 +14,11 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	 */
 	private baseObject: ResultType
 
-	private buildConfig: BuildConfiguration<ResultType>
+	/**
+	 * A {@link BuildConfiguration} containing all the instructions
+	 * on how the object should be built.
+	 */
+	readonly buildConfig: BuildConfiguration<ResultType>
 
 	/**
 	 * Instantiates the given class thanks to a {@link ResourceFactory}.
@@ -24,40 +28,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	 */
 	constructor(ctor: ResourceFactory<ResultType>, buildConfig: BuildConfiguration<ResultType>|null = null) {
 		this.baseObject = new ctor()
-		this.buildConfig = buildConfig ?? new BuildConfiguration<ResultType>
-	}
-
-	/**
-	 * {@link BuildConfiguration.ignore}
-	 */
-	public ignore(...paths: string[]): this {
-		this.buildConfig.ignore(...paths)
-		return this
-	}
-
-	/**
-	 * {@link BuildConfiguration.transform}
-	 */
-	public transform(localPath: string, transformerIn: Action, transformerOut?: Action): this {
-		this.buildConfig.transform(localPath, transformerIn, transformerOut)
-
-		return this
-	}
-
-	/**
-	 * {@link BuildConfiguration.alias}
-	 */
-	public alias(foreignPath: string, localPath: string): this {
-		this.buildConfig.alias(foreignPath, localPath)
-		return this
-	}
-
-	/**
-	 * {@link BuildConfiguration.listType}
-	 */
-	public listType(localPath: string, builtObject: ResultType): this {
-		this.buildConfig.listType(localPath, builtObject)
-		return this
+		this.buildConfig = buildConfig ?? this.baseObject.buildConfig ?? new BuildConfiguration<ResultType>
 	}
 
 	private getForeignObjectReference(localPath: string, foreignObject: any = undefined): ObjectReference {
@@ -77,7 +48,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 		return result
 	}
 
-	public fromJSON(json: any, strict: boolean = false): ResultType {
+	public fromJSON(source: any): ResultType {
 		const target = this.baseObject
 		const params = Describer.getParameters(target)
 
@@ -86,16 +57,16 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 				return
 			}
 
-			const foreignObject = this.getForeignObjectReference(param, json)
+			const foreignObject = this.getForeignObjectReference(param, source)
 
-			if (!json || !foreignObject.value) {
-				if (strict) {
+			if (!source || !foreignObject.value) {
+				if (this.buildConfig.strict) {
 					throw new Error("Invalid input object, missing parameter: " + param)
 				} else return
 			}
 
 			if (target[param] instanceof BuildableResource) {
-				target[param] = target[param].build.fromJSON(foreignObject.value, strict)
+				target[param] = target[param].build.fromJSON(foreignObject.value, this.buildConfig.strict)
 			} else if (Array.isArray(target[param])) {
 				const list: any[] = foreignObject.value
 
@@ -103,8 +74,8 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 					const listClassElement = this.buildConfig.listElementConstructors[param]
 					if(listClassElement) {
 						const listElementClassBuilder = listClassElement.build
-						return listElementClassBuilder.fromJSON(item, strict)
-					} else if (!strict && foreignObject.value) {
+						return listElementClassBuilder.fromJSON(item)
+					} else if (!this.buildConfig.strict && foreignObject.value) {
 						return foreignObject.value[index]
 					}
 				})

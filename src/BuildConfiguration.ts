@@ -1,12 +1,18 @@
 export default class BuildConfiguration<ResultType> {
 	/**
+	 * Indicates if it should throw errors in case of missing
+	 * fields in incoming object.
+	 */
+	public strict: boolean = false
+
+	/**
 	  * List of parameters that need to be ignored.
 	  */
 	readonly ignores: Set<string> = new Set
 
 	/**
 	  * Collection of transformers. Each transformer is a callback function associated to a property,
-	  * this gets called just before the property is assigned to the {@link baseObject}
+	  * this gets called just before the property is assigned to the base object.
 	  */
 	readonly transformers: {[localPath: string]: ValueTransformer} = {}
 

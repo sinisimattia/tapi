@@ -19,10 +19,13 @@ export default abstract class BuildableResource<Type extends BuildableResource<T
 	constructor() {}
 
 	public get buildConfig(): BuildConfiguration<this> {
-		if (! this.resourceBuildConfiguration) {
-			this.resourceBuildConfiguration = new BuildConfiguration<this>
+		const c = (this as unknown as Type).constructor.prototype.constructor
+
+		if (! c.resourceBuildConfiguration) {
+			c.resourceBuildConfiguration = this.resourceBuildConfiguration ?? new BuildConfiguration<typeof c>
 		}
-		return this.resourceBuildConfiguration
+
+		return c.resourceBuildConfiguration
 	}
 
 	/**

@@ -15,6 +15,14 @@ export default class Dot {
 			}, object)
 	}
 
+	/**
+	 * Assigns a value to an object using dot-notation
+	 *
+	 * @param path The path to which to assign the value
+	 * @param object The object to modify
+	 * @param valueToAssign The value to assign
+	 * @param separator The dot-notation separator
+	 */
 	static assign(path: string, object: any, valueToAssign: any, separator: string = '.'): void {
 		return path.split(separator).reduce(function (prev, curr, _idx, _arr) {
 			if ( _idx == (_arr.length-1) && prev ) {

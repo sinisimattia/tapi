@@ -24,7 +24,7 @@ export default class Dot {
 	 * @param separator The dot-notation separator
 	 */
 	static assign(path: string, object: any, valueToAssign: any, separator: string = '.'): void {
-		return path.split(separator).reduce(function (prev, curr, _idx, _arr) {
+		path.split(separator).reduce(function (prev, curr, _idx, _arr) {
 			if ( _idx == (_arr.length-1) && prev ) {
 				prev[curr] = valueToAssign
 			}

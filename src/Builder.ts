@@ -4,7 +4,7 @@ import ResourceFactory from "@/contracts/ResourceFactory"
 import JSONConvertible from "@/contracts/JSONConvertible"
 import { deepCopy, } from "@/helpers/functions"
 import BuildConfiguration from "@/BuildConfiguration"
-import Dot from "./helpers/Dot"
+import Dot from "@/helpers/Dot"
 
 /**
  * This is used to define how a class needs to be constructed from an object.
@@ -115,7 +115,8 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 						const listElementClassBuilder = listClassElement.build
 						return listElementClassBuilder.toJSON(item)
 					} else if (source.hasOwnProperty(param)) {
-						return this.buildConfig.transformers[param] ? this.buildConfig.transformers[param].out(result[foreignObject.path][index]) : result[foreignObject.path][index]
+						const x = Dot.get(foreignObject.path, result)
+						return this.buildConfig.transformers[param] ? this.buildConfig.transformers[param].out(x[index]) : x[index]
 					}
 				})
 			} else {

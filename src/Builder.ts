@@ -2,8 +2,9 @@ import Describer from "@/helpers/Describer"
 import BuildableResource from "@/contracts/BuildableResource"
 import ResourceFactory from "@/contracts/ResourceFactory"
 import JSONConvertible from "@/contracts/JSONConvertible"
-import { deepCopy, dotAccess, } from "@/helpers/functions"
+import { deepCopy, } from "@/helpers/functions"
 import BuildConfiguration from "@/BuildConfiguration"
+import Dot from "@/helpers/Dot"
 
 /**
  * This is used to define how a class needs to be constructed from an object.
@@ -24,7 +25,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 	 * Instantiates the given class thanks to a {@link ResourceFactory}.
 	 *
 	 * @param ctor The class that needs to be instantiated.
-	 * @param buildConfig A {@link BuildConfiguration} instance
+	 * @param buildConfig A {@link BuildConfiguration} instance (it overrides the one set in the object)
 	 */
 	constructor(ctor: ResourceFactory<ResultType>, buildConfig: BuildConfiguration<ResultType>|null = null) {
 		this.baseObject = new ctor()
@@ -33,7 +34,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 
 	private getForeignObjectReference(localPath: string, foreignObject: any = undefined): ObjectReference {
 		const foreignPath = this.buildConfig.aliases[localPath] ?? localPath
-		const foreignValue = dotAccess(foreignPath, foreignObject)
+		const foreignValue = Dot.get(foreignPath, foreignObject)
 
 		let result: ObjectReference
 
@@ -43,7 +44,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 			result = {path: foreignValue != null ? foreignPath : localPath, value: foreignValue,}
 		}
 
-		result.value = dotAccess(result.path, foreignObject)
+		result.value = Dot.get(result.path, foreignObject)
 
 		return result
 	}
@@ -97,31 +98,35 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 
 		params.forEach(param => {
 			const foreignObject = this.getForeignObjectReference(param)
+			let valueToAssign: any = undefined
 
 			if (this.buildConfig.ignores.has(param)) {
 				return
 			}
 
 			if (source[param] instanceof BuildableResource) {
-				result[foreignObject.path] = source[param].build.toJSON(source[param])
+				valueToAssign = source[param].build.toJSON(source[param])
 			} else if (Array.isArray(source[param])) {
 				const list: any[] = source[param]
 
-				result[foreignObject.path] = list.map((item: any, index: number) => {
+				valueToAssign = list.map((item: any, index: number) => {
 					const listClassElement = this.buildConfig.listElementConstructors[param]
 					if(listClassElement) {
 						const listElementClassBuilder = listClassElement.build
 						return listElementClassBuilder.toJSON(item)
 					} else if (source.hasOwnProperty(param)) {
-						return this.buildConfig.transformers[param] ? this.buildConfig.transformers[param].out(result[foreignObject.path][index]) : result[foreignObject.path][index]
+						const x = Dot.get(foreignObject.path, result)
+						return this.buildConfig.transformers[param] ? this.buildConfig.transformers[param].out(x[index]) : x[index]
 					}
 				})
 			} else {
-				result[foreignObject.path] = this.buildConfig.transformers[param] ? this.buildConfig.transformers[param].out(source[param]) : source[param]
+				valueToAssign = this.buildConfig.transformers[param] ? this.buildConfig.transformers[param].out(source[param]) : source[param]
 			}
+
+			Dot.assign(foreignObject.path, result, valueToAssign)
 		})
 
-		delete result["builder"] // FIXME Magic number
+		delete result["resourceBuildConfiguration"] // FIXME Magic number
 
 		return result
 	}

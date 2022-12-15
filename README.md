@@ -15,7 +15,6 @@
 ![License](https://badgen.net/github/license/sinisimattia/tapi)
 ![TS](https://badgen.net/npm/types/tapi.js)
 ![Dependencies](https://badgen.net/bundlephobia/dependency-count/tapi.js)
-![Latest Tag](https://badgen.net/github/tag/sinisimattia/tapi)
 ![Stars](https://badgen.net/github/stars/sinisimattia/tapi)
 
 </div>

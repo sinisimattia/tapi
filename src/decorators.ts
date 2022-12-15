@@ -39,6 +39,13 @@ class ResourceDecorator {
 	}
 
 	/**
+	 * Adds an required directive.
+	 */
+	public Required(target: BuildableResource, name: PropertyKey) {
+		target.buildConfig?.require(name.toString())
+	}
+
+	/**
 	 * Adds an ignore directive.
 	 */
 	public Ignore(target: BuildableResource, name: PropertyKey) {
@@ -60,11 +67,8 @@ class ResourceDecorator {
 const resourceDecorator = new ResourceDecorator()
 
 export const Resource = resourceDecorator.Resource
-
 export const Alias = resourceDecorator.Alias
-
 export const Transform = resourceDecorator.Transform
-
 export const Ignore = resourceDecorator.Ignore
-
+export const Required = resourceDecorator.Required
 export const ListOf = resourceDecorator.ListOf

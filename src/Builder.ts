@@ -61,13 +61,13 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 			const foreignObject = this.getForeignObjectReference(param, source)
 
 			if (!source || !foreignObject.value) {
-				if (this.buildConfig.strict) {
-					throw new Error("Invalid input object, missing parameter: " + param)
+				if (this.buildConfig.required.has(param)) {
+					throw new Error("Invalid input object, missing required parameter: " + param)
 				} else return
 			}
 
 			if (target[param] instanceof BuildableResource) {
-				target[param] = target[param].build.fromJSON(foreignObject.value, this.buildConfig.strict)
+				target[param] = target[param].build.fromJSON(foreignObject.value)
 			} else if (Array.isArray(target[param])) {
 				const list: any[] = foreignObject.value
 
@@ -76,7 +76,7 @@ export default class Builder<ResultType extends BuildableResource<ResultType>> i
 					if(listClassElement) {
 						const listElementClassBuilder = listClassElement.build
 						return listElementClassBuilder.fromJSON(item)
-					} else if (!this.buildConfig.strict && foreignObject.value) {
+					} else if (!this.buildConfig.required.has(param) && foreignObject.value) {
 						return foreignObject.value[index]
 					}
 				})

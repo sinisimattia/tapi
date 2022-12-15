@@ -1,5 +1,5 @@
 // Core
-import Builder from '@/Builder'
+import Builder from '@/core/Builder'
 import BuildableResource from "@/contracts/BuildableResource"
 
 // Decorators

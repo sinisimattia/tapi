@@ -1,4 +1,4 @@
-const package = require('../package.json')
+const p = require('../package.json')
 
 const colored = (message, color = 32) => {
 	return "\x1b[" + color + "m" + message + "\x1b[0m"
@@ -11,15 +11,15 @@ const message = `
  / __/ __ \`/ __ \\/ /   / / ___/
 / /_/ /_/ / /_/ / /   / (__  ) 
 \\__/\\__,_/ .___/_(_)_/ /____/  
-	  /_/    /____/ ${colored("v") + package.version}
+	  /_/    /____/ ${colored("v") + p.version}
 `
 
 const info = `     • • • • • • • • • •
 
-Info & docs: ${colored(package.homepage, 34)}
-License: ${colored(package.license, 35)}
+Info & docs: ${colored(p.homepage, 34)}
+License: ${colored(p.license, 35)}
 
-By ${colored(package.author.name, 36)} and contributors
+By ${colored(p.author.name, 36)} and contributors
 `
 
 console.log(colored(message, 33))

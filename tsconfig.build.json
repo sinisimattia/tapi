@@ -13,11 +13,10 @@
 		"skipLibCheck": false,
 	},
 	"include": [
-		"src/**/*"
+		"src"
 	],
 	"exclude": [
 		"node_modules",
-		"tests",
-		"examples"
+		"tests"
 	]
 }

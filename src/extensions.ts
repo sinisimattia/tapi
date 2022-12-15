@@ -1,4 +1,4 @@
-import Builder from '@/Builder'
+import Builder from '@/core/Builder'
 import ResourceFactory from '@/contracts/ResourceFactory'
 import BuildableResource from '@/contracts/BuildableResource'
 

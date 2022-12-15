@@ -1,5 +1,5 @@
-import BuildConfiguration from '@/BuildConfiguration';
-import Builder from '@/Builder';
+import BuildConfiguration from '@/core/BuildConfiguration';
+import Builder from '@/core/Builder';
 import BuildableResource from '@/contracts/BuildableResource';
 
 class TestClass extends BuildableResource {

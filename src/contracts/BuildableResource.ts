@@ -1,5 +1,5 @@
-import BuildConfiguration from "@/BuildConfiguration"
-import Builder from "@/Builder"
+import BuildConfiguration from "@/core/BuildConfiguration"
+import Builder from "@/core/Builder"
 import JSONConvertible from "@/contracts/JSONConvertible"
 import { deepCopy, } from "@/helpers/functions"
 

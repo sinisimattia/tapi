@@ -1,10 +1,11 @@
-import { Resource, Alias, Transform, Ignore, ListOf } from '@/decorators';
+import { Resource, Alias, Transform, Required, Ignore, ListOf } from '@/decorators';
 import BuildableResource from '@/contracts/BuildableResource';
 
 @Resource
 class AnotherClass extends BuildableResource<TestClass> {
 	@Alias("_param_1")
 	@Transform(value => "ok but transformed")
+	@Required
 	public param1: string = "unassigned";
 
 	@Ignore

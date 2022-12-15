@@ -1,9 +1,8 @@
 export default class BuildConfiguration<ResultType> {
 	/**
-	 * Indicates if it should throw errors in case of missing
-	 * fields in incoming object.
+	 * List of required parameters
 	 */
-	public strict: boolean = false
+	public required: Set<string> = new Set
 
 	/**
 	  * List of parameters that need to be ignored.
@@ -27,6 +26,16 @@ export default class BuildConfiguration<ResultType> {
 	  * the individual items of an incoming list.
 	  */
 	readonly listElementConstructors: {[localPath: string]: ResultType} = {}
+
+	/**
+	 * Add a required directive for one or more paths.
+	 *
+	 * @param paths The object paths to set as required when instantiating.
+	 */
+	public require(...paths: string[]): this {
+		paths.forEach(path => this.required.add(path))
+		return this
+	}
 
 	/**
 	 * Add an ignore directive for one or more paths.

@@ -21,9 +21,8 @@ const buildConfig = new BuildConfiguration<TestClass>()
 const strictBuildConfig = new BuildConfiguration<TestClass>()
 	.ignore("param2")
 	.transform('toBeTransformed', value => "transformed", value => "transformed again")
-	.alias("_param_1", "param1");
-
-strictBuildConfig.strict = true
+	.alias("_param_1", "param1")
+	.require('param1', 'param2', 'toBeTransformed', 'list');
 
 describe('Typed object builder', () => {
 	test('ignores extra parameters', () => {

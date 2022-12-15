@@ -60,6 +60,6 @@
 		"typescript-transform-paths": "^3.4.4"
 	},
 	"dependencies": {
-		"lodash.clonedeep": "^4.5.0"
+		"deepclone": "^1.0.2"
 	}
 }

@@ -10,13 +10,17 @@
 			"hasInstallScript": true,
 			"license": "GPL-3.0-only",
 			"dependencies": {
-				"lodash.clonedeep": "^4.5.0"
+				"deepclone": "^1.0.2"
 			},
 			"bin": {
 				"BuildableResource.d.ts": "dist/contracts/BuildableResource.d.ts",
 				"BuildableResource.d.ts.map": "dist/contracts/BuildableResource.d.ts.map",
 				"BuildableResource.js": "dist/contracts/BuildableResource.js",
 				"BuildableResource.js.map": "dist/contracts/BuildableResource.js.map",
+				"BuildConfiguration.d.ts": "dist/BuildConfiguration.d.ts",
+				"BuildConfiguration.d.ts.map": "dist/BuildConfiguration.d.ts.map",
+				"BuildConfiguration.js": "dist/BuildConfiguration.js",
+				"BuildConfiguration.js.map": "dist/BuildConfiguration.js.map",
 				"Builder.d.ts": "dist/Builder.d.ts",
 				"Builder.d.ts.map": "dist/Builder.d.ts.map",
 				"Builder.js": "dist/Builder.js",
@@ -29,6 +33,10 @@
 				"Describer.d.ts.map": "dist/helpers/Describer.d.ts.map",
 				"Describer.js": "dist/helpers/Describer.js",
 				"Describer.js.map": "dist/helpers/Describer.js.map",
+				"Dot.d.ts": "dist/helpers/Dot.d.ts",
+				"Dot.d.ts.map": "dist/helpers/Dot.d.ts.map",
+				"Dot.js": "dist/helpers/Dot.js",
+				"Dot.js.map": "dist/helpers/Dot.js.map",
 				"extensions.d.ts": "dist/extensions.d.ts",
 				"extensions.d.ts.map": "dist/extensions.d.ts.map",
 				"extensions.js": "dist/extensions.js",
@@ -2124,6 +2132,11 @@
 			"integrity": "sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==",
 			"dev": true
 		},
+		"node_modules/deepclone": {
+			"version": "1.0.2",
+			"resolved": "https://registry.npmjs.org/deepclone/-/deepclone-1.0.2.tgz",
+			"integrity": "sha512-qkPxF/vo0TBGDJYg9BI2V7nT4NdhFc7XIN/hZ840gkcGqT84l6dulLosaO15zkkDJRIGmTN2zdBzticBAD4aRA=="
+		},
 		"node_modules/deepmerge": {
 			"version": "4.2.2",
 			"resolved": "https://registry.npmjs.org/deepmerge/-/deepmerge-4.2.2.tgz",
@@ -3743,11 +3756,6 @@
 			"funding": {
 				"url": "https://github.com/sponsors/sindresorhus"
 			}
-		},
-		"node_modules/lodash.clonedeep": {
-			"version": "4.5.0",
-			"resolved": "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz",
-			"integrity": "sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ=="
 		},
 		"node_modules/lodash.memoize": {
 			"version": "4.1.2",
@@ -6704,6 +6712,11 @@
 			"integrity": "sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==",
 			"dev": true
 		},
+		"deepclone": {
+			"version": "1.0.2",
+			"resolved": "https://registry.npmjs.org/deepclone/-/deepclone-1.0.2.tgz",
+			"integrity": "sha512-qkPxF/vo0TBGDJYg9BI2V7nT4NdhFc7XIN/hZ840gkcGqT84l6dulLosaO15zkkDJRIGmTN2zdBzticBAD4aRA=="
+		},
 		"deepmerge": {
 			"version": "4.2.2",
 			"resolved": "https://registry.npmjs.org/deepmerge/-/deepmerge-4.2.2.tgz",
@@ -7921,11 +7934,6 @@
 			"requires": {
 				"p-locate": "^5.0.0"
 			}
-		},
-		"lodash.clonedeep": {
-			"version": "4.5.0",
-			"resolved": "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz",
-			"integrity": "sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ=="
 		},
 		"lodash.memoize": {
 			"version": "4.1.2",

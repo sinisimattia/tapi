@@ -1,3 +1,4 @@
+import BuildConfiguration from "@/BuildConfiguration"
 import Builder from "@/Builder"
 import JSONConvertible from "@/contracts/JSONConvertible"
 import { deepCopy, } from "@/helpers/functions"
@@ -9,43 +10,36 @@ import { deepCopy, } from "@/helpers/functions"
  */
 export default abstract class BuildableResource<Type extends BuildableResource<Type> = any> implements JSONConvertible {
 	/**
-	 * The specified {@link Builder} for this class.
+	 * The specified {@link BuildConfiguration} for this class.
 	 */
-	private builder?: Builder<this>
+	private resourceBuildConfiguration?: BuildConfiguration<this>
 
 	/**
 	 * The base constructor with no arguments. Your class NEEDS to have it.
 	 */
 	constructor() {}
 
+	public get buildConfig(): BuildConfiguration<this> {
+		if (!Object.getOwnPropertyDescriptor(this, 'resourceBuildConfiguration') && this.resourceBuildConfiguration) {
+			this.resourceBuildConfiguration = deepCopy(this.resourceBuildConfiguration)
+
+		} else if (!this.resourceBuildConfiguration) {
+			this.resourceBuildConfiguration = new BuildConfiguration<this>
+		}
+
+		return this.resourceBuildConfiguration
+	}
+
 	/**
 	 * Public getter for this class' current builder.
 	 */
 	public get build(): Builder<this> {
 		const c = (this as unknown as Type).constructor.prototype.constructor
-
-		if (!Object.getOwnPropertyDescriptor(this, 'builder') && this.builder) {
-			this.builder = deepCopy(this.builder) as Builder<this>
-
-			if (!this.builder.isUsingClass(c)) {
-				this.builder.updateBaseObject(c)
-			}
-		} else if (!this.builder) {
-			this.builder = new Builder<this>(c)
-		}
-
-		return this.builder
+		return new Builder(c, this.buildConfig)
 	}
 
-	/**
-	 * A public setter for this class' current builder.
-	 */
-	public set newBuilder(builder: Builder<this>) {
-		this.builder = builder
-	}
-
-	public fromJSON(source: any, strict: boolean = false): this {
-		return this.build.fromJSON(source, strict)
+	public fromJSON(source: any): this {
+		return this.build.fromJSON(source)
 	}
 
 	public toJSON(): any {

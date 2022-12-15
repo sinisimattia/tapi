@@ -1,6 +1,6 @@
 {
 	"name": "tapi.js",
-	"version": "0.4.4",
+	"version": "0.4.5",
 	"description": "Consume RESTful APIs as TypeScript objects.",
 	"keywords": [
 		"API",

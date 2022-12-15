@@ -6,7 +6,8 @@
 		"API",
 		"converter",
 		"resolver",
-		"tool",
+		"mapper",
+		"automapper",
 		"TypeScript"
 	],
 	"author": {

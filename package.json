@@ -2,7 +2,7 @@
 	"name": "tapi.js",
 	"type": "module",
 	"version": "0.4.6",
-	"description": "Consume RESTful APIs as TypeScript objects.",
+	"description": "Consume JSONs as TypeScript objects.",
 	"keywords": [
 		"API",
 		"converter",
@@ -21,9 +21,9 @@
 		"url": "https://github.com/sinisimattia/tapi/issues"
 	},
 	"homepage": "https://tapi.js.org",
-	"main": "dist/index.js",
-	"module": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "dist/cjs/index.js",
+	"module": "dist/es/index.js",
+	"types": "dist/es/index.d.ts",
 	"scripts": {
 		"build": "rollup -c --silent",
 		"test": "jest",
@@ -48,6 +48,7 @@
 		"types"
 	],
 	"devDependencies": {
+		"@rollup/plugin-alias": "^4.0.2",
 		"@rollup/plugin-commonjs": "^24.0.0",
 		"@rollup/plugin-json": "^6.0.0",
 		"@rollup/plugin-node-resolve": "^15.0.1",

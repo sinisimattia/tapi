@@ -17,9 +17,11 @@
 				"BuildableResource.d.ts.map": "dist/contracts/BuildableResource.d.ts.map",
 				"BuildConfiguration.d.ts": "dist/core/BuildConfiguration.d.ts",
 				"BuildConfiguration.d.ts.map": "dist/core/BuildConfiguration.d.ts.map",
+				"Builder-13e88650.js": "dist/Builder-13e88650.js",
 				"Builder-dbac416d.js": "dist/Builder-dbac416d.js",
 				"Builder.d.ts": "dist/core/Builder.d.ts",
 				"Builder.d.ts.map": "dist/core/Builder.d.ts.map",
+				"decorators-06a7731f.js": "dist/decorators-06a7731f.js",
 				"decorators-1ab04c64.js": "dist/decorators-1ab04c64.js",
 				"decorators.d.ts": "dist/decorators.d.ts",
 				"decorators.d.ts.map": "dist/decorators.d.ts.map",
@@ -44,6 +46,7 @@
 				"ResourceFactory.d.ts.map": "dist/contracts/ResourceFactory.d.ts.map"
 			},
 			"devDependencies": {
+				"@rollup/plugin-alias": "^4.0.2",
 				"@rollup/plugin-commonjs": "^24.0.0",
 				"@rollup/plugin-json": "^6.0.0",
 				"@rollup/plugin-node-resolve": "^15.0.1",
@@ -1217,6 +1220,38 @@
 			},
 			"engines": {
 				"node": ">= 8"
+			}
+		},
+		"node_modules/@rollup/plugin-alias": {
+			"version": "4.0.2",
+			"resolved": "https://registry.npmjs.org/@rollup/plugin-alias/-/plugin-alias-4.0.2.tgz",
+			"integrity": "sha512-1hv7dBOZZwo3SEupxn4UA2N0EDThqSSS+wI1St1TNTBtOZvUchyIClyHcnDcjjrReTPZ47Faedrhblv4n+T5UQ==",
+			"dev": true,
+			"dependencies": {
+				"slash": "^4.0.0"
+			},
+			"engines": {
+				"node": ">=14.0.0"
+			},
+			"peerDependencies": {
+				"rollup": "^1.20.0||^2.0.0||^3.0.0"
+			},
+			"peerDependenciesMeta": {
+				"rollup": {
+					"optional": true
+				}
+			}
+		},
+		"node_modules/@rollup/plugin-alias/node_modules/slash": {
+			"version": "4.0.0",
+			"resolved": "https://registry.npmjs.org/slash/-/slash-4.0.0.tgz",
+			"integrity": "sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==",
+			"dev": true,
+			"engines": {
+				"node": ">=12"
+			},
+			"funding": {
+				"url": "https://github.com/sponsors/sindresorhus"
 			}
 		},
 		"node_modules/@rollup/plugin-commonjs": {
@@ -6122,6 +6157,23 @@
 			"requires": {
 				"@nodelib/fs.scandir": "2.1.5",
 				"fastq": "^1.6.0"
+			}
+		},
+		"@rollup/plugin-alias": {
+			"version": "4.0.2",
+			"resolved": "https://registry.npmjs.org/@rollup/plugin-alias/-/plugin-alias-4.0.2.tgz",
+			"integrity": "sha512-1hv7dBOZZwo3SEupxn4UA2N0EDThqSSS+wI1St1TNTBtOZvUchyIClyHcnDcjjrReTPZ47Faedrhblv4n+T5UQ==",
+			"dev": true,
+			"requires": {
+				"slash": "^4.0.0"
+			},
+			"dependencies": {
+				"slash": {
+					"version": "4.0.0",
+					"resolved": "https://registry.npmjs.org/slash/-/slash-4.0.0.tgz",
+					"integrity": "sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==",
+					"dev": true
+				}
 			}
 		},
 		"@rollup/plugin-commonjs": {

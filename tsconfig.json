@@ -1,19 +1,17 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"module": "CommonJS",
 		"esModuleInterop": true,
 		"strict": true,
 		"allowJs": true,
 		"noImplicitAny": false,
 		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
 		"baseUrl": "src",
 		"paths": {
 			"@/*": [
 				"./*"
 			]
-		},
-		"forceConsistentCasingInFileNames": true
+		}
 	},
 	"include": [
 		"src",

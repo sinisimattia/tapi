@@ -8,4 +8,4 @@ group :jekyll_plugins do
 	gem "jekyll-redirect-from"
 end
 
-gem "jekyll-theme-opentoolbox", "~> 2.0"
+gem "jekyll-theme-opentoolbox", "~> 2.0.2"

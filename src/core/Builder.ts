@@ -3,7 +3,7 @@ import BuildableResource from "@/contracts/BuildableResource"
 import ResourceFactory from "@/contracts/ResourceFactory"
 import JSONConvertible from "@/contracts/JSONConvertible"
 import { deepCopy, } from "@/helpers/functions"
-import BuildConfiguration from "@/BuildConfiguration"
+import BuildConfiguration from "@/core/BuildConfiguration"
 import Dot from "@/helpers/Dot"
 
 /**

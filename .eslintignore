@@ -7,9 +7,7 @@ coverage
 # Ignore config files
 .eslintrc.js
 *config.js*
+*config.cjs*
 
 # Ignore extra directories
 scripts
-
-# Ignore demo files
-examples/**/*

@@ -1,36 +1,24 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs",
 		"esModuleInterop": true,
 		"strict": true,
+		"allowJs": true,
 		"noImplicitAny": false,
 		"experimentalDecorators": true,
-		"moduleResolution": "node",
+		"forceConsistentCasingInFileNames": true,
 		"baseUrl": "src",
 		"paths": {
 			"@/*": [
 				"./*"
 			]
-		},
-		"forceConsistentCasingInFileNames": true,
-		"plugins": [
-			{
-				"transform": "typescript-transform-paths"
-			},
-			{
-				"transform": "typescript-transform-paths",
-				"afterDeclarations": true
-			}
-		]
+		}
 	},
 	"include": [
-		"src/**/*",
-		"tests/**/*",
-		"examples/**/*"
+		"src",
+		"tests"
 	],
 	"exclude": [
-		"node_modules/**/*",
-		"dist/**/*"
+		"node_modules",
+		"dist"
 	]
 }

@@ -58,7 +58,7 @@ const instance: TestClass = new TestClass().fromJSON(json);
 
 ```typescript
 // TestClass.ts
-import { BuildableResource, Builder } from 'tapi.js';
+import { BuildableResource, BuildConfiguration } from 'tapi.js';
 
 class TestClass extends BuildableResource {
 	public param: string = 'unassigned';
@@ -72,17 +72,14 @@ class TestClass extends BuildableResource {
 }
 
 // example.ts
-const testClassBuilder = new Builder(TestClass)
+const testClassBuildConfig = new BuildConfiguration<TestClass>()
 	.ignore(['toBeIgnored'])
 	.transform('toBeTransformed', (value) => {
 		return 'transformed';
 	})
 	.alias('_param_1', 'param');
-```
 
-Then it's as simple as writing:
-```typescript
-const instance: TestClass = testClassBuilder.fromJSON(json);
+const builtObject = new Builder(TestClass, testClassBuildConfig).fromJSON(json);
 ```
 
 ### ... and also with Promises 🤞

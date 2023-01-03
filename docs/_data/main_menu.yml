@@ -2,8 +2,8 @@
   items:
     - name: Buildable Resource
       link: /docs/core/buildable-resource
-    - name: Builder
-      link: /docs/core/builder
+    - name: Build Configuration
+      link: /docs/core/build-configuration
 - label: Decorators
   items:
     - name: Resource

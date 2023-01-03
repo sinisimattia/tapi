@@ -13,10 +13,6 @@ import { BuildableResource } from 'tapi.js';
 
 class TestClass extends BuildableResource {
 	// All your other stuff here
-
-	constructor() {
-		super();
-	}
 }
 ```
 

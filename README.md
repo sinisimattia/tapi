@@ -16,6 +16,8 @@
 ![TS](https://badgen.net/npm/types/tapi.js)
 ![Dependencies](https://badgen.net/bundlephobia/dependency-count/tapi.js)
 ![Stars](https://badgen.net/github/stars/sinisimattia/tapi)
+	
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B561G42)
 
 </div>
 

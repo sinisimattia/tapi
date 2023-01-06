@@ -23,4 +23,6 @@ jobs:
       - name: Installing directly from source-tree
         run: npm ci
       - name: Running unit tests
-        run: npm test
+        run: npm t
+      - name: Is the code clean?
+        run: npm run lint

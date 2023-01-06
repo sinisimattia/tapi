@@ -70,7 +70,7 @@ ___
 
 ## Big thanks to anyone who contributes!
 
-**You** could be here!
+**You** could be here! Just follow the [**contributor's guide**](CONTRIBUTING.md).
 
 👇
 

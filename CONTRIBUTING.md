@@ -24,6 +24,10 @@ Please include me as a reviewer. That's it.
 ### Use the correct tags
 Yeah... the tags help us organize issues and PRs so...
 
+### Proper references
+Be sure to properly include references to issues and pull requests
+in comments, descriptions and commits whenever possible.
+
 ___
 
 Thanks for taking an interest and helping us! Have a nice rest of the day

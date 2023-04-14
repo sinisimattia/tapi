@@ -7,9 +7,10 @@ const alias = require('@rollup/plugin-alias')
 
 // Constants
 const pkg = require('./package.json')
-const OUT_DIR = pkg.directories.lib
 
-function createBuildConfig(outFormat, outSubDir) {
+function createBuildConfig(outSubDir, outFormat) {
+	const OUT_DIR = pkg.directories.lib + '/' + outSubDir
+
 	return {
 		input: [
 			'src/index.ts',
@@ -19,7 +20,7 @@ function createBuildConfig(outFormat, outSubDir) {
 		],
 		output:[
 			{
-				dir: OUT_DIR + '/' + outSubDir,
+				dir: OUT_DIR,
 				format: outFormat
 			},
 		],
@@ -40,8 +41,9 @@ function createBuildConfig(outFormat, outSubDir) {
 			json(),
 			ts({
 				tsconfig: './tsconfig.build.json',
-				outDir: OUT_DIR + '/' + outSubDir,
-				tsBuildInfoFile: OUT_DIR + '/' + outSubDir + '/' + '.tsbuildinfo'
+				outDir: OUT_DIR,
+				declarationDir: OUT_DIR + '/types',
+				tsBuildInfoFile: OUT_DIR + '/' + '.tsbuildinfo'
 			}),
 		],
 	}

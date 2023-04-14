@@ -1,5 +1,6 @@
 // Plugins
 const ts = require('@rollup/plugin-typescript')
+const dts = require('rollup-plugin-dts')
 const cjs = require('@rollup/plugin-commonjs')
 const json = require('@rollup/plugin-json')
 const resolve = require('@rollup/plugin-node-resolve')
@@ -41,15 +42,26 @@ function createBuildConfig(outSubDir, outFormat) {
 			json(),
 			ts({
 				tsconfig: './tsconfig.build.json',
-				outDir: OUT_DIR,
 				declarationDir: OUT_DIR + '/types',
-				tsBuildInfoFile: OUT_DIR + '/' + '.tsbuildinfo'
+				outDir: OUT_DIR,
 			}),
 		],
 	}
 }
 
 module.exports = [
+	createBuildConfig('cjs', 'cjs'),
 	createBuildConfig('es', 'es'),
-	createBuildConfig('cjs', 'cjs')
+	{
+		input: 'dist/es/types/index.d.ts',
+		output: [{ file: 'dist/types.d.ts', format: 'es' }],
+		plugins: [
+			dts.default({
+				tsconfig: './tsconfig.build.json',
+				compilerOptions: {
+					baseUrl: 'src'
+				},
+			}),
+		],
+	},
 ]

@@ -1,11 +1,11 @@
 // Plugins
 const ts = require('@rollup/plugin-typescript')
-const dts = require('rollup-plugin-dts')
+const dts = require('rollup-plugin-dts').default
 const cjs = require('@rollup/plugin-commonjs')
 const json = require('@rollup/plugin-json')
 const resolve = require('@rollup/plugin-node-resolve')
 const alias = require('@rollup/plugin-alias')
-const clear = require('rollup-plugin-clear')
+const del = require('rollup-plugin-delete')
 
 // Constants
 const pkg = require('./package.json')
@@ -58,7 +58,7 @@ module.exports = [
 		input: LIB_DIR + '/es/types/index.d.ts',
 		output: [{ file: LIB_DIR + '/types.d.ts', format: 'es' }],
 		plugins: [
-			dts.default({
+			dts({
 				tsconfig: './tsconfig.build.json',
 				compilerOptions: {
 					baseUrl: 'src',
@@ -66,11 +66,13 @@ module.exports = [
 					declarationMap: true,
 				},
 			}),
-			clear({
+			del({
 				targets: [
 					LIB_DIR + '/es/types',
 					LIB_DIR + '/cjs/types',
 				],
+				hook: 'buildEnd',
+				runOnce: true,
 			}),
 		],
 	},

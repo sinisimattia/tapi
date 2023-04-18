@@ -9,6 +9,8 @@ const del = require('rollup-plugin-delete')
 
 // Constants
 const pkg = require('./package.json')
+const tsConfigBase = require('./tsconfig.json')
+const SRC_DIR = tsConfigBase.compilerOptions.baseUrl
 const LIB_DIR = pkg.directories.lib
 
 function createBuildConfig(outSubDir, outFormat) {
@@ -16,10 +18,10 @@ function createBuildConfig(outSubDir, outFormat) {
 
 	return {
 		input: [
-			'src/index.ts',
-			'src/functions.ts',
-			'src/extensions.ts',
-			'src/decorators.ts',
+			SRC_DIR + '/index.ts',
+			SRC_DIR + '/functions.ts',
+			SRC_DIR + '/extensions.ts',
+			SRC_DIR + '/decorators.ts',
 		],
 		output:[
 			{

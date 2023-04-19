@@ -1,25 +1,31 @@
 // Plugins
 const ts = require('@rollup/plugin-typescript')
+const dts = require('rollup-plugin-dts').default
 const cjs = require('@rollup/plugin-commonjs')
 const json = require('@rollup/plugin-json')
 const resolve = require('@rollup/plugin-node-resolve')
 const alias = require('@rollup/plugin-alias')
+const del = require('rollup-plugin-delete')
 
 // Constants
 const pkg = require('./package.json')
-const OUT_DIR = pkg.directories.lib
+const tsConfigBase = require('./tsconfig.json')
+const SRC_DIR = tsConfigBase.compilerOptions.baseUrl
+const LIB_DIR = pkg.directories.lib
 
-function createBuildConfig(outFormat, outSubDir) {
+function createBuildConfig(outSubDir, outFormat) {
+	const OUT_DIR = LIB_DIR + '/' + outSubDir
+
 	return {
 		input: [
-			'src/index.ts',
-			'src/functions.ts',
-			'src/extensions.ts',
-			'src/decorators.ts',
+			SRC_DIR + '/index.ts',
+			SRC_DIR + '/functions.ts',
+			SRC_DIR + '/extensions.ts',
+			SRC_DIR + '/decorators.ts',
 		],
 		output:[
 			{
-				dir: OUT_DIR + '/' + outSubDir,
+				dir: OUT_DIR,
 				format: outFormat
 			},
 		],
@@ -40,14 +46,36 @@ function createBuildConfig(outFormat, outSubDir) {
 			json(),
 			ts({
 				tsconfig: './tsconfig.build.json',
-				outDir: OUT_DIR + '/' + outSubDir,
-				tsBuildInfoFile: OUT_DIR + '/' + outSubDir + '/' + '.tsbuildinfo'
+				outDir: OUT_DIR,
+				declarationDir: OUT_DIR + '/types',
 			}),
 		],
 	}
 }
 
 module.exports = [
+	createBuildConfig('cjs', 'cjs'),
 	createBuildConfig('es', 'es'),
-	createBuildConfig('cjs', 'cjs')
+	{
+		input: LIB_DIR + '/es/types/index.d.ts',
+		output: [{ file: LIB_DIR + '/types.d.ts', format: 'es' }],
+		plugins: [
+			dts({
+				tsconfig: './tsconfig.build.json',
+				compilerOptions: {
+					baseUrl: 'src',
+					sourceMap: true,
+					declarationMap: true,
+				},
+			}),
+			del({
+				targets: [
+					LIB_DIR + '/es/types',
+					LIB_DIR + '/cjs/types',
+				],
+				hook: 'buildEnd',
+				runOnce: true,
+			}),
+		],
+	},
 ]

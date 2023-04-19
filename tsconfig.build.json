@@ -6,7 +6,6 @@
 		"declarationMap": true,
 		"sourceMap": true,
 		"rootDir": "src",
-		"composite": true,
 		"removeComments": true,
 		"skipLibCheck": false,
 	},

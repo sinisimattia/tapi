@@ -3,7 +3,7 @@ title: Convert JSON data into TypeScript objects with tapi!
 banner_with_image: true
 image: https://i.ibb.co/stfLH8B/tepi-demo.png
 banner_darken: false
-banner_style: is-primary
+banner_style: is-light
 banner_height: is-large
 ---
 

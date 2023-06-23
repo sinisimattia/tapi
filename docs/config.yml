@@ -1,0 +1,55 @@
+baseURL: 'https://tapi.js.org/'
+languageCode: 'en-us'
+title: 'tapi.js'
+theme: 'PaperMod'
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: false
+
+params:
+  assets:
+    favicon: /tapi-logo.png
+  defaultTheme: light
+  disableThemeToggle: false
+  ShowCodeCopyButtons: true
+  ShowToc: false
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: false
+  cover:
+    responsiveImages: false
+  profileMode:
+    enabled: true
+    title: Convert raw JSON into typed objects
+    subtitle: "This is a tiny JS/TS package for customizable object mapping to strongly-typed classes."
+    imageUrl: "/tapi-logo.png" # optional
+    imageWidth: 200 # custom size
+    imageHeight: 200 # custom size
+    buttons:
+        - name: Get Started
+          url: "/docs"
+  socialIcons:
+    - name: GitHub
+      url: https://github.com/sinisimattia/tapi/
+    - name: npm
+      url: https://npm.im/tapi.js/
+
+menu:
+  main:
+    - name: Documentation
+      url: docs
+      weight: 1
+    - name: Search
+      url: search/
+      weight: 10
+    - name: Contribute
+      url: https://github.com/sinisimattia/tapi/
+      weight: 100
+
+outputs:
+    home:
+      - HTML
+      - JSON # necessary for search functionality

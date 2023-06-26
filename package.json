@@ -65,6 +65,7 @@
 		"typescript": "^4.9.3"
 	},
 	"dependencies": {
-		"deepclone": "^1.0.2"
+		"deepclone": "^1.0.2",
+		"postcss-cli": "^10.1.0"
 	}
 }

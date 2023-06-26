@@ -1,13 +1,43 @@
 ---
-title: Convert JSON data into TypeScript objects with tapi!
-banner_with_image: true
-image: https://i.ibb.co/stfLH8B/tepi-demo.png
-banner_darken: false
-banner_style: is-light
-banner_height: is-large
+title: Usage (from start to finish) 🚀
+summary: Complete guide to using tapi, from install to usage.
+weight: 1 # pins this post at the top
+ShowToc: true
+ShowBreadCrumbs: true
 ---
 
-### **Typed** API consumer
+# The situation
+
+Let's imagine that you have a class, we'll call it `TestClass`.
+
+```typescript
+class TestClass {
+	public param1: string;
+	public param2: string;
+	public list: string[];
+	public thing: AnotherClass;
+	public thingToBeIgnored: string = "Leave me here!"
+}
+```
+
+Now we want to instantiate that class from a generic JSON response.
+
+```json
+{
+	"_param_1": "something",
+	"param2": "something else",
+	"items": ["item 1", "item 2", "item 3"],
+	"something": {
+		"inner1": "inner thing",
+		"inner2": "another inner thing"
+	},
+	"thingToBeIgnored": "some useless data"
+}
+```
+
+How do we go about it? Mapping manually is too cumbersome... that's where **tapi.js** comes to help!
+
+# Introducing: the **Typed** API consumer (or just tapi)
 
 **tapi** is a tiny TypeScript package used to define how to interpret any given API response as a typed object.
 
